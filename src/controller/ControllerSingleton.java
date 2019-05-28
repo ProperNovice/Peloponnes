@@ -9,6 +9,7 @@ public enum ControllerSingleton {
 	public Modifiers modifiers = null;
 	public SaveLoad saveLoad = null;
 	public Text text = null;
+	public TilePiles tilePiles = null;
 
 	public void createInstances() {
 
@@ -17,6 +18,7 @@ public enum ControllerSingleton {
 		this.flow = new Flow();
 		this.modifiers = new Modifiers();
 		this.saveLoad = new SaveLoad();
+		this.tilePiles = new TilePiles();
 
 	}
 

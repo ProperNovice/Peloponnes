@@ -18,6 +18,7 @@ import utils.ShutDown;
 public class Peloponnes extends Application {
 
 	private Panel panel = null;
+	private double pixesOnTheLeft = 140;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -60,7 +61,7 @@ public class Peloponnes extends Application {
 
 		primaryStage.setTitle("Peloponnes");
 
-		primaryStage.setX((Screen.getPrimary().getBounds().getWidth() - width) / 2);
+		primaryStage.setX((Screen.getPrimary().getBounds().getWidth() - width) / 2 - this.pixesOnTheLeft);
 		primaryStage.setY((Screen.getPrimary().getBounds().getHeight() - height) / 2);
 
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
