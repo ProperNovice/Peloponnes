@@ -10,7 +10,7 @@ public class TilePile extends ContainerImageViewAbles<ITile> {
 	@Override
 	protected void createCoordinates() {
 
-		super.coordinates = new CoordinatesBuilder().dimensionsNumbersPair(CredentialSingleton.INSTANCE.DimensionsTile)
+		super.coordinates = new CoordinatesBuilder().dimensionsNumbersPair(CredentialSingleton.INSTANCE.DimensionsTilePile)
 				.gapNumbersPair(CredentialSingleton.INSTANCE.DimensionsGapBetweenTiles).build();
 
 	}

@@ -72,7 +72,7 @@ public class TileBuilder {
 		return this;
 	}
 
-	public TileBuilder tileAbility(ETileAbility... eTileAbilisty) {
+	public TileBuilder eTileAbility(ETileAbility... eTileAbilisty) {
 		this.eTileAbility.addAll(eTileAbilisty);
 		return this;
 	}

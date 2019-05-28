@@ -18,7 +18,7 @@ import utils.ShutDown;
 public class Peloponnes extends Application {
 
 	private Panel panel = null;
-	private double pixesOnTheLeft = 140;
+	private double pixesOnTheLeft = 180;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
