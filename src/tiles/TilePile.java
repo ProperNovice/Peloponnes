@@ -11,7 +11,7 @@ public class TilePile extends ContainerImageViewAbles<ITile> {
 	protected void createCoordinates() {
 
 		super.coordinates = new CoordinatesBuilder().dimensionsNumbersPair(CredentialSingleton.INSTANCE.DimensionsTilePile)
-				.gapNumbersPair(CredentialSingleton.INSTANCE.DimensionsGapBetweenTiles).build();
+				.gapNumbersPair(CredentialSingleton.INSTANCE.DimensionsGapBetweenComponents).build();
 
 	}
 

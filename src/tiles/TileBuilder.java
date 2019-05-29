@@ -87,8 +87,24 @@ public class TileBuilder {
 	}
 
 	public ITile build() {
-		return new Tile(this.ePhase, this.tileNumber, this.eTileType, this.prestigePoints, this.buyCost,
-				this.oneTimeIncome, this.constructionCost, this.incomePerRound, this.eTileAbility);
+
+		switch (this.eTileType) {
+
+		case BUILDING:
+			return new TileBuilding(this.ePhase, this.tileNumber, this.eTileType, this.prestigePoints, this.buyCost,
+					this.oneTimeIncome, this.constructionCost, this.incomePerRound, this.eTileAbility);
+
+		case CIVILIZATION:
+			break;
+
+		case LAND:
+			return new TileLand(this.ePhase, this.tileNumber, this.eTileType, this.prestigePoints, this.buyCost,
+					this.oneTimeIncome, this.incomePerRound, this.eTileAbility);
+
+		}
+
+		return null;
+
 	}
 
 }

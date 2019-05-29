@@ -7,7 +7,7 @@ public enum CredentialSingleton {
 	INSTANCE;
 
 	public NumbersPair DimensionsFrame, DimensionsInsets, DimensionsGapBetweenBorders, DimensionsNumberImageView,
-			DimensionsTilePile, DimensionsGapBetweenTiles;
+			DimensionsTilePile, DimensionsGapBetweenComponents;
 	public NumbersPair CoordinatesTextPanel, CoordinatesTilePiles;
 	public double textHeight;
 
@@ -18,7 +18,7 @@ public enum CredentialSingleton {
 		this.DimensionsFrame = new NumbersPair(1366, 788);
 		this.DimensionsInsets = new NumbersPair(7, 29);
 		this.DimensionsGapBetweenBorders = new NumbersPair(20, 20);
-		this.DimensionsGapBetweenTiles = new NumbersPair(4, 4);
+		this.DimensionsGapBetweenComponents = new NumbersPair(4, 4);
 		this.DimensionsNumberImageView = new NumbersPair(100, 100);
 
 		this.CoordinatesTextPanel = new NumbersPair(x, y);
@@ -26,9 +26,10 @@ public enum CredentialSingleton {
 		this.textHeight = 50;
 
 		x = 90;
+//		x = 118;
 		this.DimensionsTilePile = new NumbersPair(x, x);
 
-		x = 2 * this.DimensionsGapBetweenBorders.x + 15 * this.DimensionsTilePile.x + 14 * this.DimensionsGapBetweenTiles.x;
+		x = 2 * this.DimensionsGapBetweenBorders.x + 15 * this.DimensionsTilePile.x + 14 * this.DimensionsGapBetweenComponents.x;
 		this.DimensionsFrame = new NumbersPair(x, 788);
 
 		x = DimensionsGapBetweenBorders.x;

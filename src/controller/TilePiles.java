@@ -164,6 +164,210 @@ public class TilePiles {
 						.oneTimeIncome(EResource.POPULATION_GAIN, 2).constructionCost(EResource.STONE, 3)
 						.constructionCost(EResource.WOOD).eTileAbility(ETileAbility.PROTECTION_FROM_PLAGUE).build());
 
+		// 02
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(4).buyCost(4).incomePerRound(EResource.FOOD)
+						.oneTimeIncome(EResource.POPULATION_GAIN, 2).constructionCost(EResource.STONE, 4).build());
+
+		// 03
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(7).buyCost(6).oneTimeIncome(EResource.LUXURY_GOODS, 3)
+						.oneTimeIncome(EResource.POPULATION_GAIN, 3).constructionCost(EResource.STONE, 3)
+						.constructionCost(EResource.WOOD, 2).build());
+
+		// 04
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
+						.prestigePoints(2).buyCost(4).oneTimeIncome(EResource.POPULATION_GAIN, 2)
+						.incomePerRound(EResource.FOOD, 2).incomePerRound(EResource.WOOD).build());
+
+		// 05
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
+						.prestigePoints(2).buyCost(5).oneTimeIncome(EResource.POPULATION_GAIN)
+						.incomePerRound(EResource.FOOD, 3).eTileAbility(ETileAbility.SUPPLY_ROUND).build());
+
+		// 06
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
+						.prestigePoints(4).buyCost(3).oneTimeIncome(EResource.POPULATION_GAIN, 3)
+						.incomePerRound(EResource.WOOD, 2).build());
+
+		// 07
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
+						.prestigePoints(4).buyCost(4).oneTimeIncome(EResource.COIN)
+						.oneTimeIncome(EResource.POPULATION_GAIN).incomePerRound(EResource.WOOD)
+						.incomePerRound(EResource.STONE).build());
+
+		// 08
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(5).buyCost(2).oneTimeIncome(EResource.LUXURY_GOODS, 5)
+						.oneTimeIncome(EResource.POPULATION_GAIN).constructionCost(EResource.STONE, 2)
+						.constructionCost(EResource.WOOD, 3).build());
+
+		// 09
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
+						.prestigePoints(3).buyCost(5).oneTimeIncome(EResource.POPULATION_GAIN)
+						.incomePerRound(EResource.STONE, 3).build());
+
+		// 10
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
+						.prestigePoints(4).buyCost(4).oneTimeIncome(EResource.COIN, 3)
+						.oneTimeIncome(EResource.POPULATION_GAIN).incomePerRound(EResource.STONE).build());
+
+		// 11
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
+						.prestigePoints(4).buyCost(3).oneTimeIncome(EResource.COIN, 3)
+						.oneTimeIncome(EResource.POPULATION_GAIN, 2).incomePerRound(EResource.WOOD).build());
+
+		// 12
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(5).buyCost(2).constructionCost(EResource.WOOD, 3)
+						.oneTimeIncome(EResource.FOOD, 3).build());
+
+		// 13
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(3).buyCost(2).constructionCost(EResource.STONE, 2)
+						.constructionCost(EResource.WOOD, 2).incomePerRound(EResource.STONE, 2).build());
+
+		// 14
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(3).buyCost(4).constructionCost(EResource.STONE, 2)
+						.constructionCost(EResource.WOOD).oneTimeIncome(EResource.POPULATION_GAIN)
+						.incomePerRound(EResource.FOOD).eTileAbility(ETileAbility.PROTECTION_FROM_PLAGUE).build());
+
+		// 15
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(5).buyCost(4).constructionCost(EResource.STONE, 5)
+						.oneTimeIncome(EResource.POPULATION_GAIN, 2).incomePerRound(EResource.CHOOSE_INCOME)
+						.eTileAbility(ETileAbility.PROTECTION_FROM_DROUGHT).build());
+
+		// C
+
+		ePhase = EPhase.C;
+		tileNumber = 0;
+
+		// 01
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList().addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber)
+				.eTileType(ETileType.BUILDING).prestigePoints(7).buyCost(6).oneTimeIncome(EResource.POPULATION_GAIN)
+				.constructionCost(EResource.STONE, 6).eTileAbility(ETileAbility.PROTECTION_FROM_EARTHQUAKE).build());
+
+		// 02
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(5).buyCost(4).constructionCost(EResource.WOOD, 5)
+						.incomePerRound(EResource.FOOD, 2).build());
+
+		// 03
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
+						.prestigePoints(4).buyCost(5).oneTimeIncome(EResource.POPULATION_GAIN, 3)
+						.incomePerRound(EResource.WOOD, 2).build());
+
+		// 04
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
+						.prestigePoints(4).buyCost(4).oneTimeIncome(EResource.COIN)
+						.oneTimeIncome(EResource.POPULATION_GAIN, 2).incomePerRound(EResource.WOOD, EResource.STONE)
+						.eTileAbility(ETileAbility.SUPPLY_ROUND).build());
+
+		// 05
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
+						.prestigePoints(5).buyCost(5).oneTimeIncome(EResource.COIN, 2)
+						.oneTimeIncome(EResource.POPULATION_GAIN).incomePerRound(EResource.STONE, 2).build());
+
+		// 06
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList().addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber)
+				.eTileType(ETileType.BUILDING).prestigePoints(5).buyCost(5).oneTimeIncome(EResource.POPULATION_GAIN)
+				.incomePerRound(EResource.STONE).constructionCost(EResource.STONE, 3)
+				.constructionCost(EResource.WOOD, 3).eTileAbility(ETileAbility.PROTECTION_FROM_TEMPEST).build());
+
+		// 07
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList().addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber)
+				.eTileType(ETileType.BUILDING).prestigePoints(6).buyCost(7).oneTimeIncome(EResource.POPULATION_GAIN, 2)
+				.incomePerRound(EResource.FOOD).constructionCost(EResource.STONE, 4).constructionCost(EResource.WOOD, 2)
+				.eTileAbility(ETileAbility.PROTECTION_FROM_DECLINE).build());
+
+		// 08
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(8).buyCost(8).oneTimeIncome(EResource.POPULATION_GAIN, 2)
+						.incomePerRound(EResource.FOOD).constructionCost(EResource.STONE, 8).build());
+
+		// 09
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(4).buyCost(5).oneTimeIncome(EResource.POPULATION_GAIN)
+						.incomePerRound(EResource.STONE, EResource.FOOD).constructionCost(EResource.STONE, 2)
+						.constructionCost(EResource.WOOD).eTileAbility(ETileAbility.PROTECTION_FROM_DROUGHT).build());
+
+		// 10
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(7).buyCost(6).oneTimeIncome(EResource.POPULATION_LOST)
+						.incomePerRound(EResource.WOOD, EResource.FOOD).constructionCost(EResource.STONE, 3)
+						.constructionCost(EResource.WOOD).build());
+
 	}
 
 	private void relocateTiles() {
@@ -171,7 +375,7 @@ public class TilePiles {
 		double x = CredentialSingleton.INSTANCE.CoordinatesTilePiles.x;
 		double y = CredentialSingleton.INSTANCE.CoordinatesTilePiles.y;
 		double gap = CredentialSingleton.INSTANCE.DimensionsTilePile.y
-				+ CredentialSingleton.INSTANCE.DimensionsGapBetweenTiles.y;
+				+ CredentialSingleton.INSTANCE.DimensionsGapBetweenComponents.y;
 
 		for (EPhase ePhaseTemp : EPhase.values()) {
 
