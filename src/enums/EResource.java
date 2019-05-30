@@ -2,6 +2,17 @@ package enums;
 
 public enum EResource {
 
-	WOOD, STONE, FOOD, LUXURY_GOODS, COIN, POPULATION_GAIN, POPULATION_LOST, CHOOSE_INCOME
+	WOOD("Wood"), STONE("Stone"), FOOD("Food"), LUXURY_GOODS("Lux"), COIN("Coins"), POPULATION_GAIN("Pop"),
+	POPULATION_LOST(null), CHOOSE_INCOME(null);
+
+	private String string = null;
+
+	private EResource(String string) {
+		this.string = string;
+	}
+
+	public String getString() {
+		return this.string;
+	}
 
 }

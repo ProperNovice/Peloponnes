@@ -134,6 +134,10 @@ public class TextIndicator implements INode {
 		PlatformFX.runLater(() -> this.text.setText(Integer.toString(text)));
 	}
 
+	public final String getText() {
+		return this.text.getText();
+	}
+
 	protected final void setFont(final int value) {
 		PlatformFX.runLater(() -> this.text.setFont(new Font(value)));
 	}
