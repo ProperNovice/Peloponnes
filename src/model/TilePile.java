@@ -1,4 +1,4 @@
-package tiles;
+package model;
 
 import controller.CredentialSingleton;
 import interfaces.ITile;

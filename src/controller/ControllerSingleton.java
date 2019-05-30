@@ -10,6 +10,7 @@ public enum ControllerSingleton {
 	public SaveLoad saveLoad = null;
 	public Text text = null;
 	public TilePiles tilePiles = null;
+	public DisasterChits disasterChits = null;
 
 	public void createInstances() {
 
@@ -19,6 +20,7 @@ public enum ControllerSingleton {
 		this.modifiers = new Modifiers();
 		this.saveLoad = new SaveLoad();
 		this.tilePiles = new TilePiles();
+		this.disasterChits = new DisasterChits();
 
 	}
 

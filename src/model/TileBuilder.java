@@ -1,4 +1,4 @@
-package tiles;
+package model;
 
 import enums.EPhase;
 import enums.EResource;

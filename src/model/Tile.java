@@ -1,4 +1,4 @@
-package tiles;
+package model;
 
 import controller.CredentialSingleton;
 import interfaces.ITile;
@@ -12,8 +12,6 @@ public abstract class Tile implements ImageViewAble, EventHandlerAble, ITile {
 
 		ImageView imageView = new ImageView(fileName, this);
 		imageView.setWidth(CredentialSingleton.INSTANCE.DimensionsTilePile.x);
-
-		mapImageViews.put(this, imageView);
 
 	}
 

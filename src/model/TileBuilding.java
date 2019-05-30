@@ -1,31 +1,33 @@
-package tiles;
+package model;
 
 import enums.EPhase;
 import enums.EResource;
 import enums.ETileAbility;
 import enums.ETileType;
-import interfaces.ITileLand;
+import interfaces.ITileBuilding;
 import utils.ArrayList;
 import utils.Logger;
 
-public class TileLand extends Tile implements ITileLand {
+public class TileBuilding extends Tile implements ITileBuilding {
 
 	private EPhase ePhase = null;
 	private ETileType eTileType = null;
 	private int prestigePoints = -1, buyCost = -1;
 	private ArrayList<EResource> oneTimeIncome = new ArrayList<EResource>();
+	private ArrayList<EResource> constructionCost = new ArrayList<EResource>();
 	private ArrayList<EResource> incomePerRound = new ArrayList<EResource>();
 	private ArrayList<ETileAbility> eTileAbility = new ArrayList<ETileAbility>();
 
-	public TileLand(EPhase ePhase, int tileNumber, ETileType eTileType, int prestigePoints, int buyCost,
-			ArrayList<EResource> oneTimeIncome, ArrayList<EResource> incomePerRound,
-			ArrayList<ETileAbility> eTileAbility) {
+	public TileBuilding(EPhase ePhase, int tileNumber, ETileType eTileType, int prestigePoints, int buyCost,
+			ArrayList<EResource> oneTimeIncome, ArrayList<EResource> constructionCost,
+			ArrayList<EResource> incomePerRound, ArrayList<ETileAbility> eTileAbility) {
 
 		this.ePhase = ePhase;
 		this.eTileType = eTileType;
 		this.prestigePoints = prestigePoints;
 		this.buyCost = buyCost;
 		this.oneTimeIncome = oneTimeIncome;
+		this.constructionCost = constructionCost;
 		this.incomePerRound = incomePerRound;
 		this.eTileAbility = eTileAbility;
 
@@ -59,6 +61,7 @@ public class TileLand extends Tile implements ITileLand {
 		Logger.INSTANCE.log("buy cost - " + this.buyCost);
 
 		printResourceList(this.oneTimeIncome, "one time income");
+		printResourceList(this.constructionCost, "construction cost");
 		printResourceList(this.incomePerRound, "income per round");
 
 		if (!this.eTileAbility.isEmpty()) {
@@ -107,6 +110,11 @@ public class TileLand extends Tile implements ITileLand {
 	@Override
 	public ArrayList<EResource> getOneTimeIncome() {
 		return this.oneTimeIncome;
+	}
+
+	@Override
+	public ArrayList<EResource> getCostructionCost() {
+		return this.constructionCost;
 	}
 
 	@Override

@@ -4,8 +4,8 @@ import enums.EPhase;
 import enums.EResource;
 import enums.ETileAbility;
 import enums.ETileType;
-import tiles.TileBuilder;
-import tiles.TilePile;
+import model.TileBuilder;
+import model.TilePile;
 import utils.HashMap;
 
 public class TilePiles {
@@ -15,7 +15,7 @@ public class TilePiles {
 	public TilePiles() {
 
 		createTiles();
-		relocateTiles();
+		shuffleRelocateTiles();
 
 	}
 
@@ -260,7 +260,7 @@ public class TilePiles {
 		tileNumber++;
 		this.list.get(ePhase).getArrayList()
 				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
-						.prestigePoints(3).buyCost(2).constructionCost(EResource.STONE, 2)
+						.prestigePoints(3).buyCost(3).constructionCost(EResource.STONE, 2)
 						.constructionCost(EResource.WOOD, 2).incomePerRound(EResource.STONE, 2).build());
 
 		// 14
@@ -370,7 +370,7 @@ public class TilePiles {
 
 	}
 
-	private void relocateTiles() {
+	private void shuffleRelocateTiles() {
 
 		double x = CredentialSingleton.INSTANCE.CoordinatesTilePiles.x;
 		double y = CredentialSingleton.INSTANCE.CoordinatesTilePiles.y;
@@ -379,6 +379,7 @@ public class TilePiles {
 
 		for (EPhase ePhaseTemp : EPhase.values()) {
 
+			this.list.get(ePhaseTemp).getArrayList().shuffle();
 			this.list.get(ePhaseTemp).relocateList(x, y);
 			this.list.get(ePhaseTemp).relocateImageViews();
 			y += gap;
