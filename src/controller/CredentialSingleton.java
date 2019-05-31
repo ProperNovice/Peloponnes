@@ -51,7 +51,7 @@ public enum CredentialSingleton {
 		y = CoordinatesDisasterChits.y + DimensionsDisasterChitPile.y + DimensionsGapBetweenComponents.y;
 		this.CoordinatesBoardCurrent = new NumbersPair(x, y);
 
-		x = this.CoordinatesBoardCurrent.x + 180;
+		x = this.CoordinatesBoardCurrent.x + 200;
 		y = this.CoordinatesBoardCurrent.y;
 		this.CoordinatesBoardIncome = new NumbersPair(x, y);
 

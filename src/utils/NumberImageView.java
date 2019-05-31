@@ -87,19 +87,21 @@ public class NumberImageView implements ImageViewAble {
 		else
 			image = new Image(pathNumbers + listIndex + pathPng);
 
-		if (mapImageViews.get(this) != null) {
+		if (ImageViewsMap.INSTANCE.getImageViewsMap().get(this) != null) {
 
-			objectPoolImages.get(this.numberShowing).addLast(mapImageViews.get(this).getImage());
-			mapImageViews.get(this).setImage(image);
+			objectPoolImages.get(this.numberShowing)
+					.addLast(ImageViewsMap.INSTANCE.getImageViewsMap().get(this).getImage());
+			ImageViewsMap.INSTANCE.getImageViewsMap().get(this).setImage(image);
 
 		} else {
 
 			if (this.eventHandlerAble == null)
-				mapImageViews.put(this, new ImageView(image, this));
+				ImageViewsMap.INSTANCE.getImageViewsMap().put(this, new ImageView(image, this));
 			else
-				mapImageViews.put(this, new ImageView(image, this, this.eventHandlerAble));
+				ImageViewsMap.INSTANCE.getImageViewsMap().put(this, new ImageView(image, this, this.eventHandlerAble));
 
-			mapImageViews.get(this).setWidth(CredentialSingleton.INSTANCE.DimensionsNumberImageView.x);
+			ImageViewsMap.INSTANCE.getImageViewsMap().get(this)
+					.setWidth(CredentialSingleton.INSTANCE.DimensionsNumberImageView.x);
 
 		}
 

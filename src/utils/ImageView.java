@@ -45,7 +45,7 @@ public class ImageView implements INode {
 
 	private void createAndAddNode(ImageViewAble imageViewAble) {
 
-		ImageViewAble.mapImageViews.put(imageViewAble, this);
+		ImageViewsMap.INSTANCE.getImageViewsMap().put(imageViewAble, this);
 
 		this.imageView = new javafx.scene.image.ImageView(this.imageTrue.getImage());
 

@@ -106,9 +106,9 @@ public enum LineCast {
 
 		ArrayList<ImageViewAble> list = new ArrayList<ImageViewAble>();
 
-		for (ImageViewAble imageViewAble : ImageViewAble.mapImageViews) {
+		for (ImageViewAble imageViewAble : ImageViewsMap.INSTANCE.getImageViewsMap()) {
 
-			ImageView imageView = ImageViewAble.mapImageViews.get(imageViewAble);
+			ImageView imageView = ImageViewsMap.INSTANCE.getImageViewsMap().get(imageViewAble);
 
 			if (!imageView.contains(x, y))
 				continue;
