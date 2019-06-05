@@ -19,7 +19,7 @@ public class StartGame extends AGameState {
 //		board();
 //		tileRows();
 		addCurrentResources();
-		
+
 		super.controllerSingleton.flow.proceed();
 
 	}
