@@ -44,7 +44,10 @@ public class Peloponnes extends Application {
 
 				Executor.INSTANCE.runLater(() -> {
 
-					if (Animation.INSTANCE.isAnimatingSynchronous())
+					if (keyCode == KeyCode.ESCAPE)
+						ShutDown.INSTANCE.execute();
+
+					else if (Animation.INSTANCE.isAnimatingSynchronous())
 						return;
 
 					ControllerSingleton.INSTANCE.gameState.getCurrentGameState().executeKeyPressed(keyCode);
@@ -68,7 +71,7 @@ public class Peloponnes extends Application {
 
 			@Override
 			public void handle(WindowEvent event) {
-				ShutDown.execute();
+				ShutDown.INSTANCE.execute();
 			}
 
 		});

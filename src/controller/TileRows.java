@@ -1,24 +1,19 @@
 package controller;
 
+import model.ATileRow;
 import model.TileRowConquest;
 import model.TileRowNormal;
 
 public class TileRows {
 
-	private TileRowNormal tileRowNormal = new TileRowNormal();
-	private TileRowConquest tileRowConquest = new TileRowConquest();
+	private ATileRow tileRowNormal = new TileRowNormal();
+	private ATileRow tileRowConquest = new TileRowConquest();
 
-	public TileRows() {
-
-		this.tileRowNormal.getArrayList().setCapacity(5);
-
-	}
-
-	public TileRowNormal getTileRowNormal() {
+	public ATileRow getTileRowNormal() {
 		return this.tileRowNormal;
 	}
 
-	public TileRowConquest getTileRowConquest() {
+	public ATileRow getTileRowConquest() {
 		return this.tileRowConquest;
 	}
 

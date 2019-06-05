@@ -3,11 +3,13 @@ package model;
 import enums.EResource;
 import enums.ETileAbility;
 import enums.ETileType;
+import interfaces.AbilityAble;
 import interfaces.ITileCivilization;
+import interfaces.IncomeAble;
 import utils.ArrayList;
 import utils.Logger;
 
-public class TileCivilization extends Tile implements ITileCivilization {
+public class TileCivilization extends Tile implements ITileCivilization, IncomeAble, AbilityAble {
 
 	private ETileType eTileType = null;
 	private ArrayList<EResource> oneTimeIncome = new ArrayList<EResource>();

@@ -33,7 +33,7 @@ public class Coordinates {
 
 		Logger.INSTANCE.log("pivot rearrange type");
 		Logger.INSTANCE.log("no list sizable object");
-		ShutDown.execute();
+		ShutDown.INSTANCE.execute();
 
 	}
 
@@ -184,7 +184,7 @@ public class Coordinates {
 
 		Logger.INSTANCE.log("ArrayListImageView direction error:");
 		Logger.INSTANCE.log(directionEnum);
-		ShutDown.execute();
+		ShutDown.INSTANCE.execute();
 
 	}
 

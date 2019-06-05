@@ -48,7 +48,7 @@ public class NumberImageView implements ImageViewAble {
 	public void setNumber(int value) {
 
 		if (value > 20)
-			ShutDown.execute("@" + this.getClass());
+			ShutDown.INSTANCE.execute("@" + this.getClass());
 
 		setImageView(value);
 

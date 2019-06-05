@@ -4,11 +4,16 @@ import enums.EPhase;
 import enums.EResource;
 import enums.ETileAbility;
 import enums.ETileType;
+import interfaces.AbilityAble;
+import interfaces.BuyCostAble;
 import interfaces.ITileBuilding;
+import interfaces.IncomeAble;
+import interfaces.PrestigePointsAble;
 import utils.ArrayList;
 import utils.Logger;
 
-public class TileBuilding extends Tile implements ITileBuilding {
+public class TileBuilding extends Tile
+		implements ITileBuilding, IncomeAble, PrestigePointsAble, BuyCostAble, AbilityAble {
 
 	private EPhase ePhase = null;
 	private ETileType eTileType = null;

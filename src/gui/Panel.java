@@ -47,7 +47,7 @@ public class Panel extends Parent implements EventHandlerAble {
 
 	@Override
 	public void handleMouseButtonPressedSecondary() {
-		ShutDown.execute();
+		ShutDown.INSTANCE.execute();
 	}
 
 }

@@ -4,7 +4,10 @@ public enum EText {
 
 	CONTINUE("Continue", TextTypeEnum.OPTION),
 	RESTART("Restart", TextTypeEnum.OPTION),
-
+	REVEAL_TILES("Reveal tiles", TextTypeEnum.OPTION),
+	PURCHASE_TILE("Choose tile to purchase", TextTypeEnum.INDICATOR),
+	PASS("Pass", TextTypeEnum.OPTION),
+	
 	;
 
 	private String string = null;

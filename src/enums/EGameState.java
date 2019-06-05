@@ -10,6 +10,8 @@ public enum EGameState {
 	FLOW_HANDLER(new FlowHandler()),
 	CHOOSE_CIVILIZATION(new ChooseCivilization()),
 	REVEAL_TILES(new RevealTiles()),
+	PURCHASE_TILE_OR_PASS(new PurchaseTileOrPass()),
+	END_ROUND(new EndRound()),
 
 	;
 

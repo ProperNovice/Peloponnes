@@ -1,12 +1,10 @@
 package model;
 
 import controller.CredentialSingleton;
-import interfaces.ITile;
-import utils.ContainerImageViewAbles;
 import utils.CoordinatesBuilder;
 import utils.DirectionEnum;
 
-public class TileRowNormal extends ContainerImageViewAbles<ITile> {
+public class TileRowNormal extends ATileRow {
 
 	@Override
 	protected void createCoordinates() {

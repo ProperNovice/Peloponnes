@@ -45,7 +45,7 @@ public class StartGame extends AGameState {
 
 	public void board() {
 
-		int tiles = 5;
+		int tiles = 10;
 
 		for (int counter = 1; counter <= tiles; counter++) {
 
@@ -101,6 +101,8 @@ public class StartGame extends AGameState {
 
 		for (int counter = 1; counter <= 5; counter++)
 			list.addLast(EResource.WOOD);
+		for (int counter = 1; counter <= 5; counter++)
+			list.addLast(EResource.LUXURY_GOODS);
 
 		super.controllerSingleton.resources.addCurrentAmount(list);
 

@@ -16,7 +16,7 @@ public abstract class ContainerImageViewAbles<T> implements IListSize {
 
 		Logger.INSTANCE.log("you didn't create coordinates");
 		Logger.INSTANCE.log(this.getClass());
-		ShutDown.execute();
+		ShutDown.INSTANCE.execute();
 
 	}
 

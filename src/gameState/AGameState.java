@@ -2,6 +2,7 @@ package gameState;
 
 import controller.ControllerSingleton;
 import enums.EText;
+import interfaces.ITile;
 import javafx.scene.input.KeyCode;
 import utils.KeyCodeHandler;
 import utils.Logger;
@@ -37,6 +38,23 @@ public abstract class AGameState {
 	}
 
 	protected void executeTextOption(EText textEnum) {
+
+	}
+
+	public final void handleTilePressed(ITile iTile) {
+
+		if (this.controllerSingleton.tileRows.getTileRowNormal().getArrayList().contains(iTile))
+			handleTilePressedRowNormal(iTile);
+		else if (this.controllerSingleton.tileRows.getTileRowConquest().getArrayList().contains(iTile))
+			handleTilePressedRowCoquest(iTile);
+
+	}
+
+	protected void handleTilePressedRowNormal(ITile iTile) {
+
+	}
+
+	protected void handleTilePressedRowCoquest(ITile iTile) {
 
 	}
 

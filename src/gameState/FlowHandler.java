@@ -5,7 +5,7 @@ import utils.ArrayList;
 
 public class FlowHandler extends AGameState {
 
-	private ArrayList<EGameState> list = new ArrayList<EGameState>();
+	private ArrayList<EGameState> turn = new ArrayList<EGameState>();
 
 	public FlowHandler() {
 
@@ -20,7 +20,7 @@ public class FlowHandler extends AGameState {
 					e.printStackTrace();
 				}
 
-				list.addLast(EGameState.REVEAL_TILES);
+				createTurn();
 
 			}
 
@@ -28,15 +28,22 @@ public class FlowHandler extends AGameState {
 
 	}
 
+	private void createTurn() {
+
+		this.turn.addLast(EGameState.REVEAL_TILES);
+		this.turn.addLast(EGameState.PURCHASE_TILE_OR_PASS);
+		this.turn.addLast(EGameState.END_ROUND);
+
+	}
+
 	@Override
 	public void handleGameStateChange() {
 
-		do {
+		while (this.turn.isEmpty())
+			;
 
-		} while (this.list.isEmpty());
-
-		EGameState eGameState = this.list.removeFirst();
-		this.list.addLast(eGameState);
+		EGameState eGameState = this.turn.removeFirst();
+		this.turn.addLast(eGameState);
 
 		super.controllerSingleton.flow.addFirstProceed(eGameState);
 

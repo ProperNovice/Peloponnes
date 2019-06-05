@@ -9,9 +9,9 @@ public enum CredentialSingleton {
 	public NumbersPair DimensionsFrame, DimensionsInsets, DimensionsGapBetweenBorders, DimensionsNumberImageView,
 			DimensionsTilePile, DimensionsGapBetweenComponents, DimensionsDisasterChit, DimensionsTileGame;
 	public NumbersPair CoordinatesTextPanel, CoordinatesTilePiles, CoordinatesDisasterChits,
-			CoordinatesCurrentResources, CoordinatesIncome, CoordinatesBoardPopulationCoin, CoordinatesBoard,
-			CoordinatesTileRowConquest, CoordinatesTileRowNormal;
-	public double textHeight, textBoardHeight;
+			CoordinatesCurrentResources, CoordinatesIncome, CoordinatesBoard, CoordinatesTileRowConquest,
+			CoordinatesTileRowNormal;
+	public double textHeight, textResourcesHeight, frameX, frameY;
 
 	public void calculateCredentials() {
 
@@ -23,16 +23,20 @@ public enum CredentialSingleton {
 		this.DimensionsGapBetweenComponents = new NumbersPair(2, 2);
 		this.DimensionsNumberImageView = new NumbersPair(100, 100);
 
+		x = 350;
+		y = 450;
 		this.CoordinatesTextPanel = new NumbersPair(x, y);
 
-		this.textHeight = 50;
-		this.textBoardHeight = 40;
+		this.textHeight = 40;
 
 		x = 90;
+//		x = 118;
 		this.DimensionsTilePile = new NumbersPair(x, x);
 
 		x = 118;
 		this.DimensionsTileGame = new NumbersPair(x, x);
+
+		this.textResourcesHeight = (2 * DimensionsTileGame.y + DimensionsGapBetweenComponents.y) / 7;
 
 		x = DimensionsGapBetweenBorders.x;
 		y = DimensionsGapBetweenBorders.y;
@@ -45,34 +49,31 @@ public enum CredentialSingleton {
 		y = this.CoordinatesTilePiles.y + 3 * (this.DimensionsTilePile.x + this.DimensionsGapBetweenComponents.y);
 		this.CoordinatesDisasterChits = new NumbersPair(x, y);
 
-		x = 2 * this.DimensionsGapBetweenBorders.x + 15 * this.DimensionsTilePile.x
-				+ 14 * this.DimensionsGapBetweenComponents.x;
-		y = 788;
-		this.DimensionsFrame = new NumbersPair(x, y);
-
 		x = DimensionsGapBetweenBorders.x;
 		y = CoordinatesDisasterChits.y + DimensionsDisasterChit.y + DimensionsGapBetweenComponents.y;
 		this.CoordinatesCurrentResources = new NumbersPair(x, y);
 
-		x = this.CoordinatesCurrentResources.x + 200;
+		x = this.CoordinatesCurrentResources.x + 180;
 		y = this.CoordinatesCurrentResources.y;
 		this.CoordinatesIncome = new NumbersPair(x, y);
 
-		x = this.CoordinatesCurrentResources.x + 200;
-		y = this.CoordinatesCurrentResources.y;
-		this.CoordinatesBoardPopulationCoin = new NumbersPair(x, y);
+		this.frameX = 2 * this.DimensionsGapBetweenBorders.x + 15 * this.DimensionsTilePile.x
+				+ 14 * this.DimensionsGapBetweenComponents.x;
 
-		x = this.DimensionsFrame.x - this.DimensionsGapBetweenBorders.x - this.DimensionsTileGame.x;
-		y = this.DimensionsFrame.y - this.DimensionsGapBetweenBorders.y - this.DimensionsTileGame.y;
-		this.CoordinatesBoard = new NumbersPair(x, y);
-
-		x = this.CoordinatesBoard.x;
-		y = this.CoordinatesDisasterChits.y + DimensionsDisasterChit.y + this.DimensionsGapBetweenComponents.y;
+		x = this.frameX - this.DimensionsGapBetweenBorders.x - this.DimensionsTileGame.x;
+		y = this.CoordinatesDisasterChits.y + DimensionsDisasterChit.y + 2 * this.DimensionsGapBetweenComponents.y;
 		this.CoordinatesTileRowConquest = new NumbersPair(x, y);
 
 		x = this.CoordinatesTileRowConquest.x;
 		y = this.CoordinatesTileRowConquest.y + DimensionsTileGame.y + this.DimensionsGapBetweenComponents.y;
 		this.CoordinatesTileRowNormal = new NumbersPair(x, y);
+
+		x = CoordinatesTileRowConquest.x;
+		y = this.CoordinatesTileRowNormal.y + DimensionsTileGame.y + 5 * this.DimensionsGapBetweenComponents.y;
+		this.CoordinatesBoard = new NumbersPair(x, y);
+
+		this.frameY = this.CoordinatesBoard.y + this.DimensionsTileGame.y + DimensionsGapBetweenBorders.y;
+		this.DimensionsFrame = new NumbersPair(this.frameX, this.frameY);
 
 	}
 
