@@ -14,7 +14,11 @@ public class Flow {
 
 	public void proceed() {
 
+		if (this.gameStateResolving.isEmpty())
+			this.gameStateResolving.addLast(EGameState.FLOW_HANDLER);
+
 		EGameState gameStateEnum = this.gameStateResolving.removeFirst();
+
 		ControllerSingleton.INSTANCE.gameState.setGameState(gameStateEnum);
 
 	}
@@ -34,6 +38,7 @@ public class Flow {
 
 		Logger.INSTANCE.log("flow");
 		this.gameStateResolving.printList();
+
 	}
 
 }

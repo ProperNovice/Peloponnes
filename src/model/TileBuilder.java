@@ -94,12 +94,13 @@ public class TileBuilder {
 			return new TileBuilding(this.ePhase, this.tileNumber, this.eTileType, this.prestigePoints, this.buyCost,
 					this.oneTimeIncome, this.constructionCost, this.incomePerRound, this.eTileAbility);
 
-		case CIVILIZATION:
-			break;
-
 		case LAND:
 			return new TileLand(this.ePhase, this.tileNumber, this.eTileType, this.prestigePoints, this.buyCost,
 					this.oneTimeIncome, this.incomePerRound, this.eTileAbility);
+
+		case CIVILIZATION:
+			return new TileCivilization(this.tileNumber, this.eTileType, this.oneTimeIncome, this.incomePerRound,
+					this.eTileAbility);
 
 		}
 

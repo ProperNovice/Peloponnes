@@ -23,7 +23,7 @@ public class DisasterChit implements ImageViewAble {
 		filePath += ".png";
 
 		ImageView imageView = new ImageView(filePath, this);
-		imageView.setWidth(CredentialSingleton.INSTANCE.DimensionsDisasterChitPile.x);
+		imageView.setWidth(CredentialSingleton.INSTANCE.DimensionsDisasterChit.x);
 
 	}
 

@@ -388,4 +388,22 @@ public class TilePiles {
 
 	}
 
+	public TilePile getFirstNonEmptyTilePile() {
+
+		TilePile tilePile = null;
+
+		for (EPhase ePhase : EPhase.values()) {
+
+			if (this.list.get(ePhase).getArrayList().isEmpty())
+				continue;
+
+			tilePile = this.list.get(ePhase);
+			break;
+
+		}
+
+		return tilePile;
+
+	}
+
 }

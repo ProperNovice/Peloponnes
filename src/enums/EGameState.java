@@ -7,6 +7,9 @@ public enum EGameState {
 	START_GAME(new StartGame()),
 	GAME_WON(new GameWon()),
 	GAME_LOST(new GameLost()),
+	FLOW_HANDLER(new FlowHandler()),
+	CHOOSE_CIVILIZATION(new ChooseCivilization()),
+	REVEAL_TILES(new RevealTiles()),
 
 	;
 
