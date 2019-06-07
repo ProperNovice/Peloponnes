@@ -18,7 +18,7 @@ public class StartGame extends AGameState {
 		civilization();
 //		board();
 //		tileRows();
-		addCurrentResources();
+//		addCurrentResources();
 
 		super.controllerSingleton.flow.proceed();
 

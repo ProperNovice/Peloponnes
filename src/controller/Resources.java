@@ -132,10 +132,12 @@ public class Resources {
 
 	public void addCurrentAmount(EResource eResource, int amount) {
 
-		for (Resource resource : this.resources)
-			if (resource.getEResource() == eResource)
-				for (int counter = 1; counter <= amount; counter++)
-					resource.addCurrentAmountSetText();
+		ArrayList<EResource> list = new ArrayList<EResource>();
+
+		for (int counter = 1; counter <= amount; counter++)
+			list.addLast(eResource);
+
+		addCurrentAmount(list);
 
 	}
 

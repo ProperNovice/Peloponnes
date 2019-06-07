@@ -15,15 +15,14 @@ public class RevealTiles extends AGameState {
 	@Override
 	public void handleGameStateChange() {
 
+		this.iTile = null;
 		super.controllerSingleton.text.showText(EText.REVEAL_TILES);
 
 	}
 
 	@Override
 	protected void executeTextOption(EText textEnum) {
-
 		drawTile();
-
 	}
 
 	private void drawTile() {
@@ -62,7 +61,6 @@ public class RevealTiles extends AGameState {
 			aTileRow = super.controllerSingleton.tileRows.getTileRowConquest();
 
 		aTileRow.getArrayList().addLast(this.iTile);
-		aTileRow.animateSynchronous();
 
 	}
 
@@ -74,7 +72,10 @@ public class RevealTiles extends AGameState {
 
 		if (tilesRevealed == 5) {
 
+			super.controllerSingleton.tileRows.getTileRowNormal().animateSynchronous();
+			super.controllerSingleton.tileRows.getTileRowConquest().animateSynchronous();
 			Lock.INSTANCE.lock();
+
 			super.controllerSingleton.flow.proceed();
 
 		} else

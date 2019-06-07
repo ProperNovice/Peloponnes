@@ -12,6 +12,7 @@ public enum EGameState {
 	REVEAL_TILES(new RevealTiles()),
 	PURCHASE_TILE_OR_PASS(new PurchaseTileOrPass()),
 	END_ROUND(new EndRound()),
+	BUILD_NOW_LATER_OR_DISCARD(new BuildNowLaterOrDiscard()),
 
 	;
 

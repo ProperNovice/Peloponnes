@@ -7,6 +7,9 @@ public enum EText {
 	REVEAL_TILES("Reveal tiles", TextTypeEnum.OPTION),
 	PURCHASE_TILE("Choose tile to purchase", TextTypeEnum.INDICATOR),
 	PASS("Pass", TextTypeEnum.OPTION),
+	BUILD_NOW("Build now", TextTypeEnum.OPTION),
+	BUILD_LATER("Build later", TextTypeEnum.OPTION),
+	DISCARD("Discard", TextTypeEnum.OPTION),
 	
 	;
 

@@ -37,7 +37,7 @@ public abstract class AGameState {
 
 	}
 
-	protected void executeTextOption(EText textEnum) {
+	protected void executeTextOption(EText eText) {
 
 	}
 

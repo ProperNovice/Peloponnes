@@ -89,6 +89,9 @@ public class PurchaseTileOrPass extends AGameState {
 		super.controllerSingleton.resources.removeCurrentAmount(EResource.LUXURY_GOODS, luxuryGoodsToRemove);
 		super.controllerSingleton.modifiers.tileToBuy = iTile;
 
+		Logger.INSTANCE.logNewLine("buying tile");
+
+		super.controllerSingleton.text.concealText();
 		super.controllerSingleton.flow.proceed();
 
 	}
