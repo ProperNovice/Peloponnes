@@ -83,8 +83,6 @@ public class Resources {
 
 	public void addIncome(ArrayList<EResource> list) {
 
-		// handling income
-
 		for (EResource eResource : list) {
 
 			for (Resource resource : this.resources) {
