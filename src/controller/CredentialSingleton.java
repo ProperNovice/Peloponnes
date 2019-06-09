@@ -7,7 +7,8 @@ public enum CredentialSingleton {
 	INSTANCE;
 
 	public NumbersPair DimensionsFrame, DimensionsInsets, DimensionsGapBetweenBorders, DimensionsNumberImageView,
-			DimensionsTilePile, DimensionsGapBetweenComponents, DimensionsDisasterChit, DimensionsTileGame;
+			DimensionsTilePile, DimensionsGapBetweenComponents, DimensionsDisasterChit, DimensionsTileGame,
+			DimensionsBuildIcon;
 	public NumbersPair CoordinatesTextPanel, CoordinatesTilePiles, CoordinatesDisasterChits,
 			CoordinatesCurrentResources, CoordinatesIncome, CoordinatesBoard, CoordinatesTileRowConquest,
 			CoordinatesTileRowNormal;
@@ -74,6 +75,10 @@ public enum CredentialSingleton {
 
 		this.frameY = this.CoordinatesBoard.y + this.DimensionsTileGame.y + DimensionsGapBetweenBorders.y;
 		this.DimensionsFrame = new NumbersPair(this.frameX, this.frameY);
+
+		x = DimensionsTileGame.x * 0.4;
+		y = DimensionsTileGame.y * 0.4;
+		DimensionsBuildIcon = new NumbersPair(x, y);
 
 	}
 

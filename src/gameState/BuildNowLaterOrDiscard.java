@@ -1,10 +1,13 @@
 package gameState;
 
+import controller.CredentialSingleton;
 import enums.EResource;
 import enums.EText;
+import interfaces.BuildAble;
 import interfaces.ITile;
 import interfaces.ITileBuilding;
 import interfaces.ITileLand;
+import model.BuildImageView;
 import model.Tile;
 import utils.ArrayList;
 import utils.Logger;
@@ -100,18 +103,18 @@ public class BuildNowLaterOrDiscard extends AGameState {
 			else if (eResource == EResource.STONE)
 				this.stoneCost++;
 
-		Logger.INSTANCE.log("wood need -> " + this.woodCost);
-		Logger.INSTANCE.logNewLine("stone need -> " + this.stoneCost);
+		Logger.INSTANCE.log("wood cost -> " + this.woodCost);
+		Logger.INSTANCE.logNewLine("stone cost -> " + this.stoneCost);
 
 	}
 
 	private boolean checkIfTileCanBeBuiltNow() {
 
-		int luxuryGoodsNeed = 0;
-		luxuryGoodsNeed += 2 * Math.max(0, this.woodCost - this.woodCurrent);
-		luxuryGoodsNeed += 2 * Math.max(0, this.stoneCost - this.stoneCurrent);
+		int luxuryGoodsCost = 0;
+		luxuryGoodsCost += 2 * Math.max(0, this.woodCost - this.woodCurrent);
+		luxuryGoodsCost += 2 * Math.max(0, this.stoneCost - this.stoneCurrent);
 
-		return luxuryGoodsNeed <= this.luxuryGoodsCurrent;
+		return luxuryGoodsCost <= this.luxuryGoodsCurrent;
 
 	}
 
@@ -154,21 +157,33 @@ public class BuildNowLaterOrDiscard extends AGameState {
 		Logger.INSTANCE.log("luxury goods used -> " + luxuryGoodsUsed);
 		Logger.INSTANCE.newLine();
 
-		ITile iTile = super.controllerSingleton.modifiers.tileToBuy;
-
-		if (iTile instanceof ITileLand)
-			super.controllerSingleton.board.getArrayList().addLast(iTile);
-		else if (iTile instanceof ITileBuilding)
-			super.controllerSingleton.board.getArrayList().addFirst(iTile);
-
-		super.controllerSingleton.board.relocateList();
-		super.controllerSingleton.board.animateSynchronousLock();
+		addTileToBoardAnimateSynchronousLock();
 
 		super.controllerSingleton.flow.proceed();
 
 	}
 
 	private void handleBuildLater() {
+
+		handleBuildLaterCost();
+
+		addTileToBoardAnimateSynchronousLock();
+
+		ITile iTile = super.controllerSingleton.modifiers.tileToBuy;
+
+		BuildAble buildAble = (BuildAble) iTile;
+		buildAble.setUnbuilt();
+
+		super.controllerSingleton.flow.proceed();
+
+	}
+
+	private void handleBuildLaterCost() {
+
+		if (this.coinsCurrent > 0)
+			super.controllerSingleton.resources.removeCurrentAmount(EResource.COIN, 1);
+		else
+			super.controllerSingleton.resources.removeCurrentAmount(EResource.LUXURY_GOODS, 2);
 
 	}
 
@@ -179,6 +194,59 @@ public class BuildNowLaterOrDiscard extends AGameState {
 		tile.getImageView().setVisible(false);
 		super.controllerSingleton.modifiers.tileToBuy = null;
 		super.controllerSingleton.flow.proceed();
+
+	}
+
+	private void addTileToBoardAnimateSynchronousLock() {
+
+		setBuildIconsVisibility(false);
+
+		ITile iTile = super.controllerSingleton.modifiers.tileToBuy;
+
+		if (iTile instanceof ITileLand)
+			super.controllerSingleton.board.getArrayList().addLast(iTile);
+		else if (iTile instanceof ITileBuilding)
+			super.controllerSingleton.board.getArrayList().addFirst(iTile);
+
+		super.controllerSingleton.board.relocateList();
+		super.controllerSingleton.board.animateSynchronousLock();
+
+		setBuildIconsVisibility(true);
+
+	}
+
+	private void setBuildIconsVisibility(boolean value) {
+
+		for (ITile iTile : super.controllerSingleton.board.getArrayList()) {
+
+			if (!(iTile instanceof BuildAble))
+				continue;
+
+			BuildAble buildAble = (BuildAble) iTile;
+
+			if (buildAble.isBuilt())
+				continue;
+
+			if (value) {
+
+				Tile tile = (Tile) iTile;
+
+				double x = tile.getImageView().getLayoutX();
+				x += CredentialSingleton.INSTANCE.DimensionsTileGame.x;
+				x -= CredentialSingleton.INSTANCE.DimensionsBuildIcon.x;
+
+				double y = tile.getImageView().getLayoutY();
+
+				BuildImageView buildImageView = buildAble.getBuildImageView();
+				buildImageView.getImageView().relocate(x, y);
+				buildImageView.getImageView().toFront();
+				buildImageView.getImageView().toFront();
+
+			}
+
+			buildAble.getBuildImageView().getImageView().setVisible(value);
+
+		}
 
 	}
 

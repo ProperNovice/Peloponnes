@@ -5,6 +5,7 @@ import enums.EResource;
 import enums.ETileAbility;
 import enums.ETileType;
 import interfaces.AbilityAble;
+import interfaces.BuildAble;
 import interfaces.BuyCostAble;
 import interfaces.ITileBuilding;
 import interfaces.IncomeAble;
@@ -13,7 +14,7 @@ import utils.ArrayList;
 import utils.Logger;
 
 public class TileBuilding extends Tile
-		implements ITileBuilding, IncomeAble, PrestigePointsAble, BuyCostAble, AbilityAble {
+		implements ITileBuilding, IncomeAble, PrestigePointsAble, BuyCostAble, AbilityAble, BuildAble {
 
 	private EPhase ePhase = null;
 	private ETileType eTileType = null;
@@ -22,6 +23,8 @@ public class TileBuilding extends Tile
 	private ArrayList<EResource> constructionCost = new ArrayList<EResource>();
 	private ArrayList<EResource> incomePerRound = new ArrayList<EResource>();
 	private ArrayList<ETileAbility> eTileAbility = new ArrayList<ETileAbility>();
+	private boolean isBuilt = true;
+	private BuildImageView buildImageView = null;
 
 	public TileBuilding(EPhase ePhase, int tileNumber, ETileType eTileType, int prestigePoints, int buyCost,
 			ArrayList<EResource> oneTimeIncome, ArrayList<EResource> constructionCost,
@@ -130,6 +133,41 @@ public class TileBuilding extends Tile
 	@Override
 	public ArrayList<ETileAbility> getTileAbility() {
 		return this.eTileAbility;
+	}
+
+	@Override
+	public void setBuilt() {
+
+		this.isBuilt = true;
+
+		if (this.buildImageView == null)
+			return;
+
+		this.buildImageView.getImageView().setVisible(false);
+		this.buildImageView = null;
+
+	}
+
+	@Override
+	public void setUnbuilt() {
+
+		this.isBuilt = false;
+
+		if (this.buildImageView != null)
+			return;
+
+		this.buildImageView = new BuildImageView(this);
+
+	}
+
+	@Override
+	public boolean isBuilt() {
+		return this.isBuilt;
+	}
+
+	@Override
+	public BuildImageView getBuildImageView() {
+		return this.buildImageView;
 	}
 
 }

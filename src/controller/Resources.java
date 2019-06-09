@@ -23,6 +23,8 @@ public class Resources {
 
 	public void addCurrentAmount(ArrayList<EResource> list) {
 
+		// handling current amount
+
 		for (EResource eResource : list) {
 
 			switch (eResource) {
@@ -58,6 +60,25 @@ public class Resources {
 
 		}
 
+		// handling population - coins & luxury goods
+
+		int currentPopulation = -1;
+
+		for (Resource resource : this.resources)
+			if (resource.getEResource() == EResource.POPULATION_GAIN)
+				currentPopulation = resource.getCurrentAmount();
+
+		currentPopulation = Math.min(currentPopulation, 20);
+
+		int coinIncome = this.populationCoins.get(currentPopulation).getCoins();
+		int luxuryGoodsIncome = this.populationCoins.get(currentPopulation).getLuxuryGoods();
+
+		for (Resource resource : this.resources)
+			if (resource.getEResource() == EResource.COIN)
+				resource.setIncome(coinIncome);
+			else if (resource.getEResource() == EResource.LUXURY_GOODS)
+				resource.setIncome(luxuryGoodsIncome);
+
 	}
 
 	public void addIncome(ArrayList<EResource> list) {
@@ -78,35 +99,12 @@ public class Resources {
 
 		}
 
-		// handling coins - luxury goods
-
-		int currentPopulation = -1;
-
-		for (Resource resource : this.resources)
-			if (resource.getEResource() == EResource.POPULATION_GAIN)
-				currentPopulation = resource.getIncome().size();
-
-		currentPopulation = Math.min(currentPopulation, 20);
-
-		int coinIncome = this.populationCoins.get(currentPopulation).getCoins();
-		int luxuryGoodsIncome = this.populationCoins.get(currentPopulation).getLuxuryGoods();
-
-		for (Resource resource : this.resources)
-			if (resource.getEResource() == EResource.COIN)
-				resource.setIncome(coinIncome);
-			else if (resource.getEResource() == EResource.LUXURY_GOODS)
-				resource.setIncome(luxuryGoodsIncome);
-
 	}
 
 	public void earnIncomeForTheRound() {
 
-		ArrayList<EResource> list = new ArrayList<EResource>();
-
 		for (Resource resource : this.resources)
-			list.addAll(resource.getIncome());
-
-		addCurrentAmount(list);
+			addCurrentAmount(resource.getEResource(), resource.getIncome());
 
 	}
 

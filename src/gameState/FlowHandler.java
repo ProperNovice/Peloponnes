@@ -2,13 +2,11 @@ package gameState;
 
 import enums.EGameState;
 import utils.ArrayList;
+import utils.Logger;
 
 public class FlowHandler extends AGameState {
 
-	private ArrayList<EGameState> turnCurrent = new ArrayList<EGameState>();
-	private ArrayList<EGameState> turnOriginal = new ArrayList<EGameState>();
-	private ArrayList<EGameState> buildTileGameStateSequence = new ArrayList<EGameState>();
-	private EGameState lastGameStateResolved = null;
+	private ArrayList<EGameState> turn = new ArrayList<EGameState>();
 
 	public FlowHandler() {
 
@@ -33,49 +31,49 @@ public class FlowHandler extends AGameState {
 
 	private void createTurnOriginal() {
 
-		// turn
-
-		this.turnOriginal.addLast(EGameState.REVEAL_TILES);
-		this.turnOriginal.addLast(EGameState.PURCHASE_TILE_OR_PASS);
-		this.turnOriginal.addLast(EGameState.END_ROUND);
-
-		// build tile
-
-		this.buildTileGameStateSequence.addLast(EGameState.BUILD_NOW_LATER_OR_DISCARD);
+		this.turn.addLast(EGameState.REVEAL_TILES);
+		this.turn.addLast(EGameState.PURCHASE_TILE_OR_PASS);
+		this.turn.addLast(EGameState.BUILD_NOW_LATER_OR_DISCARD);
+		this.turn.addLast(EGameState.SET_ONE_TIME_INCOME_PER_ROUND);
+		this.turn.addLast(EGameState.EARN_INCOME_FOR_THE_ROUND);
+		this.turn.addLast(EGameState.END_ROUND);
 
 	}
 
 	@Override
 	public void handleGameStateChange() {
 
-		while (this.turnOriginal.isEmpty())
+		while (this.turn.isEmpty())
 			;
 
-		if (this.turnCurrent.isEmpty())
-			this.turnCurrent.addAll(this.turnOriginal);
+		EGameState eGameState = this.turn.removeFirst();
+		this.turn.addLast(eGameState);
 
-		checkToSeeIfBuildTilePhase();
-
-		this.lastGameStateResolved = this.turnCurrent.removeFirst();
-		this.turnCurrent.addLast(this.lastGameStateResolved);
-		super.controllerSingleton.flow.addFirst(this.lastGameStateResolved);
+		if (eGameStateShallResolve(eGameState))
+			super.controllerSingleton.flow.addFirst(eGameState);
+		else {
+			Logger.INSTANCE.log(eGameState);
+			Logger.INSTANCE.logNewLine("skipped");
+		}
 
 		super.controllerSingleton.flow.proceed();
 
 	}
 
-	private void checkToSeeIfBuildTilePhase() {
+	private boolean eGameStateShallResolve(EGameState eGameState) {
 
-		if (this.lastGameStateResolved != EGameState.PURCHASE_TILE_OR_PASS)
-			return;
+		switch (eGameState) {
 
-		if (super.controllerSingleton.modifiers.tileToBuy == null)
-			return;
+		case BUILD_NOW_LATER_OR_DISCARD:
+			return super.controllerSingleton.modifiers.tileToBuy != null;
 
-		ArrayList<EGameState> turnTemp = this.turnCurrent.clone();
-		this.turnCurrent.clear();
-		this.turnCurrent.addAll(this.buildTileGameStateSequence);
-		this.turnCurrent.addAll(turnTemp);
+		case SET_ONE_TIME_INCOME_PER_ROUND:
+			return super.controllerSingleton.modifiers.tileToBuy != null;
+
+		default:
+			return true;
+
+		}
 
 	}
 

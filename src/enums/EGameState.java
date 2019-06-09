@@ -13,6 +13,8 @@ public enum EGameState {
 	PURCHASE_TILE_OR_PASS(new PurchaseTileOrPass()),
 	END_ROUND(new EndRound()),
 	BUILD_NOW_LATER_OR_DISCARD(new BuildNowLaterOrDiscard()),
+	SET_ONE_TIME_INCOME_PER_ROUND(new SetOneTimeIncomePerRound()),
+	EARN_INCOME_FOR_THE_ROUND(new EarnIncomeForTheRound()),
 
 	;
 

@@ -2,6 +2,7 @@ package gameState;
 
 import controller.CredentialSingleton;
 import enums.EResource;
+import interfaces.BuildAble;
 import interfaces.ITile;
 import interfaces.ITileBuilding;
 import interfaces.ITileLand;
@@ -45,7 +46,7 @@ public class StartGame extends AGameState {
 
 	public void board() {
 
-		int tiles = 10;
+		int tiles = 6;
 
 		for (int counter = 1; counter <= tiles; counter++) {
 
@@ -66,6 +67,16 @@ public class StartGame extends AGameState {
 
 		super.controllerSingleton.board.relocateList();
 		super.controllerSingleton.board.relocateImageViews();
+
+		for (ITile iTile : super.controllerSingleton.board.getArrayList()) {
+
+			if (!(iTile instanceof BuildAble))
+				continue;
+
+			BuildAble buildAble = (BuildAble) iTile;
+			buildAble.setUnbuilt();
+
+		}
 
 	}
 
@@ -97,14 +108,7 @@ public class StartGame extends AGameState {
 
 	public void addCurrentResources() {
 
-		ArrayList<EResource> list = new ArrayList<EResource>();
-
-		for (int counter = 1; counter <= 5; counter++)
-			list.addLast(EResource.WOOD);
-		for (int counter = 1; counter <= 5; counter++)
-			list.addLast(EResource.LUXURY_GOODS);
-
-		super.controllerSingleton.resources.addCurrentAmount(list);
+		super.controllerSingleton.resources.addCurrentAmount(EResource.COIN, 10);
 
 	}
 

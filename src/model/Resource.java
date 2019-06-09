@@ -2,7 +2,6 @@ package model;
 
 import controller.CredentialSingleton;
 import enums.EResource;
-import utils.ArrayList;
 import utils.TextIndicator;
 
 public class Resource {
@@ -64,15 +63,8 @@ public class Resource {
 
 	}
 
-	public ArrayList<EResource> getIncome() {
-
-		ArrayList<EResource> list = new ArrayList<EResource>();
-
-		for (int counter = 1; counter <= this.income; counter++)
-			list.addLast(this.eResource);
-
-		return list;
-
+	public int getIncome() {
+		return this.income;
 	}
 
 	public EResource getEResource() {

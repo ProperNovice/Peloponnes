@@ -10,6 +10,7 @@ public enum EText {
 	BUILD_NOW("Build now", TextTypeEnum.OPTION),
 	BUILD_LATER("Build later", TextTypeEnum.OPTION),
 	DISCARD("Discard", TextTypeEnum.OPTION),
+	EARN_INCOME("Earn income", TextTypeEnum.OPTION),
 	
 	;
 
