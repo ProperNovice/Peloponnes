@@ -5,6 +5,7 @@ import enums.EText;
 import interfaces.ITile;
 import interfaces.ITileBuilding;
 import interfaces.ITileLand;
+import model.Tile;
 import utils.ArrayList;
 import utils.Logger;
 
@@ -172,6 +173,12 @@ public class BuildNowLaterOrDiscard extends AGameState {
 	}
 
 	private void handleDiscard() {
+
+		ITile iTile = super.controllerSingleton.modifiers.tileToBuy;
+		Tile tile = (Tile) iTile;
+		tile.getImageView().setVisible(false);
+		super.controllerSingleton.modifiers.tileToBuy = null;
+		super.controllerSingleton.flow.proceed();
 
 	}
 
