@@ -12,7 +12,7 @@ import utils.Logger;
 public class BuildNowLaterOrDiscard extends AGameState {
 
 	private int woodCurrent, stoneCurrent, luxuryGoodsCurrent, coinsCurrent;
-	private int woodNeed, stoneNeed;
+	private int woodCost, stoneCost;
 
 	@Override
 	public void handleGameStateChange() {
@@ -89,27 +89,27 @@ public class BuildNowLaterOrDiscard extends AGameState {
 
 	private void setResourcedNeedToConstruct(ITileBuilding iTileBuilding) {
 
-		this.woodNeed = 0;
-		this.stoneNeed = 0;
+		this.woodCost = 0;
+		this.stoneCost = 0;
 
 		ArrayList<EResource> resourcesNeed = iTileBuilding.getCostructionCost();
 
 		for (EResource eResource : resourcesNeed)
 			if (eResource == EResource.WOOD)
-				this.woodNeed++;
+				this.woodCost++;
 			else if (eResource == EResource.STONE)
-				this.stoneNeed++;
+				this.stoneCost++;
 
-		Logger.INSTANCE.log("wood need -> " + this.woodNeed);
-		Logger.INSTANCE.logNewLine("stone need -> " + this.stoneNeed);
+		Logger.INSTANCE.log("wood need -> " + this.woodCost);
+		Logger.INSTANCE.logNewLine("stone need -> " + this.stoneCost);
 
 	}
 
 	private boolean checkIfTileCanBeBuiltNow() {
 
 		int luxuryGoodsNeed = 0;
-		luxuryGoodsNeed += 2 * Math.max(0, this.woodNeed - this.woodCurrent);
-		luxuryGoodsNeed += 2 * Math.max(0, this.stoneNeed - this.stoneCurrent);
+		luxuryGoodsNeed += 2 * Math.max(0, this.woodCost - this.woodCurrent);
+		luxuryGoodsNeed += 2 * Math.max(0, this.stoneCost - this.stoneCurrent);
 
 		return luxuryGoodsNeed <= this.luxuryGoodsCurrent;
 
@@ -137,13 +137,13 @@ public class BuildNowLaterOrDiscard extends AGameState {
 
 	private void handleBuildNow() {
 
-		int woodUsed = Math.min(this.woodCurrent, this.woodNeed);
-		int woodRemaining = this.woodNeed - woodUsed;
+		int woodUsed = Math.min(this.woodCurrent, this.woodCost);
+		int woodRemaining = this.woodCost - woodUsed;
 
-		int stoneUsed = Math.min(this.stoneCurrent, this.woodNeed);
-		int stoneRemaining = this.stoneNeed - stoneUsed;
+		int stoneUsed = Math.min(this.stoneCurrent, this.woodCost);
+		int stoneRemaining = this.stoneCost - stoneUsed;
 
-		int luxuryGoodsUsed = (woodRemaining - stoneRemaining) * 2;
+		int luxuryGoodsUsed = (woodRemaining + stoneRemaining) * 2;
 
 		super.controllerSingleton.resources.removeCurrentAmount(EResource.WOOD, woodUsed);
 		super.controllerSingleton.resources.removeCurrentAmount(EResource.STONE, stoneUsed);
