@@ -6,9 +6,7 @@ public class EarnIncomeForTheRound extends AGameState {
 
 	@Override
 	public void handleGameStateChange() {
-
 		super.controllerSingleton.text.showText(EText.EARN_INCOME);
-
 	}
 
 	@Override

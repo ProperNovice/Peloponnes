@@ -17,9 +17,10 @@ public class StartGame extends AGameState {
 	public void handleGameStateChange() {
 
 		civilization();
-//		board();
+		board();
 //		tileRows();
 //		addCurrentResources();
+		setSupplyRound();
 
 		super.controllerSingleton.flow.proceed();
 
@@ -108,7 +109,14 @@ public class StartGame extends AGameState {
 
 	public void addCurrentResources() {
 
-		super.controllerSingleton.resources.addCurrentAmount(EResource.COIN, 10);
+		super.controllerSingleton.resources.addCurrentAmount(EResource.FOOD, 6);
+		super.controllerSingleton.resources.addCurrentAmount(EResource.LUXURY_GOODS, 11);
+
+	}
+
+	public void setSupplyRound() {
+
+		super.controllerSingleton.modifiers.supplyRound = true;
 
 	}
 

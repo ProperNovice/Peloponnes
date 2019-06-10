@@ -2,21 +2,31 @@ package gameState;
 
 import controller.CredentialSingleton;
 import enums.EText;
+import enums.ETileAbility;
+import interfaces.AbilityAble;
 import interfaces.ITile;
 import model.ATileRow;
 import model.Tile;
 import model.TilePile;
-import utils.Lock;
+import utils.Animation;
 
-public class RevealTiles extends AGameState {
+public class RevealTile extends AGameState {
 
 	private ITile iTile = null;
 
 	@Override
 	public void handleGameStateChange() {
 
+		int tilesDrawn = 0;
+		tilesDrawn += super.controllerSingleton.tileRows.getTileRowNormal().getArrayList().size();
+		tilesDrawn += super.controllerSingleton.tileRows.getTileRowConquest().getArrayList().size();
+
 		this.iTile = null;
-		super.controllerSingleton.text.showText(EText.REVEAL_TILES);
+
+		if (tilesDrawn == 0)
+			super.controllerSingleton.text.showText(EText.REVEAL_TILES);
+		else
+			drawTile();
 
 	}
 
@@ -29,6 +39,7 @@ public class RevealTiles extends AGameState {
 
 		removeTileFromPileAnimateAsynchronous();
 		setTileDimensions();
+//		checkForSupplyRound();
 		addTileToRowAnimateAsynchronous();
 		proceed();
 
@@ -47,6 +58,14 @@ public class RevealTiles extends AGameState {
 
 		Tile tile = (Tile) this.iTile;
 		tile.getImageView().setWidth(CredentialSingleton.INSTANCE.DimensionsTileGame.x);
+
+	}
+
+	private void checkForSupplyRound() {
+
+		AbilityAble abilityAble = (AbilityAble) this.iTile;
+		super.controllerSingleton.modifiers.supplyRound = abilityAble.getTileAbility()
+				.contains(ETileAbility.SUPPLY_ROUND);
 
 	}
 
@@ -70,16 +89,13 @@ public class RevealTiles extends AGameState {
 		tilesRevealed += super.controllerSingleton.tileRows.getTileRowNormal().getSize();
 		tilesRevealed += super.controllerSingleton.tileRows.getTileRowConquest().getSize();
 
-		if (tilesRevealed == 5) {
+		super.controllerSingleton.tileRows.getTileRowNormal().animateAsynchronous();
+		super.controllerSingleton.tileRows.getTileRowConquest().animateAsynchronous();
 
-			super.controllerSingleton.tileRows.getTileRowNormal().animateSynchronous();
-			super.controllerSingleton.tileRows.getTileRowConquest().animateSynchronous();
-			Lock.INSTANCE.lock();
+		if (tilesRevealed == 5 || super.controllerSingleton.modifiers.supplyRound)
+			Animation.INSTANCE.moveAsynchronousToSynchronousLock();
 
-			super.controllerSingleton.flow.proceed();
-
-		} else
-			drawTile();
+		super.controllerSingleton.flow.proceed();
 
 	}
 

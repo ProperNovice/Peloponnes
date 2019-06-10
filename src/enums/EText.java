@@ -11,6 +11,9 @@ public enum EText {
 	BUILD_LATER("Build later", TextTypeEnum.OPTION),
 	DISCARD("Discard", TextTypeEnum.OPTION),
 	EARN_INCOME("Earn income", TextTypeEnum.OPTION),
+	SUPPLY_ROUND("Supply round", TextTypeEnum.INDICATOR),
+	FEED_POPULATION("Feed population", TextTypeEnum.OPTION),
+	CHOOSE_BUILDING_TO_BUILD("Choose building to build", TextTypeEnum.INDICATOR),
 	
 	;
 
