@@ -39,7 +39,7 @@ public class RevealTile extends AGameState {
 
 		removeTileFromPileAnimateAsynchronous();
 		setTileDimensions();
-//		checkForSupplyRound();
+		checkForSupplyRound();
 		addTileToRowAnimateAsynchronous();
 		proceed();
 

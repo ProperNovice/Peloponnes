@@ -14,6 +14,7 @@ public enum EText {
 	SUPPLY_ROUND("Supply round", TextTypeEnum.INDICATOR),
 	FEED_POPULATION("Feed population", TextTypeEnum.OPTION),
 	CHOOSE_BUILDING_TO_BUILD("Choose building to build", TextTypeEnum.INDICATOR),
+	DON_T_BUILD_THE_REST("Don't build the rest", TextTypeEnum.OPTION),
 	
 	;
 

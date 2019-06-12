@@ -5,7 +5,9 @@ import enums.EResource;
 import interfaces.BuildAble;
 import interfaces.ITile;
 import interfaces.ITileBuilding;
+import interfaces.ITileCivilization;
 import interfaces.ITileLand;
+import interfaces.IncomeAble;
 import model.Tile;
 import model.TileCivilization;
 import model.TilePile;
@@ -17,10 +19,10 @@ public class StartGame extends AGameState {
 	public void handleGameStateChange() {
 
 		civilization();
-		board();
+//		board();
 //		tileRows();
 //		addCurrentResources();
-		setSupplyRound();
+//		setSupplyRound();
 
 		super.controllerSingleton.flow.proceed();
 
@@ -47,6 +49,8 @@ public class StartGame extends AGameState {
 
 	public void board() {
 
+		// add tiles
+
 		int tiles = 6;
 
 		for (int counter = 1; counter <= tiles; counter++) {
@@ -66,8 +70,22 @@ public class StartGame extends AGameState {
 
 		}
 
+		// add income
+
+		for (ITile iTile : super.controllerSingleton.board.getArrayList()) {
+
+			if (iTile instanceof ITileCivilization)
+				continue;
+
+			IncomeAble incomeAble = (IncomeAble) iTile;
+			super.controllerSingleton.resources.addIncome(incomeAble.getIncomePerRound());
+
+		}
+
 		super.controllerSingleton.board.relocateList();
 		super.controllerSingleton.board.relocateImageViews();
+
+		// set build
 
 		for (ITile iTile : super.controllerSingleton.board.getArrayList()) {
 
@@ -110,6 +128,8 @@ public class StartGame extends AGameState {
 	public void addCurrentResources() {
 
 		super.controllerSingleton.resources.addCurrentAmount(EResource.FOOD, 6);
+		super.controllerSingleton.resources.addCurrentAmount(EResource.WOOD, 6);
+		super.controllerSingleton.resources.addCurrentAmount(EResource.STONE, 4);
 		super.controllerSingleton.resources.addCurrentAmount(EResource.LUXURY_GOODS, 11);
 
 	}

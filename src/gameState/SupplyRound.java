@@ -4,9 +4,11 @@ import enums.EResource;
 import enums.EText;
 import interfaces.BuildAble;
 import interfaces.ITile;
+import interfaces.IncomeAble;
+import model.Tile;
 import utils.Logger;
 
-public class SupplyRound extends AGameState {
+public class SupplyRound extends ABuild {
 
 	private boolean feedPopulationPhase = true;
 
@@ -26,12 +28,11 @@ public class SupplyRound extends AGameState {
 		switch (eText) {
 
 		case FEED_POPULATION:
-			feedPopulation();
-			this.feedPopulationPhase = false;
-			handleUnbuiltBuildings();
+			executeFeedPopulation();
 			break;
 
-		case CONTINUE:
+		case DON_T_BUILD_THE_REST:
+			handleDontBuildTheRest();
 			break;
 
 		default:
@@ -44,16 +45,38 @@ public class SupplyRound extends AGameState {
 	@Override
 	protected void handleTilePressedBoard(ITile iTile) {
 
-		if (this.feedPopulationPhase)
+		if (this.feedPopulationPhase) {
+			Logger.INSTANCE.logNewLine("we are in population phase");
 			return;
+		}
 
-		if (!(iTile instanceof BuildAble))
+		if (!(iTile instanceof BuildAble)) {
+			Logger.INSTANCE.logNewLine("tile is not build able");
 			return;
+		}
 
 		BuildAble tileBuildable = (BuildAble) iTile;
 
-		if (tileBuildable.isBuilt())
+		if (tileBuildable.isBuilt()) {
+			Logger.INSTANCE.logNewLine("tile is built");
 			return;
+		}
+
+		if (!super.tileBuildingCanBeBuiltNow(iTile)) {
+			Logger.INSTANCE.logNewLine("tile cannot be built");
+			return;
+		}
+
+		super.controllerSingleton.text.concealText();
+		buildTile(tileBuildable);
+
+	}
+
+	private void executeFeedPopulation() {
+
+		this.feedPopulationPhase = false;
+		feedPopulation();
+		handleUnbuiltBuildings();
 
 	}
 
@@ -70,12 +93,11 @@ public class SupplyRound extends AGameState {
 		int populationCanBeFed = foodCurrent + luxuryGoodsCurrent / 2;
 
 		Logger.INSTANCE.log("pop can be fed -> " + populationCanBeFed);
-		Logger.INSTANCE.log("population -> " + populationCurrent);
 
 		int populationFinal = Math.min(populationCanBeFed, populationCurrent);
 		int populationLost = populationCurrent - populationFinal;
+		Logger.INSTANCE.log("population fed  -> " + populationFinal);
 		Logger.INSTANCE.log("population lost -> " + populationLost);
-		Logger.INSTANCE.log("population final  -> " + populationFinal);
 		int foodNeeded = populationFinal;
 
 		int foodSpent = Math.min(foodNeeded, foodCurrent);
@@ -120,9 +142,48 @@ public class SupplyRound extends AGameState {
 
 	private void setUpUnbuiltBuildingsText() {
 
-		super.controllerSingleton.text.showText(EText.SUPPLY_ROUND);
 		super.controllerSingleton.text.showText(EText.CHOOSE_BUILDING_TO_BUILD);
-		super.controllerSingleton.text.showText(EText.CONTINUE);
+		super.controllerSingleton.text.showText(EText.DON_T_BUILD_THE_REST);
+
+	}
+
+	private void buildTile(BuildAble buildAble) {
+
+		Logger.INSTANCE.logNewLine("building tile");
+		super.executeBuildResources();
+		super.controllerSingleton.resources.addCurrentAmount(EResource.COIN, 1);
+
+		buildAble.setBuilt();
+		handleUnbuiltBuildings();
+
+	}
+
+	private void handleDontBuildTheRest() {
+
+		for (ITile iTile : super.controllerSingleton.board.getArrayList().clone()) {
+
+			if (!(iTile instanceof BuildAble))
+				continue;
+
+			BuildAble buildAble = (BuildAble) iTile;
+
+			if (buildAble.isBuilt())
+				continue;
+
+			buildAble.setBuilt();
+			super.controllerSingleton.board.getArrayList().remove(iTile);
+			super.controllerSingleton.resources.addCurrentAmount(EResource.COIN, 1);
+
+			Tile tile = (Tile) iTile;
+			tile.getImageView().setVisible(false);
+
+			IncomeAble incomeAble = (IncomeAble) iTile;
+			super.controllerSingleton.resources.removeIncome(incomeAble.getIncomePerRound());
+
+		}
+
+		super.controllerSingleton.board.relocateList();
+		super.controllerSingleton.board.animateAsynchronous();
 
 	}
 

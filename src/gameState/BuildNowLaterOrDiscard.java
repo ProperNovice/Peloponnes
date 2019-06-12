@@ -9,33 +9,33 @@ import interfaces.ITileBuilding;
 import interfaces.ITileLand;
 import model.BuildImageView;
 import model.Tile;
-import utils.ArrayList;
 import utils.Logger;
 
-public class BuildNowLaterOrDiscard extends AGameState {
-
-	private int woodCurrent, stoneCurrent, luxuryGoodsCurrent, coinsCurrent;
-	private int woodCost, stoneCost;
+public class BuildNowLaterOrDiscard extends ABuild {
 
 	@Override
 	public void handleGameStateChange() {
 
 		if (super.controllerSingleton.modifiers.tileToBuy instanceof ITileLand) {
 
-			handleBuildNow();
+			buildNowProceed();
 			return;
 
 		}
 
-		if (tileBuildingBoughtCanBeBuiltNow()) {
+		if (super.tileBuildingCanBeBuiltNow(super.controllerSingleton.modifiers.tileToBuy)) {
 
 			Logger.INSTANCE.logNewLine("can be built now");
 			super.controllerSingleton.text.showText(EText.BUILD_NOW);
 
 		}
 
-		if (tileBoughtCanBeBuildLater())
+		if (tileBoughtCanBeBuildLater()) {
+
+			Logger.INSTANCE.logNewLine("can be built later");
 			super.controllerSingleton.text.showText(EText.BUILD_LATER);
+
+		}
 
 		super.controllerSingleton.text.showText(EText.DISCARD);
 
@@ -47,7 +47,7 @@ public class BuildNowLaterOrDiscard extends AGameState {
 		switch (eText) {
 
 		case BUILD_NOW:
-			handleBuildNow();
+			buildNowProceed();
 			break;
 
 		case BUILD_LATER:
@@ -65,56 +65,11 @@ public class BuildNowLaterOrDiscard extends AGameState {
 
 	}
 
-	private boolean tileBuildingBoughtCanBeBuiltNow() {
+	private void buildNowProceed() {
 
-		ITile tileBought = super.controllerSingleton.modifiers.tileToBuy;
-		ITileBuilding iTileBuilding = (ITileBuilding) tileBought;
-
-		setCurrentResources();
-		setResourcedNeedToConstruct(iTileBuilding);
-
-		return checkIfTileCanBeBuiltNow();
-
-	}
-
-	private void setCurrentResources() {
-
-		this.woodCurrent = super.controllerSingleton.resources.getCurrentAmount(EResource.WOOD);
-		this.stoneCurrent = super.controllerSingleton.resources.getCurrentAmount(EResource.STONE);
-		this.luxuryGoodsCurrent = super.controllerSingleton.resources.getCurrentAmount(EResource.LUXURY_GOODS);
-		this.coinsCurrent = super.controllerSingleton.resources.getCurrentAmount(EResource.COIN);
-
-		Logger.INSTANCE.log("current wood -> " + this.woodCurrent);
-		Logger.INSTANCE.log("current stone -> " + this.stoneCurrent);
-		Logger.INSTANCE.log("current luxury goods -> " + this.luxuryGoodsCurrent);
-
-	}
-
-	private void setResourcedNeedToConstruct(ITileBuilding iTileBuilding) {
-
-		this.woodCost = 0;
-		this.stoneCost = 0;
-
-		ArrayList<EResource> resourcesNeed = iTileBuilding.getCostructionCost();
-
-		for (EResource eResource : resourcesNeed)
-			if (eResource == EResource.WOOD)
-				this.woodCost++;
-			else if (eResource == EResource.STONE)
-				this.stoneCost++;
-
-		Logger.INSTANCE.log("wood cost -> " + this.woodCost);
-		Logger.INSTANCE.logNewLine("stone cost -> " + this.stoneCost);
-
-	}
-
-	private boolean checkIfTileCanBeBuiltNow() {
-
-		int luxuryGoodsCost = 0;
-		luxuryGoodsCost += 2 * Math.max(0, this.woodCost - this.woodCurrent);
-		luxuryGoodsCost += 2 * Math.max(0, this.stoneCost - this.stoneCurrent);
-
-		return luxuryGoodsCost <= this.luxuryGoodsCurrent;
+		super.executeBuildResources();
+		addTileToBoardAnimateSynchronousLock();
+		super.controllerSingleton.flow.proceed();
 
 	}
 
@@ -122,9 +77,9 @@ public class BuildNowLaterOrDiscard extends AGameState {
 
 		boolean canBeBuiltLater;
 
-		if (this.coinsCurrent >= 1)
+		if (super.coinsCurrent >= 1)
 			canBeBuiltLater = true;
-		else if (this.luxuryGoodsCurrent >= 2)
+		else if (super.luxuryGoodsCurrent >= 2)
 			canBeBuiltLater = true;
 		else
 			canBeBuiltLater = false;
@@ -135,31 +90,6 @@ public class BuildNowLaterOrDiscard extends AGameState {
 			Logger.INSTANCE.logNewLine("can't be build later");
 
 		return canBeBuiltLater;
-
-	}
-
-	private void handleBuildNow() {
-
-		int woodUsed = Math.min(this.woodCurrent, this.woodCost);
-		int woodRemaining = this.woodCost - woodUsed;
-
-		int stoneUsed = Math.min(this.stoneCurrent, this.woodCost);
-		int stoneRemaining = this.stoneCost - stoneUsed;
-
-		int luxuryGoodsUsed = (woodRemaining + stoneRemaining) * 2;
-
-		super.controllerSingleton.resources.removeCurrentAmount(EResource.WOOD, woodUsed);
-		super.controllerSingleton.resources.removeCurrentAmount(EResource.STONE, stoneUsed);
-		super.controllerSingleton.resources.removeCurrentAmount(EResource.LUXURY_GOODS, luxuryGoodsUsed);
-
-		Logger.INSTANCE.log("wood used -> " + woodUsed);
-		Logger.INSTANCE.log("stone used -> " + stoneUsed);
-		Logger.INSTANCE.log("luxury goods used -> " + luxuryGoodsUsed);
-		Logger.INSTANCE.newLine();
-
-		addTileToBoardAnimateSynchronousLock();
-
-		super.controllerSingleton.flow.proceed();
 
 	}
 
@@ -180,7 +110,7 @@ public class BuildNowLaterOrDiscard extends AGameState {
 
 	private void handleBuildLaterCost() {
 
-		if (this.coinsCurrent > 0)
+		if (super.coinsCurrent > 0)
 			super.controllerSingleton.resources.removeCurrentAmount(EResource.COIN, 1);
 		else
 			super.controllerSingleton.resources.removeCurrentAmount(EResource.LUXURY_GOODS, 2);

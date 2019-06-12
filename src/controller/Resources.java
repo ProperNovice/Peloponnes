@@ -99,6 +99,24 @@ public class Resources {
 
 	}
 
+	public void removeIncome(ArrayList<EResource> list) {
+
+		for (EResource eResource : list) {
+
+			for (Resource resource : this.resources) {
+
+				if (resource.getEResource() != eResource)
+					continue;
+
+				resource.removeIncomeSetText();
+				break;
+
+			}
+
+		}
+
+	}
+
 	public void earnIncomeForTheRound() {
 
 		for (Resource resource : this.resources)
@@ -140,8 +158,8 @@ public class Resources {
 	private void createResourceList() {
 
 		this.resources.addLast(new Resource(EResource.COIN));
-		this.resources.addLast(new Resource(EResource.WOOD, 10));
 		this.resources.addLast(new Resource(EResource.STONE, 10));
+		this.resources.addLast(new Resource(EResource.WOOD, 10));
 		this.resources.addLast(new Resource(EResource.FOOD, 13));
 		this.resources.addLast(new Resource(EResource.LUXURY_GOODS));
 		this.resources.addLast(new Resource(EResource.POPULATION_GAIN));
