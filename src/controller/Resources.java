@@ -168,12 +168,12 @@ public class Resources {
 
 	private void relocateResourceList() {
 
-		double y = CredentialSingleton.INSTANCE.CoordinatesCurrentResources.y;
+		double y = CredentialSingleton.INSTANCE.CoordinatesResources.y;
 		double gap = CredentialSingleton.INSTANCE.textResourcesHeight;
 
 		TextIndicator current = new TextIndicator("Current");
 		current.setHeight(CredentialSingleton.INSTANCE.textResourcesHeight);
-		current.relocate(CredentialSingleton.INSTANCE.CoordinatesCurrentResources.x, y);
+		current.relocate(CredentialSingleton.INSTANCE.CoordinatesResources.x, y);
 
 		TextIndicator income = new TextIndicator("Income");
 		income.setHeight(CredentialSingleton.INSTANCE.textResourcesHeight);

@@ -27,4 +27,8 @@ public class DisasterChit implements ImageViewAble {
 
 	}
 
+	public EDisaster getEDisaster() {
+		return this.eDisaster;
+	}
+
 }

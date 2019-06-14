@@ -16,6 +16,7 @@ public enum EGameState {
 	EARN_INCOME_FOR_THE_ROUND(new EarnIncomeForTheRound()),
 	SUPPLY_ROUND(new SupplyRound()),
 	REVEAL_DISASTER_CHIT(new RevealDisasterChit()),
+	RESOLVE_DISASTER(new ResolveDisaster()),
 
 	;
 

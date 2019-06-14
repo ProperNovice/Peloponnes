@@ -81,7 +81,7 @@ public class Resource {
 
 	public void relocate(double y) {
 
-		double xCurrentIndicator = CredentialSingleton.INSTANCE.CoordinatesCurrentResources.x;
+		double xCurrentIndicator = CredentialSingleton.INSTANCE.CoordinatesResources.x;
 		double xIncome = CredentialSingleton.INSTANCE.CoordinatesIncome.x;
 
 		this.textIndicatorCurrentAmount.relocate(xCurrentIndicator, y);

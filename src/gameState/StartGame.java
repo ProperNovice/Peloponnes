@@ -1,6 +1,8 @@
 package gameState;
 
 import controller.CredentialSingleton;
+import enums.EDisaster;
+import enums.EGameState;
 import enums.EResource;
 import interfaces.BuildAble;
 import interfaces.ITile;
@@ -21,8 +23,11 @@ public class StartGame extends AGameState {
 		civilization();
 //		board();
 //		tileRows();
-//		addCurrentResources();
+		addCurrentResources();
 //		setSupplyRound();
+
+		super.controllerSingleton.modifiers.eDisasterDrawn = EDisaster.EARTHQUAKE;
+		super.controllerSingleton.flow.addFirst(EGameState.RESOLVE_DISASTER);
 
 		super.controllerSingleton.flow.proceed();
 
@@ -127,17 +132,15 @@ public class StartGame extends AGameState {
 
 	public void addCurrentResources() {
 
-		super.controllerSingleton.resources.addCurrentAmount(EResource.FOOD, 6);
+		super.controllerSingleton.resources.addCurrentAmount(EResource.POPULATION_GAIN, 8);
 		super.controllerSingleton.resources.addCurrentAmount(EResource.WOOD, 6);
+		super.controllerSingleton.resources.addCurrentAmount(EResource.FOOD, 7);
 		super.controllerSingleton.resources.addCurrentAmount(EResource.STONE, 4);
-		super.controllerSingleton.resources.addCurrentAmount(EResource.LUXURY_GOODS, 11);
 
 	}
 
 	public void setSupplyRound() {
-
 		super.controllerSingleton.modifiers.supplyRound = true;
-
 	}
 
 }

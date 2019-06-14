@@ -1,18 +1,23 @@
 package model;
 
+import controller.CredentialSingleton;
 import enums.EDisaster;
 import interfaces.ITileDisaster;
 import utils.ContainerImageViewAbles;
+import utils.CoordinatesBuilder;
 import utils.Logger;
+import utils.RearrangeTypeEnum;
 
 public class TileDisaster extends Tile implements ITileDisaster {
 
 	private EDisaster eDisaster = null;
-	private ContainerImageViewAbles<DisasterChit> list = null;
+	private List list = null;
 
 	public TileDisaster(EDisaster eDisaster) {
 
 		this.eDisaster = eDisaster;
+
+		this.list = new List();
 
 		String fileName = "";
 		fileName += "tiles/disasters/";
@@ -20,15 +25,6 @@ public class TileDisaster extends Tile implements ITileDisaster {
 		fileName += ".png";
 
 		super.createImageView(fileName);
-
-		this.list = new ContainerImageViewAbles<DisasterChit>() {
-
-			@Override
-			protected void createCoordinates() {
-
-			}
-
-		};
 
 	}
 
@@ -48,8 +44,36 @@ public class TileDisaster extends Tile implements ITileDisaster {
 
 	}
 
-	public ContainerImageViewAbles<DisasterChit> getList() {
+	public List getList() {
 		return this.list;
+	}
+
+	public EDisaster getEDisaster() {
+		return this.eDisaster;
+	}
+
+	public class List extends ContainerImageViewAbles<DisasterChit> {
+
+		@Override
+		protected void createCoordinates() {
+
+			super.arrayList.setCapacity(3);
+
+			super.coordinates = new CoordinatesBuilder()
+					.dimensionsNumbersPair(CredentialSingleton.INSTANCE.DimensionsDisasterChit)
+					.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT)
+					.gapX(-CredentialSingleton.INSTANCE.DimensionsDisasterChit.x / 2).listSizeAble(this).build();
+
+		}
+
+		public void relocateList() {
+
+			double x = getImageView().getLayoutX() + CredentialSingleton.INSTANCE.DimensionsTilePile.x / 2;
+			double y = getImageView().getLayoutY() + CredentialSingleton.INSTANCE.DimensionsTilePile.y / 2;
+			super.coordinates.relocateList(x, y);
+
+		}
+
 	}
 
 }

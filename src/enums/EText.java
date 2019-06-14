@@ -15,6 +15,12 @@ public enum EText {
 	FEED_POPULATION("Feed population", TextTypeEnum.OPTION),
 	CHOOSE_BUILDING_TO_BUILD("Choose building to build", TextTypeEnum.INDICATOR),
 	DON_T_BUILD_THE_REST("Don't build the rest", TextTypeEnum.OPTION),
+	DRAW_DISASTER_CHIT("Draw disaster chit", TextTypeEnum.OPTION),
+	RESOLVE_PLAGUE("Resolve plague", TextTypeEnum.OPTION),
+	RESOLVE_EARTHQUAKE("Resolve earthquake", TextTypeEnum.OPTION),
+	RESOLVE_DRAUGHT("Resolve draught", TextTypeEnum.OPTION),
+	RESOLVE_TEMPEST("Resolve tempest", TextTypeEnum.OPTION),
+	RESOLVE_DECLINE("Resolve decline", TextTypeEnum.OPTION),
 	
 	;
 
