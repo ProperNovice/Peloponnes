@@ -1,13 +1,24 @@
 package gameState;
 
+import enums.EDisaster;
 import enums.EResource;
 import enums.EText;
+import interfaces.ITile;
+import interfaces.ITileBuilding;
+import interfaces.ITileLand;
+import utils.ArrayList;
 import utils.Logger;
 
 public class ResolveDisaster extends AGameState {
 
+	private EResource eResourceOne, eResourceTwo;
+	private int eResourceOneCurrent, eResourceTwoCurrent, luxuryGoodsCurrent;
+	private ArrayList<ITile> tileList = new ArrayList<ITile>();
+
 	@Override
 	public void handleGameStateChange() {
+
+		this.tileList.clear();
 
 		EText eText = null;
 
@@ -56,7 +67,7 @@ public class ResolveDisaster extends AGameState {
 			break;
 
 		case RESOLVE_EARTHQUAKE:
-			resolveEarthquake();
+			setCredentials();
 			break;
 
 		case RESOLVE_PLAGUE:
@@ -64,7 +75,7 @@ public class ResolveDisaster extends AGameState {
 			break;
 
 		case RESOLVE_TEMPEST:
-			resolveTempest();
+			setCredentials();
 			break;
 
 		default:
@@ -114,11 +125,46 @@ public class ResolveDisaster extends AGameState {
 
 	}
 
-	private void resolveEarthquake() {
+	private void setCredentials() {
+
+		EDisaster eDisaster = super.controllerSingleton.modifiers.eDisasterDrawn;
+
+		setResources(eDisaster);
+		addTilesToList(eDisaster);
 
 	}
 
-	private void resolveTempest() {
+	private void setResources(EDisaster eDisaster) {
+
+		if (eDisaster == EDisaster.EARTHQUAKE) {
+
+			this.eResourceOne = EResource.STONE;
+			this.eResourceTwo = EResource.WOOD;
+
+		} else if (eDisaster == EDisaster.TEMPEST) {
+
+			this.eResourceOne = EResource.FOOD;
+			this.eResourceTwo = EResource.COIN;
+
+		}
+
+		this.eResourceOneCurrent = super.controllerSingleton.resources.getCurrentAmount(this.eResourceOne);
+		this.eResourceTwoCurrent = super.controllerSingleton.resources.getCurrentAmount(this.eResourceTwo);
+		this.luxuryGoodsCurrent = super.controllerSingleton.resources.getCurrentAmount(EResource.LUXURY_GOODS);
+
+	}
+
+	private void addTilesToList(EDisaster eDisaster) {
+
+		for (ITile iTile : super.controllerSingleton.board.getArrayList()) {
+
+			if (eDisaster == EDisaster.EARTHQUAKE && iTile instanceof ITileBuilding)
+				this.tileList.addLast(iTile);
+
+			else if (eDisaster == EDisaster.TEMPEST && iTile instanceof ITileLand)
+				this.tileList.addLast(iTile);
+
+		}
 
 	}
 
