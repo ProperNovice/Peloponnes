@@ -1,8 +1,6 @@
 package gameState;
 
 import controller.CredentialSingleton;
-import enums.EDisaster;
-import enums.EGameState;
 import enums.EResource;
 import interfaces.ITile;
 import interfaces.ITileBuilding;

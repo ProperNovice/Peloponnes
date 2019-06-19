@@ -4,6 +4,7 @@ import enums.EDisaster;
 import enums.EResource;
 import enums.EText;
 import enums.ETileAbility;
+import interfaces.AbilityAble;
 import interfaces.DisasterAble;
 import interfaces.ITile;
 import interfaces.ITileBuilding;
@@ -37,36 +38,10 @@ public class ResolveDisaster extends AGameState {
 		this.resolvePhase = false;
 		this.eDisaster = super.controllerSingleton.modifiers.eDisasterDrawn;
 
-		EText eText = null;
-
-		switch (super.controllerSingleton.modifiers.eDisasterDrawn) {
-
-		case DECLINE:
-			eText = EText.RESOLVE_DECLINE;
-			break;
-
-		case DRAUGHT:
-			eText = EText.RESOLVE_DRAUGHT;
-			break;
-
-		case EARTHQUAKE:
-			eText = EText.RESOLVE_EARTHQUAKE;
-			break;
-
-		case PLAGUE:
-			eText = EText.RESOLVE_PLAGUE;
-			break;
-
-		case TEMPEST:
-			eText = EText.RESOLVE_TEMPEST;
-			break;
-
-		default:
-			break;
-
-		}
-
-		super.controllerSingleton.text.showText(eText);
+		if (hasProtection())
+			handleHasProtection();
+		else
+			handleHasNotProtection();
 
 	}
 
@@ -101,6 +76,10 @@ public class ResolveDisaster extends AGameState {
 
 		case CONTINUE:
 			handleProceed();
+			break;
+
+		case CONTINUE_PROTECTION:
+			super.controllerSingleton.flow.proceed();
 			break;
 
 		default:
@@ -376,7 +355,89 @@ public class ResolveDisaster extends AGameState {
 
 	private boolean hasProtection() {
 
+		ETileAbility protectionAbility = this.protections.get(this.eDisaster);
+
+		for (ITile iTile : super.controllerSingleton.board.getArrayList()) {
+
+			AbilityAble abilityAble = (AbilityAble) iTile;
+
+			if (abilityAble.getTileAbility().contains(protectionAbility))
+				return true;
+
+		}
+
 		return false;
+
+	}
+
+	private void handleHasNotProtection() {
+
+		EText eText = null;
+
+		switch (this.eDisaster) {
+
+		case DECLINE:
+			eText = EText.RESOLVE_DECLINE;
+			break;
+
+		case DRAUGHT:
+			eText = EText.RESOLVE_DRAUGHT;
+			break;
+
+		case EARTHQUAKE:
+			eText = EText.RESOLVE_EARTHQUAKE;
+			break;
+
+		case PLAGUE:
+			eText = EText.RESOLVE_PLAGUE;
+			break;
+
+		case TEMPEST:
+			eText = EText.RESOLVE_TEMPEST;
+			break;
+
+		default:
+			break;
+
+		}
+
+		super.controllerSingleton.text.showText(eText);
+
+	}
+
+	private void handleHasProtection() {
+
+		EText eText = null;
+
+		switch (this.eDisaster) {
+
+		case DECLINE:
+			eText = EText.PROTECTION_FROM_DECLINE;
+			break;
+
+		case DRAUGHT:
+			eText = EText.PROTECTION_FROM_DRAUGHT;
+			break;
+
+		case EARTHQUAKE:
+			eText = EText.PROTECTION_FROM_EARTHQUAKE;
+			break;
+
+		case PLAGUE:
+			eText = EText.PROTECTION_FROM_PLAGUE;
+			break;
+
+		case TEMPEST:
+			eText = EText.PROTECTION_FROM_TEMPEST;
+			break;
+
+		default:
+			break;
+
+		}
+
+		super.controllerSingleton.text.showText(eText);
+		super.controllerSingleton.text.showText(EText.CONTINUE_PROTECTION);
 
 	}
 

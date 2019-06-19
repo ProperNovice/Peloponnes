@@ -23,6 +23,12 @@ public enum EText {
 	RESOLVE_DECLINE("Resolve decline", TextTypeEnum.OPTION),
 	CHOOSE_TILE_TO_PROTECT("Choose tile to protect", TextTypeEnum.INDICATOR),
 	PROTECT_ALL_TILES("Protect all tiles", TextTypeEnum.OPTION),
+	PROTECTION_FROM_PLAGUE("Protection from plague", TextTypeEnum.INDICATOR),
+	PROTECTION_FROM_EARTHQUAKE("Protection from earthquake", TextTypeEnum.INDICATOR),
+	PROTECTION_FROM_DRAUGHT("Protection from draught", TextTypeEnum.INDICATOR),
+	PROTECTION_FROM_TEMPEST("Protection from tempest", TextTypeEnum.INDICATOR),
+	PROTECTION_FROM_DECLINE("Protection from decline", TextTypeEnum.INDICATOR),
+	CONTINUE_PROTECTION("Continue", TextTypeEnum.OPTION),
 	
 	;
 
