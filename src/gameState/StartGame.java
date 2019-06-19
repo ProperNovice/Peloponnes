@@ -18,7 +18,7 @@ public class StartGame extends AGameState {
 	public void handleGameStateChange() {
 
 		civilization();
-		board();
+//		board();
 //		tileRows();
 //		addCurrentResources();
 //		setSupplyRound();

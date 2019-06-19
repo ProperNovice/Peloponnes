@@ -15,6 +15,7 @@ public enum ControllerSingleton {
 	public Board board = null;
 	public TileRows tileRows = null;
 	public DisasterTiles disasterTiles = null;
+	public ScoringIndicators scoringIndicators = null;
 	public Flow flow = null;
 
 	public void createInstances() {
@@ -30,6 +31,7 @@ public enum ControllerSingleton {
 		this.board = new Board();
 		this.tileRows = new TileRows();
 		this.disasterTiles = new DisasterTiles();
+		this.scoringIndicators = new ScoringIndicators();
 		this.flow = new Flow();
 
 	}

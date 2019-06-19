@@ -46,8 +46,9 @@ public class Flow {
 
 	public void proceed() {
 
+		ControllerSingleton.INSTANCE.gameState.setGameState(EGameState.SCORE);
+
 		EGameState eGameState = this.gameStateResolving.removeFirst();
-//		this.gameStateResolving.addLast(eGameState);
 
 		if (!eGameStateShallResolve(eGameState)) {
 

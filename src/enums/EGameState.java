@@ -18,6 +18,7 @@ public enum EGameState {
 	SUPPLY_ROUND_END_GAME(SUPPLY_ROUND.getGameState()),
 	REVEAL_DISASTER_CHIT(new RevealDisasterChit()),
 	RESOLVE_DISASTER(new ResolveDisaster()),
+	SCORE(new Score()),
 
 	;
 
