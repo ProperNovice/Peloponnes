@@ -21,6 +21,8 @@ public enum EText {
 	RESOLVE_DRAUGHT("Resolve draught", TextTypeEnum.OPTION),
 	RESOLVE_TEMPEST("Resolve tempest", TextTypeEnum.OPTION),
 	RESOLVE_DECLINE("Resolve decline", TextTypeEnum.OPTION),
+	CHOOSE_TILE_TO_PROTECT("Choose tile to protect", TextTypeEnum.INDICATOR),
+	PROTECT_ALL_TILES("Protect all tiles", TextTypeEnum.OPTION),
 	
 	;
 

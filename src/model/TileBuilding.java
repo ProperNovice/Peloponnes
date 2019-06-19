@@ -7,6 +7,7 @@ import enums.ETileType;
 import interfaces.AbilityAble;
 import interfaces.BuildAble;
 import interfaces.BuyCostAble;
+import interfaces.DisasterAble;
 import interfaces.ITileBuilding;
 import interfaces.IncomeAble;
 import interfaces.PrestigePointsAble;
@@ -14,7 +15,7 @@ import utils.ArrayList;
 import utils.Logger;
 
 public class TileBuilding extends Tile
-		implements ITileBuilding, IncomeAble, PrestigePointsAble, BuyCostAble, AbilityAble, BuildAble {
+		implements ITileBuilding, IncomeAble, PrestigePointsAble, BuyCostAble, AbilityAble, BuildAble, DisasterAble {
 
 	private EPhase ePhase = null;
 	private ETileType eTileType = null;
@@ -25,6 +26,7 @@ public class TileBuilding extends Tile
 	private ArrayList<ETileAbility> eTileAbility = new ArrayList<ETileAbility>();
 	private boolean isBuilt = true;
 	private BuildImageView buildImageView = null;
+	private DisasterImageView disasterImageView = null;
 
 	public TileBuilding(EPhase ePhase, int tileNumber, ETileType eTileType, int prestigePoints, int buyCost,
 			ArrayList<EResource> oneTimeIncome, ArrayList<EResource> constructionCost,
@@ -154,9 +156,9 @@ public class TileBuilding extends Tile
 		this.isBuilt = false;
 
 		if (this.buildImageView != null)
-			return;
-
-		this.buildImageView = new BuildImageView(this);
+			this.buildImageView.relocateToFront();
+		else
+			this.buildImageView = new BuildImageView(this);
 
 	}
 
@@ -168,6 +170,23 @@ public class TileBuilding extends Tile
 	@Override
 	public BuildImageView getBuildImageView() {
 		return this.buildImageView;
+	}
+
+	@Override
+	public void setDisaster() {
+
+		if (this.disasterImageView != null) {
+			this.disasterImageView.relocateToFront();
+			return;
+		}
+
+		this.disasterImageView = new DisasterImageView(this);
+
+	}
+
+	@Override
+	public DisasterImageView getDisasterImageView() {
+		return this.disasterImageView;
 	}
 
 }

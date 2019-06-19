@@ -1,17 +1,15 @@
 package gameState;
 
-import controller.CredentialSingleton;
 import enums.EResource;
 import enums.EText;
 import interfaces.BuildAble;
 import interfaces.ITile;
 import interfaces.ITileBuilding;
 import interfaces.ITileLand;
-import model.BuildImageView;
 import model.Tile;
 import utils.Logger;
 
-public class BuildNowLaterOrDiscard extends ABuild {
+public class BuildNowLaterOrDiscard extends ABuildTile {
 
 	@Override
 	public void handleGameStateChange() {
@@ -157,22 +155,8 @@ public class BuildNowLaterOrDiscard extends ABuild {
 			if (buildAble.isBuilt())
 				continue;
 
-			if (value) {
-
-				Tile tile = (Tile) iTile;
-
-				double x = tile.getImageView().getLayoutX();
-				x += CredentialSingleton.INSTANCE.DimensionsTileGame.x;
-				x -= CredentialSingleton.INSTANCE.DimensionsBuildIcon.x;
-
-				double y = tile.getImageView().getLayoutY();
-
-				BuildImageView buildImageView = buildAble.getBuildImageView();
-				buildImageView.getImageView().relocate(x, y);
-				buildImageView.getImageView().toFront();
-				buildImageView.getImageView().toFront();
-
-			}
+			if (value)
+				buildAble.getBuildImageView().relocateToFront();
 
 			buildAble.getBuildImageView().getImageView().setVisible(value);
 

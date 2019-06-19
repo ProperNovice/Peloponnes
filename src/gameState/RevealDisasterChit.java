@@ -36,6 +36,7 @@ public class RevealDisasterChit extends AGameState {
 				tileDisaster.getList().animateSynchronousLock();
 
 			}
+
 			break;
 
 		}

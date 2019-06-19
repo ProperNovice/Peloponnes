@@ -4,7 +4,6 @@ import controller.CredentialSingleton;
 import enums.EDisaster;
 import enums.EGameState;
 import enums.EResource;
-import interfaces.BuildAble;
 import interfaces.ITile;
 import interfaces.ITileBuilding;
 import interfaces.ITileCivilization;
@@ -21,13 +20,13 @@ public class StartGame extends AGameState {
 	public void handleGameStateChange() {
 
 		civilization();
-//		board();
+		board();
 //		tileRows();
 		addCurrentResources();
-//		setSupplyRound();
+		setSupplyRound();
 
-		super.controllerSingleton.modifiers.eDisasterDrawn = EDisaster.EARTHQUAKE;
-		super.controllerSingleton.flow.addFirst(EGameState.RESOLVE_DISASTER);
+//		super.controllerSingleton.modifiers.eDisasterDrawn = EDisaster.TEMPEST;
+//		super.controllerSingleton.flow.addFirst(EGameState.RESOLVE_DISASTER);
 
 		super.controllerSingleton.flow.proceed();
 
@@ -90,17 +89,17 @@ public class StartGame extends AGameState {
 		super.controllerSingleton.board.relocateList();
 		super.controllerSingleton.board.relocateImageViews();
 
-		// set build
+		// set unbuild
 
-		for (ITile iTile : super.controllerSingleton.board.getArrayList()) {
-
-			if (!(iTile instanceof BuildAble))
-				continue;
-
-			BuildAble buildAble = (BuildAble) iTile;
-			buildAble.setUnbuilt();
-
-		}
+//		for (ITile iTile : super.controllerSingleton.board.getArrayList()) {
+//
+//			if (!(iTile instanceof BuildAble))
+//				continue;
+//
+//			BuildAble buildAble = (BuildAble) iTile;
+//			buildAble.setUnbuilt();
+//
+//		}
 
 	}
 
@@ -134,8 +133,10 @@ public class StartGame extends AGameState {
 
 		super.controllerSingleton.resources.addCurrentAmount(EResource.POPULATION_GAIN, 8);
 		super.controllerSingleton.resources.addCurrentAmount(EResource.WOOD, 6);
-		super.controllerSingleton.resources.addCurrentAmount(EResource.FOOD, 7);
+		super.controllerSingleton.resources.addCurrentAmount(EResource.FOOD, 1);
+		super.controllerSingleton.resources.addCurrentAmount(EResource.LUXURY_GOODS, 30);
 		super.controllerSingleton.resources.addCurrentAmount(EResource.STONE, 4);
+		super.controllerSingleton.resources.removeCurrentAmount(EResource.COIN, 4);
 
 	}
 

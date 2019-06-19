@@ -12,7 +12,6 @@ public abstract class ATileImageView implements ImageViewAble {
 	public ATileImageView(ITile iTile) {
 
 		this.iTile = iTile;
-
 		createImageView();
 
 	}
@@ -21,6 +20,11 @@ public abstract class ATileImageView implements ImageViewAble {
 
 		ImageView imageView = new ImageView(getFilePath() + ".png", this);
 		imageView.setWidth(CredentialSingleton.INSTANCE.DimensionsBuildIcon.x);
+		relocateToFront();
+
+	}
+
+	public void relocateToFront() {
 
 		ImageViewAble imageViewAbleITile = (ImageViewAble) this.iTile;
 
@@ -30,7 +34,8 @@ public abstract class ATileImageView implements ImageViewAble {
 		double y = imageViewAbleITile.getImageView().getLayoutY();
 		y += getY();
 
-		imageView.relocate(x, y);
+		this.getImageView().relocate(x, y);
+		this.getImageView().toFront();
 
 	}
 

@@ -6,13 +6,15 @@ import enums.ETileAbility;
 import enums.ETileType;
 import interfaces.AbilityAble;
 import interfaces.BuyCostAble;
+import interfaces.DisasterAble;
 import interfaces.ITileLand;
 import interfaces.IncomeAble;
 import interfaces.PrestigePointsAble;
 import utils.ArrayList;
 import utils.Logger;
 
-public class TileLand extends Tile implements ITileLand, IncomeAble, PrestigePointsAble, BuyCostAble, AbilityAble {
+public class TileLand extends Tile
+		implements ITileLand, IncomeAble, PrestigePointsAble, BuyCostAble, AbilityAble, DisasterAble {
 
 	private EPhase ePhase = null;
 	private ETileType eTileType = null;
@@ -20,6 +22,7 @@ public class TileLand extends Tile implements ITileLand, IncomeAble, PrestigePoi
 	private ArrayList<EResource> oneTimeIncome = new ArrayList<EResource>();
 	private ArrayList<EResource> incomePerRound = new ArrayList<EResource>();
 	private ArrayList<ETileAbility> eTileAbility = new ArrayList<ETileAbility>();
+	private DisasterImageView disasterImageView = null;
 
 	public TileLand(EPhase ePhase, int tileNumber, ETileType eTileType, int prestigePoints, int buyCost,
 			ArrayList<EResource> oneTimeIncome, ArrayList<EResource> incomePerRound,
@@ -121,6 +124,23 @@ public class TileLand extends Tile implements ITileLand, IncomeAble, PrestigePoi
 	@Override
 	public ArrayList<ETileAbility> getTileAbility() {
 		return this.eTileAbility;
+	}
+
+	@Override
+	public void setDisaster() {
+
+		if (this.disasterImageView != null) {
+			this.disasterImageView.relocateToFront();
+			return;
+		}
+
+		this.disasterImageView = new DisasterImageView(this);
+
+	}
+
+	@Override
+	public DisasterImageView getDisasterImageView() {
+		return this.disasterImageView;
 	}
 
 }

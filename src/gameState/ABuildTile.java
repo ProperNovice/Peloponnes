@@ -6,7 +6,7 @@ import interfaces.ITileBuilding;
 import utils.ArrayList;
 import utils.Logger;
 
-public abstract class ABuild extends AGameState {
+public abstract class ABuildTile extends AGameState {
 
 	protected int woodCurrent, stoneCurrent, luxuryGoodsCurrent, coinsCurrent;
 	protected int woodCost, stoneCost;

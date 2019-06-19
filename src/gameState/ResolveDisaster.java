@@ -3,22 +3,39 @@ package gameState;
 import enums.EDisaster;
 import enums.EResource;
 import enums.EText;
+import enums.ETileAbility;
+import interfaces.DisasterAble;
 import interfaces.ITile;
 import interfaces.ITileBuilding;
 import interfaces.ITileLand;
+import model.Tile;
 import utils.ArrayList;
+import utils.HashMap;
 import utils.Logger;
 
 public class ResolveDisaster extends AGameState {
 
 	private EResource eResourceOne, eResourceTwo;
-	private int eResourceOneCurrent, eResourceTwoCurrent, luxuryGoodsCurrent;
 	private ArrayList<ITile> tileList = new ArrayList<ITile>();
+	private EDisaster eDisaster;
+	private boolean resolvePhase = false;
+	private HashMap<EDisaster, ETileAbility> protections = new HashMap<EDisaster, ETileAbility>();
+
+	public ResolveDisaster() {
+
+		this.protections.put(EDisaster.DECLINE, ETileAbility.PROTECTION_FROM_DECLINE);
+		this.protections.put(EDisaster.DRAUGHT, ETileAbility.PROTECTION_FROM_DROUGHT);
+		this.protections.put(EDisaster.EARTHQUAKE, ETileAbility.PROTECTION_FROM_EARTHQUAKE);
+		this.protections.put(EDisaster.PLAGUE, ETileAbility.PROTECTION_FROM_PLAGUE);
+		this.protections.put(EDisaster.TEMPEST, ETileAbility.PROTECTION_FROM_TEMPEST);
+
+	}
 
 	@Override
 	public void handleGameStateChange() {
 
-		this.tileList.clear();
+		this.resolvePhase = false;
+		this.eDisaster = super.controllerSingleton.modifiers.eDisasterDrawn;
 
 		EText eText = null;
 
@@ -67,7 +84,7 @@ public class ResolveDisaster extends AGameState {
 			break;
 
 		case RESOLVE_EARTHQUAKE:
-			setCredentials();
+			resolveEarthquakeTempest();
 			break;
 
 		case RESOLVE_PLAGUE:
@@ -75,13 +92,39 @@ public class ResolveDisaster extends AGameState {
 			break;
 
 		case RESOLVE_TEMPEST:
-			setCredentials();
+			resolveEarthquakeTempest();
+			break;
+
+		case PROTECT_ALL_TILES:
+			protectAllTiles();
+			break;
+
+		case CONTINUE:
+			handleProceed();
 			break;
 
 		default:
 			break;
 
 		}
+
+	}
+
+	@Override
+	protected void handleTilePressedBoard(ITile iTile) {
+
+		if (!this.resolvePhase)
+			return;
+
+		if (!this.tileList.contains(iTile))
+			return;
+
+		if (!canProtectSingleTile())
+			return;
+
+		super.controllerSingleton.text.concealText();
+		protectOneTile(iTile);
+		setCredentials();
 
 	}
 
@@ -125,46 +168,215 @@ public class ResolveDisaster extends AGameState {
 
 	}
 
-	private void setCredentials() {
+	private void resolveEarthquakeTempest() {
 
-		EDisaster eDisaster = super.controllerSingleton.modifiers.eDisasterDrawn;
-
-		setResources(eDisaster);
-		addTilesToList(eDisaster);
+		addTilesToListSetDisasterImageview();
+		setCredentials();
+		this.resolvePhase = true;
 
 	}
 
-	private void setResources(EDisaster eDisaster) {
+	private void setCredentials() {
 
-		if (eDisaster == EDisaster.EARTHQUAKE) {
+		setResources();
+
+		if (canProtectSingleTile())
+			super.controllerSingleton.text.showText(EText.CHOOSE_TILE_TO_PROTECT);
+
+		if (canProtectAllTiles())
+			super.controllerSingleton.text.showText(EText.PROTECT_ALL_TILES);
+
+		super.controllerSingleton.text.showText(EText.CONTINUE);
+
+	}
+
+	private void setResources() {
+
+		if (this.eDisaster == EDisaster.EARTHQUAKE) {
 
 			this.eResourceOne = EResource.STONE;
 			this.eResourceTwo = EResource.WOOD;
 
-		} else if (eDisaster == EDisaster.TEMPEST) {
+		} else if (this.eDisaster == EDisaster.TEMPEST) {
 
 			this.eResourceOne = EResource.FOOD;
 			this.eResourceTwo = EResource.COIN;
 
 		}
 
-		this.eResourceOneCurrent = super.controllerSingleton.resources.getCurrentAmount(this.eResourceOne);
-		this.eResourceTwoCurrent = super.controllerSingleton.resources.getCurrentAmount(this.eResourceTwo);
-		this.luxuryGoodsCurrent = super.controllerSingleton.resources.getCurrentAmount(EResource.LUXURY_GOODS);
-
 	}
 
-	private void addTilesToList(EDisaster eDisaster) {
+	private void addTilesToListSetDisasterImageview() {
 
 		for (ITile iTile : super.controllerSingleton.board.getArrayList()) {
 
-			if (eDisaster == EDisaster.EARTHQUAKE && iTile instanceof ITileBuilding)
+			if (this.eDisaster == EDisaster.EARTHQUAKE && iTile instanceof ITileBuilding)
 				this.tileList.addLast(iTile);
 
-			else if (eDisaster == EDisaster.TEMPEST && iTile instanceof ITileLand)
+			else if (this.eDisaster == EDisaster.TEMPEST && iTile instanceof ITileLand)
 				this.tileList.addLast(iTile);
 
 		}
+
+		for (ITile iTile : this.tileList) {
+
+			DisasterAble disasterAble = (DisasterAble) iTile;
+			disasterAble.setDisaster();
+
+		}
+
+	}
+
+	private boolean canProtectAllTiles() {
+
+		int eResourceOneCurrent = super.controllerSingleton.resources.getCurrentAmount(this.eResourceOne);
+		int eResourceTwoCurrent = super.controllerSingleton.resources.getCurrentAmount(this.eResourceTwo);
+		int luxuryGoodsCurrent = super.controllerSingleton.resources.getCurrentAmount(EResource.LUXURY_GOODS);
+
+		int luxuryGoodsCost = 0;
+		luxuryGoodsCost += 2 * Math.max(0, this.tileList.size() - eResourceOneCurrent);
+		luxuryGoodsCost += 2 * Math.max(0, this.tileList.size() - eResourceTwoCurrent);
+
+		return luxuryGoodsCost <= luxuryGoodsCurrent;
+
+	}
+
+	private void protectAllTiles() {
+
+		handleAllResources(this.eResourceOne);
+		handleAllResources(this.eResourceTwo);
+
+		for (ITile iTile : this.tileList) {
+
+			DisasterAble disasterAble = (DisasterAble) iTile;
+			disasterAble.getDisasterImageView().getImageView().setVisible(false);
+
+		}
+
+		this.tileList.clear();
+		handleProceed();
+
+	}
+
+	private void handleAllResources(EResource eResource) {
+
+		int currentResources = super.controllerSingleton.resources.getCurrentAmount(eResource);
+		int resourcesUsed = Math.min(this.tileList.size(), currentResources);
+		super.controllerSingleton.resources.removeCurrentAmount(eResource, resourcesUsed);
+		int resourcesLeft = currentResources - resourcesUsed;
+
+		Logger.INSTANCE.log(eResource);
+		Logger.INSTANCE.log("current -> " + currentResources);
+		Logger.INSTANCE.log("used -> " + resourcesUsed);
+		Logger.INSTANCE.log("left -> " + resourcesLeft);
+		Logger.INSTANCE.newLine();
+
+		currentResources = super.controllerSingleton.resources.getCurrentAmount(EResource.LUXURY_GOODS);
+		resourcesUsed = 2 * (this.tileList.size() - resourcesUsed);
+		super.controllerSingleton.resources.removeCurrentAmount(EResource.LUXURY_GOODS, resourcesUsed);
+		resourcesLeft = currentResources - resourcesUsed;
+
+		Logger.INSTANCE.log(EResource.LUXURY_GOODS);
+		Logger.INSTANCE.log("current -> " + currentResources);
+		Logger.INSTANCE.log("used -> 2*" + resourcesUsed / 2 + " -> " + resourcesUsed);
+		Logger.INSTANCE.log("left -> " + (currentResources - resourcesUsed));
+		Logger.INSTANCE.newLine();
+
+	}
+
+	private boolean canProtectSingleTile() {
+
+		int eResourceOneCurrent = super.controllerSingleton.resources.getCurrentAmount(this.eResourceOne);
+		int eResourceTwoCurrent = super.controllerSingleton.resources.getCurrentAmount(this.eResourceTwo);
+		int luxuryGoodsCurrent = super.controllerSingleton.resources.getCurrentAmount(EResource.LUXURY_GOODS);
+
+		int luxuryGoodsCost = 0;
+
+		if (eResourceOneCurrent == 0)
+			luxuryGoodsCost += 2;
+		if (eResourceTwoCurrent == 0)
+			luxuryGoodsCost += 2;
+
+		return luxuryGoodsCost <= luxuryGoodsCurrent;
+
+	}
+
+	private void protectOneTile(ITile iTile) {
+
+		handleOneTileResources(this.eResourceOne);
+		handleOneTileResources(this.eResourceTwo);
+
+		DisasterAble disasterAble = (DisasterAble) iTile;
+		disasterAble.getDisasterImageView().getImageView().setVisible(false);
+
+		this.tileList.remove(iTile);
+
+	}
+
+	private void handleOneTileResources(EResource eResource) {
+
+		int currentResources = super.controllerSingleton.resources.getCurrentAmount(eResource);
+
+		int resourcesUsed = 0;
+
+		if (currentResources > 0)
+			resourcesUsed = 1;
+
+		super.controllerSingleton.resources.removeCurrentAmount(eResource, resourcesUsed);
+		int resourcesLeft = currentResources - resourcesUsed;
+
+		Logger.INSTANCE.log(eResource);
+		Logger.INSTANCE.log("current -> " + currentResources);
+		Logger.INSTANCE.log("used -> " + resourcesUsed);
+		Logger.INSTANCE.log("left -> " + resourcesLeft);
+		Logger.INSTANCE.newLine();
+
+		currentResources = super.controllerSingleton.resources.getCurrentAmount(EResource.LUXURY_GOODS);
+
+		if (resourcesUsed == 0)
+			resourcesUsed = 2;
+		else
+			resourcesUsed = 0;
+
+		super.controllerSingleton.resources.removeCurrentAmount(EResource.LUXURY_GOODS, resourcesUsed);
+		resourcesLeft = currentResources - resourcesUsed;
+
+		Logger.INSTANCE.log(EResource.LUXURY_GOODS);
+		Logger.INSTANCE.log("current -> " + currentResources);
+		Logger.INSTANCE.log("used -> 2*" + resourcesUsed / 2 + " -> " + resourcesUsed);
+		Logger.INSTANCE.log("left -> " + (currentResources - resourcesUsed));
+		Logger.INSTANCE.newLine();
+
+	}
+
+	private void handleProceed() {
+
+		if (!this.tileList.isEmpty()) {
+
+			for (ITile iTile : this.tileList) {
+
+				Tile tile = (Tile) iTile;
+				tile.getImageView().setVisible(false);
+
+				super.controllerSingleton.board.getArrayList().remove(iTile);
+
+				DisasterAble disasterAble = (DisasterAble) iTile;
+				disasterAble.getDisasterImageView().getImageView().setVisible(false);
+
+			}
+
+			super.controllerSingleton.board.relocateList();
+			super.controllerSingleton.board.animateAsynchronous();
+
+		}
+
+		super.controllerSingleton.flow.proceed();
+
+	}
+
+	private boolean hasProtection() {
+
+		return false;
 
 	}
 

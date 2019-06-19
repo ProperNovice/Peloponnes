@@ -8,7 +8,7 @@ import interfaces.IncomeAble;
 import model.Tile;
 import utils.Logger;
 
-public class SupplyRound extends ABuild {
+public class SupplyRound extends ABuildTile {
 
 	private boolean feedPopulationPhase = true;
 
