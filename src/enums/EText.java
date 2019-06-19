@@ -29,6 +29,11 @@ public enum EText {
 	PROTECTION_FROM_TEMPEST("Protection from tempest", TextTypeEnum.INDICATOR),
 	PROTECTION_FROM_DECLINE("Protection from decline", TextTypeEnum.INDICATOR),
 	CONTINUE_PROTECTION("Continue", TextTypeEnum.OPTION),
+	CHOOSE_INCOME("Choose income", TextTypeEnum.INDICATOR),
+	COIN("Coin", TextTypeEnum.OPTION),
+	STONE("Stone", TextTypeEnum.OPTION),
+	WOOD("Wood", TextTypeEnum.OPTION),
+	FOOD("Food", TextTypeEnum.OPTION),
 	
 	;
 

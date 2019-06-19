@@ -15,6 +15,7 @@ public enum EGameState {
 	SET_ONE_TIME_INCOME_PER_ROUND(new SetOneTimeIncomePerRound()),
 	EARN_INCOME_FOR_THE_ROUND(new EarnIncomeForTheRound()),
 	SUPPLY_ROUND(new SupplyRound()),
+	SUPPLY_ROUND_END_GAME(SUPPLY_ROUND.getGameState()),
 	REVEAL_DISASTER_CHIT(new RevealDisasterChit()),
 	RESOLVE_DISASTER(new ResolveDisaster()),
 

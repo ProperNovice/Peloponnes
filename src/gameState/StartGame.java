@@ -20,8 +20,8 @@ public class StartGame extends AGameState {
 		civilization();
 		board();
 //		tileRows();
-		addCurrentResources();
-		setSupplyRound();
+//		addCurrentResources();
+//		setSupplyRound();
 
 //		super.controllerSingleton.modifiers.eDisasterDrawn = EDisaster.TEMPEST;
 //		super.controllerSingleton.flow.addFirst(EGameState.RESOLVE_DISASTER);
@@ -53,7 +53,7 @@ public class StartGame extends AGameState {
 
 		// add tiles
 
-		int tiles = 6;
+		int tiles = 8;
 
 		for (int counter = 1; counter <= tiles; counter++) {
 

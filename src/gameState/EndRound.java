@@ -7,6 +7,8 @@ public class EndRound extends AGameState {
 
 		super.controllerSingleton.modifiers.tileToBuy = null;
 
+		super.controllerSingleton.flow.proceed();
+
 	}
 
 }

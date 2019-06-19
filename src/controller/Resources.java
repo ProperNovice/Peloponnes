@@ -33,7 +33,7 @@ public class Resources {
 
 				for (Resource resource : this.resources)
 					if (resource.getEResource() == EResource.POPULATION_GAIN)
-						resource.removeCurrentAmountSetText();
+						resource.removeOneSetText();
 
 				break;
 
@@ -45,12 +45,12 @@ public class Resources {
 						continue;
 
 					if (resource.getCurrentAmount() != resource.getCapacity())
-						resource.addCurrentAmountSetText();
+						resource.addOneSetText();
 
 					else
 						for (Resource resourceTemp : this.resources)
 							if (resourceTemp.getEResource() == EResource.LUXURY_GOODS)
-								resourceTemp.addCurrentAmountSetText();
+								resourceTemp.addOneSetText();
 
 				}
 
@@ -140,7 +140,7 @@ public class Resources {
 		for (Resource resource : this.resources)
 			if (resource.getEResource() == eResource)
 				for (int counter = 1; counter <= amount; counter++)
-					resource.removeCurrentAmountSetText();
+					resource.removeOneSetText();
 
 	}
 

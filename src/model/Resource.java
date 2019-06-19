@@ -42,14 +42,14 @@ public class Resource {
 
 	}
 
-	public void addCurrentAmountSetText() {
+	public void addOneSetText() {
 
 		this.currentAmount++;
 		setText();
 
 	}
 
-	public void removeCurrentAmountSetText() {
+	public void removeOneSetText() {
 
 		this.currentAmount--;
 		setText();

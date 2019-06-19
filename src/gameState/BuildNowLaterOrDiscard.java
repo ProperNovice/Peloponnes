@@ -65,7 +65,9 @@ public class BuildNowLaterOrDiscard extends ABuildTile {
 
 	private void buildNowProceed() {
 
-		super.executeBuildResources();
+		if (super.controllerSingleton.modifiers.tileToBuy instanceof ITileBuilding)
+			super.executeBuildResources();
+
 		addTileToBoardAnimateSynchronousLock();
 		super.controllerSingleton.flow.proceed();
 
@@ -94,7 +96,6 @@ public class BuildNowLaterOrDiscard extends ABuildTile {
 	private void handleBuildLater() {
 
 		handleBuildLaterCost();
-
 		addTileToBoardAnimateSynchronousLock();
 
 		ITile iTile = super.controllerSingleton.modifiers.tileToBuy;
