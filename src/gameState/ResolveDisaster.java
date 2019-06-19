@@ -126,7 +126,7 @@ public class ResolveDisaster extends AGameState {
 
 		super.controllerSingleton.resources.removeCurrentAmount(eResource, resourceLostInt);
 
-		Logger.INSTANCE.log("current " + text + "-> " + currentResource);
+		Logger.INSTANCE.log("current " + text + " -> " + currentResource);
 		Logger.INSTANCE.log(text + " lost -> " + resourceLostInt);
 		Logger.INSTANCE.log(text + " remained -> " + (currentResource - resourceLostInt));
 		

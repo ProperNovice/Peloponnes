@@ -5,7 +5,7 @@ import utils.TextIndicator;
 public class ScoringIndicators {
 
 	private TextIndicator prestige, population, total;
-	private int prestigeInt, populationInt;
+	private int tilesInt, coinsInt, prestigeInt, populationInt;
 
 	public ScoringIndicators() {
 		createIndicators();
@@ -30,18 +30,22 @@ public class ScoringIndicators {
 		y += CredentialSingleton.INSTANCE.textScoringHeight;
 		this.total.relocate(x, y);
 
-		setPrestige(0);
+		setPrestige(0, 0);
 		setPopulation(0);
 		setTotal();
 
 	}
 
-	public void setPrestige(int points) {
+	public void setPrestige(int tilesInt, int coinsInt) {
 
-		this.prestigeInt = points;
+		this.tilesInt = tilesInt;
+		this.coinsInt = coinsInt;
+		this.prestigeInt = this.tilesInt + this.coinsInt;
 
-		String text = "prestige: ";
-		text += Integer.toString(this.prestigeInt);
+		String text = "tiles: ";
+		text += this.tilesInt;
+		text += " - coins: ";
+		text += Integer.toString(this.coinsInt);
 		this.prestige.setText(text);
 
 	}

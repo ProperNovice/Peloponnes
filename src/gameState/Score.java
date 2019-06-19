@@ -7,25 +7,23 @@ import utils.Logger;
 
 public class Score extends AGameState {
 
-	private int prestigeScore, populationScore, totalScore;
+	private int coinScoreNew, tileScoreNew, populationScoreNew;
+	private int coinScoreOld, tileScoreOld, populationScoreOld;
 
 	@Override
 	public void handleGameStateChange() {
 
-		Logger.INSTANCE.log("scoring");
-
 		setPrestigeScore();
 		setPopulationScore();
-		setTotalScore();
 
-		Logger.INSTANCE.newLine();
+		updateScoringIndicators();
 
 	}
 
 	private void setPrestigeScore() {
 
-		int coinScore = super.controllerSingleton.resources.getCurrentAmount(EResource.COIN) / 3;
-		int tileScore = 0;
+		this.coinScoreNew = super.controllerSingleton.resources.getCurrentAmount(EResource.COIN) / 3;
+		this.tileScoreNew = 0;
 
 		for (ITile iTile : super.controllerSingleton.board.getArrayList()) {
 
@@ -33,34 +31,38 @@ public class Score extends AGameState {
 				continue;
 
 			PrestigePointsAble prestigePointsAble = (PrestigePointsAble) iTile;
-			tileScore += prestigePointsAble.getPrestigePoints();
+			this.tileScoreNew += prestigePointsAble.getPrestigePoints();
 
 		}
-
-		this.prestigeScore = coinScore + tileScore;
-
-		Logger.INSTANCE.log("coins -> " + coinScore);
-		Logger.INSTANCE.log("tiles -> " + tileScore);
-		Logger.INSTANCE.log("prestige -> " + this.prestigeScore);
-
-		super.controllerSingleton.scoringIndicators.setPrestige(this.prestigeScore);
 
 	}
 
 	private void setPopulationScore() {
-
-		this.populationScore = 3 * super.controllerSingleton.resources.getCurrentAmount(EResource.POPULATION_GAIN);
-		Logger.INSTANCE.log("population -> " + this.populationScore);
-
-		super.controllerSingleton.scoringIndicators.setPopulation(this.populationScore);
-
+		this.populationScoreNew = 3 * super.controllerSingleton.resources.getCurrentAmount(EResource.POPULATION_GAIN);
 	}
 
-	private void setTotalScore() {
+	private void updateScoringIndicators() {
 
-		this.totalScore = Math.min(this.prestigeScore, this.populationScore);
-		Logger.INSTANCE.log("total -> " + this.totalScore);
+		if (this.tileScoreNew == this.tileScoreOld)
+			if (this.coinScoreNew == this.coinScoreOld)
+				if (this.populationScoreNew == this.populationScoreOld) {
+					Logger.INSTANCE.logNewLine("skipped updating");
+					return;
+				}
 
+		Logger.INSTANCE.log("scoring");
+		Logger.INSTANCE.log("tiles -> " + this.tileScoreNew);
+		Logger.INSTANCE.log("coins -> " + this.coinScoreNew);
+		Logger.INSTANCE.log("population -> " + this.populationScoreNew);
+		Logger.INSTANCE.log("total -> " + Math.min(this.tileScoreNew + this.coinScoreNew, this.populationScoreNew));
+		Logger.INSTANCE.newLine();
+
+		this.tileScoreOld = this.tileScoreNew;
+		this.coinScoreOld = this.coinScoreNew;
+		this.populationScoreOld = this.populationScoreNew;
+
+		super.controllerSingleton.scoringIndicators.setPrestige(this.tileScoreNew, this.coinScoreNew);
+		super.controllerSingleton.scoringIndicators.setPopulation(this.populationScoreNew);
 		super.controllerSingleton.scoringIndicators.setTotal();
 
 	}
