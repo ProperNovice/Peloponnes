@@ -60,7 +60,31 @@ public class Resources {
 
 		}
 
-		// handling population - coins & luxury goods
+		handlePopulationToCoinsAndLuxury();
+
+	}
+
+	public void addIncome(ArrayList<EResource> list) {
+
+		for (EResource eResource : list) {
+
+			for (Resource resource : this.resources) {
+
+				if (resource.getEResource() != eResource)
+					continue;
+
+				resource.addIncomeSetText();
+				break;
+
+			}
+
+		}
+
+		handlePopulationToCoinsAndLuxury();
+
+	}
+
+	private void handlePopulationToCoinsAndLuxury() {
 
 		int currentPopulation = -1;
 
@@ -81,24 +105,6 @@ public class Resources {
 
 	}
 
-	public void addIncome(ArrayList<EResource> list) {
-
-		for (EResource eResource : list) {
-
-			for (Resource resource : this.resources) {
-
-				if (resource.getEResource() != eResource)
-					continue;
-
-				resource.addIncomeSetText();
-				break;
-
-			}
-
-		}
-
-	}
-
 	public void removeIncome(ArrayList<EResource> list) {
 
 		for (EResource eResource : list) {
@@ -115,12 +121,16 @@ public class Resources {
 
 		}
 
+		handlePopulationToCoinsAndLuxury();
+
 	}
 
 	public void earnIncomeForTheRound() {
 
 		for (Resource resource : this.resources)
 			addCurrentAmount(resource.getEResource(), resource.getIncome());
+
+		handlePopulationToCoinsAndLuxury();
 
 	}
 
@@ -141,6 +151,8 @@ public class Resources {
 			if (resource.getEResource() == eResource)
 				for (int counter = 1; counter <= amount; counter++)
 					resource.removeOneSetText();
+
+		handlePopulationToCoinsAndLuxury();
 
 	}
 

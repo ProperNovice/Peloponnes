@@ -10,5 +10,6 @@ public class Modifiers {
 	public boolean supplyRound = false;
 	public EDisaster eDisasterDrawn = null;
 	public int totalTurns = 8;
+	public int level = 1;
 
 }

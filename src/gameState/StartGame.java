@@ -8,16 +8,13 @@ import interfaces.ITileCivilization;
 import interfaces.ITileLand;
 import interfaces.IncomeAble;
 import model.Tile;
-import model.TileCivilization;
 import model.TilePile;
-import utils.ArrayList;
 
 public class StartGame extends AGameState {
 
 	@Override
 	public void handleGameStateChange() {
 
-		civilization();
 //		board();
 //		tileRows();
 //		addCurrentResources();
@@ -27,25 +24,6 @@ public class StartGame extends AGameState {
 //		super.controllerSingleton.flow.addFirst(EGameState.RESOLVE_DISASTER);
 
 		super.controllerSingleton.flow.proceed();
-
-	}
-
-	public void civilization() {
-
-		ITile iTile = super.controllerSingleton.civilizations.getRandomCivilization();
-
-		TileCivilization tile = (TileCivilization) iTile;
-		tile.getImageView().setWidth(CredentialSingleton.INSTANCE.DimensionsTileGame.x);
-
-		super.controllerSingleton.board.getArrayList().addLast(iTile);
-		super.controllerSingleton.board.relocateList();
-		super.controllerSingleton.board.relocateImageViews();
-
-		ArrayList<EResource> oneTimeIncome = tile.getOneTimeIncome();
-		ArrayList<EResource> incomePerRound = tile.getIncomePerRound();
-
-		super.controllerSingleton.resources.addCurrentAmount(oneTimeIncome);
-		super.controllerSingleton.resources.addIncome(incomePerRound);
 
 	}
 

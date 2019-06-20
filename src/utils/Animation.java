@@ -60,7 +60,7 @@ public enum Animation {
 		for (NodeAnimation imageViewAnimation : animationsListTemp) {
 
 			imageViewAnimation.executeAnimation();
-//			imageViewAnimation.getNode().toFront();
+			imageViewAnimation.getNode().toFront();
 
 			if (!imageViewAnimation.animationEnded())
 				continue;

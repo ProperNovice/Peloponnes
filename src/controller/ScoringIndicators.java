@@ -1,13 +1,16 @@
 package controller;
 
+import utils.HashMap;
 import utils.TextIndicator;
 
 public class ScoringIndicators {
 
 	private TextIndicator prestige, population, total;
 	private int tilesInt, coinsInt, prestigeInt, populationInt;
+	private HashMap<Integer, Integer> scoringTarget = new HashMap<Integer, Integer>();
 
 	public ScoringIndicators() {
+		createScoringTarget();
 		createIndicators();
 	}
 
@@ -36,6 +39,16 @@ public class ScoringIndicators {
 
 	}
 
+	private void createScoringTarget() {
+
+		this.scoringTarget.put(1, 24);
+		this.scoringTarget.put(2, 28);
+		this.scoringTarget.put(3, 32);
+		this.scoringTarget.put(4, 35);
+		this.scoringTarget.put(5, 35);
+
+	}
+
 	public void setPrestige(int tilesInt, int coinsInt) {
 
 		this.tilesInt = tilesInt;
@@ -43,9 +56,18 @@ public class ScoringIndicators {
 		this.prestigeInt = this.tilesInt + this.coinsInt;
 
 		String text = "tiles: ";
-		text += this.tilesInt;
+
+		String tilesString = Integer.toString(this.tilesInt);
+		if (tilesString.length() == 1)
+			tilesString = "0" + tilesString;
+
+		text += tilesString;
 		text += " - coins: ";
 		text += Integer.toString(this.coinsInt);
+
+		text += " -> ";
+		text += this.prestigeInt;
+
 		this.prestige.setText(text);
 
 	}
@@ -54,8 +76,12 @@ public class ScoringIndicators {
 
 		this.populationInt = points;
 
+		String populationString = Integer.toString(this.populationInt);
+		if (populationString.length() == 1)
+			populationString = "0" + populationString;
+
 		String text = "population: ";
-		text += Integer.toString(this.populationInt);
+		text += populationString;
 		this.population.setText(text);
 
 	}
@@ -64,10 +90,27 @@ public class ScoringIndicators {
 
 		int points = Math.min(this.prestigeInt, this.populationInt);
 
+		String pointsString = Integer.toString(points);
+		if (pointsString.length() == 1)
+			pointsString = "0" + pointsString;
+
 		String text = "total: ";
-		text += Integer.toString(points);
+
+		text += pointsString;
+
+		int level = ControllerSingleton.INSTANCE.modifiers.level;
+
+		int targetPoints = this.scoringTarget.get(level);
+
+		text += "/";
+		text += targetPoints;
+
 		this.total.setText(text);
 
+	}
+
+	public int getScoringTarget(int level) {
+		return this.scoringTarget.get(level);
 	}
 
 }

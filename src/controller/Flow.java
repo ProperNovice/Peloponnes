@@ -19,6 +19,8 @@ public class Flow {
 
 	private void createTurn() {
 
+		this.gameStateResolving.addLast(EGameState.CHOOSE_CIVILIZATION);
+
 		for (int turns = 1; turns <= ControllerSingleton.INSTANCE.modifiers.totalTurns; turns++) {
 
 			for (int counter = 1; counter <= 5; counter++) {
