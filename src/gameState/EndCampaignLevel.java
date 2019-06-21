@@ -15,8 +15,6 @@ public class EndCampaignLevel extends AGameState {
 		else
 			executeGameLost();
 
-		super.controllerSingleton.text.showText(EText.CONTINUE);
-
 	}
 
 	@Override
@@ -26,15 +24,18 @@ public class EndCampaignLevel extends AGameState {
 
 	private void executeGameWon() {
 		super.controllerSingleton.text.showText(EText.YOU_WON);
+		super.controllerSingleton.text.showText(EText.CONTINUE);
 	}
 
 	private void executeGameLost() {
 
-		super.controllerSingleton.text.showText(EText.YOU_LOST);
 		super.controllerSingleton.modifiers.resetExtraIncome();
 		super.controllerSingleton.modifiers.level = 0;
 		super.controllerSingleton.flow.createTurns();
 		super.controllerSingleton.flow.addFirst(EGameState.RESTART_GAME);
+
+		super.controllerSingleton.text.showText(EText.YOU_LOST);
+		super.controllerSingleton.text.showText(EText.RESTART);
 
 	}
 

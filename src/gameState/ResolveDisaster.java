@@ -163,11 +163,13 @@ public class ResolveDisaster extends AGameState {
 
 		setResources();
 
-		if (canProtectSingleTile())
-			super.controllerSingleton.text.showText(EText.CHOOSE_TILE_TO_PROTECT);
+		if (!this.tileList.isEmpty())
+			if (canProtectSingleTile())
+				super.controllerSingleton.text.showText(EText.CHOOSE_TILE_TO_PROTECT);
 
-		if (canProtectAllTiles())
-			super.controllerSingleton.text.showText(EText.PROTECT_ALL_TILES);
+		if (!this.tileList.isEmpty())
+			if (canProtectAllTiles())
+				super.controllerSingleton.text.showText(EText.PROTECT_ALL_TILES);
 
 		super.controllerSingleton.text.showText(EText.CONTINUE);
 
