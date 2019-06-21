@@ -11,7 +11,7 @@ public enum CredentialSingleton {
 			DimensionsBuildIcon;
 	public NumbersPair CoordinatesTextPanel, CoordinatesTilePiles, CoordinatesDisasterChits, CoordinatesResources,
 			CoordinatesIncome, CoordinatesBoard, CoordinatesTileRowConquest, CoordinatesTileRowNormal,
-			CoordinatesDisasterTiles, CoordinatesScoring;
+			CoordinatesTileConquest, CoordinatesDisasterTiles, CoordinatesScoring;
 	public double textHeight, textResourcesHeight, textScoringHeight, frameX, frameY;
 
 	public void calculateCredentials() {
@@ -89,6 +89,10 @@ public enum CredentialSingleton {
 		x = this.CoordinatesDisasterTiles.x + 5 * (this.DimensionsTilePile.x + this.DimensionsGapBetweenComponents.x);
 		y = this.CoordinatesDisasterTiles.y;
 		this.CoordinatesScoring = new NumbersPair(x, y);
+
+		x = this.CoordinatesTileRowConquest.x;
+		y = this.CoordinatesTileRowConquest.y;
+		this.CoordinatesTileConquest = new NumbersPair(x, y);
 
 	}
 

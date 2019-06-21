@@ -1,5 +1,6 @@
 package gameState;
 
+import controller.CredentialSingleton;
 import enums.EResource;
 import enums.EText;
 import utils.ArrayList;
@@ -14,6 +15,7 @@ public class StartNewCampaignLevel extends AGameState {
 		super.controllerSingleton.scoringIndicators.setCampaignLevelText(super.controllerSingleton.modifiers.level);
 
 		handleTileRowNormalCapacity();
+		setConquestTile();
 
 		switch (super.controllerSingleton.modifiers.level) {
 
@@ -106,11 +108,6 @@ public class StartNewCampaignLevel extends AGameState {
 		super.controllerSingleton.modifiers.extraIncome.put(eResource, currentIncome);
 
 		ArrayList<EResource> income = new ArrayList<EResource>();
-//
-//		for (EResource eResourceTemp : super.controllerSingleton.modifiers.extraIncome)
-//			for (int counter = 1; counter <= super.controllerSingleton.modifiers.extraIncome
-//					.get(eResourceTemp); counter++)
-//				income.addLast(eResourceTemp);
 
 		income.addLast(eResource);
 
@@ -127,6 +124,26 @@ public class StartNewCampaignLevel extends AGameState {
 		super.controllerSingleton.modifiers.extraIncome.put(EResource.FOOD, 0);
 
 		super.controllerSingleton.flow.proceed();
+
+	}
+
+	private void setConquestTile() {
+
+		int tilesConquestRow = 5 - super.controllerSingleton.modifiers.tileRowNormalCapacity;
+		boolean visibility = false;
+
+		if (tilesConquestRow > 0) {
+
+			visibility = true;
+			super.controllerSingleton.tileConquest.getImageView().relocate(
+					CredentialSingleton.INSTANCE.CoordinatesTileConquest.x
+							- (CredentialSingleton.INSTANCE.DimensionsTileGame.x
+									+ CredentialSingleton.INSTANCE.DimensionsGapBetweenComponents.x),
+					CredentialSingleton.INSTANCE.CoordinatesTileConquest.y);
+
+		}
+
+		super.controllerSingleton.tileConquest.getImageView().setVisible(visibility);
 
 	}
 
