@@ -6,8 +6,9 @@ import utils.TextIndicator;
 public class ScoringIndicators {
 
 	private TextIndicator prestige, population, total;
-	private int tilesInt, coinsInt, prestigeInt, populationInt;
-	private HashMap<Integer, Integer> scoringTarget = new HashMap<Integer, Integer>();
+	private int tilesInt, coinsInt, prestigeInt, populationInt, totalInt;
+	private HashMap<Integer, Integer> campaignLevelScore = new HashMap<Integer, Integer>();
+	private int campaignLevel = 1;
 
 	public ScoringIndicators() {
 		createScoringTarget();
@@ -41,11 +42,11 @@ public class ScoringIndicators {
 
 	private void createScoringTarget() {
 
-		this.scoringTarget.put(1, 24);
-		this.scoringTarget.put(2, 28);
-		this.scoringTarget.put(3, 32);
-		this.scoringTarget.put(4, 35);
-		this.scoringTarget.put(5, 35);
+		this.campaignLevelScore.put(1, 24);
+		this.campaignLevelScore.put(2, 28);
+		this.campaignLevelScore.put(3, 32);
+		this.campaignLevelScore.put(4, 35);
+		this.campaignLevelScore.put(5, 35);
 
 	}
 
@@ -66,7 +67,12 @@ public class ScoringIndicators {
 		text += Integer.toString(this.coinsInt);
 
 		text += " -> ";
-		text += this.prestigeInt;
+
+		String prestigeString = Integer.toString(this.prestigeInt);
+		if (prestigeString.length() == 1)
+			prestigeString = "0" + prestigeString;
+
+		text += prestigeString;
 
 		this.prestige.setText(text);
 
@@ -81,6 +87,8 @@ public class ScoringIndicators {
 			populationString = "0" + populationString;
 
 		String text = "population: ";
+		text += points / 3;
+		text += "*3 -> ";
 		text += populationString;
 		this.population.setText(text);
 
@@ -88,9 +96,9 @@ public class ScoringIndicators {
 
 	public void setTotal() {
 
-		int points = Math.min(this.prestigeInt, this.populationInt);
+		this.totalInt = Math.min(this.prestigeInt, this.populationInt);
 
-		String pointsString = Integer.toString(points);
+		String pointsString = Integer.toString(this.totalInt);
 		if (pointsString.length() == 1)
 			pointsString = "0" + pointsString;
 
@@ -98,9 +106,7 @@ public class ScoringIndicators {
 
 		text += pointsString;
 
-		int level = ControllerSingleton.INSTANCE.modifiers.level;
-
-		int targetPoints = this.scoringTarget.get(level);
+		int targetPoints = this.campaignLevelScore.get(this.campaignLevel);
 
 		text += "/";
 		text += targetPoints;
@@ -109,8 +115,17 @@ public class ScoringIndicators {
 
 	}
 
-	public int getScoringTarget(int level) {
-		return this.scoringTarget.get(level);
+	public int getScoringTarget() {
+		return this.campaignLevelScore.get(this.campaignLevel);
+	}
+
+	public void setCampaignLevelText(int campaignLevel) {
+		this.campaignLevel = campaignLevel;
+		setTotal();
+	}
+
+	public boolean gameWon() {
+		return this.totalInt >= this.campaignLevelScore.get(this.campaignLevel);
 	}
 
 }

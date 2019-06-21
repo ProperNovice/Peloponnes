@@ -4,18 +4,24 @@ import enums.EPhase;
 import enums.EResource;
 import enums.ETileAbility;
 import enums.ETileType;
+import interfaces.ITile;
+import interfaces.RestartAble;
+import model.Tile;
 import model.TileBuilder;
+import model.TileBuilding;
 import model.TilePile;
 import utils.HashMap;
 
-public class TilePiles {
+public class TilePiles implements RestartAble {
 
 	private HashMap<EPhase, TilePile> list = new HashMap<EPhase, TilePile>();
+	private HashMap<EPhase, TilePile> listOriginal = null;
 
 	public TilePiles() {
 
 		createTiles();
 		shuffleRelocateTiles();
+		createListOriginal();
 
 	}
 
@@ -403,6 +409,53 @@ public class TilePiles {
 		}
 
 		return tilePile;
+
+	}
+
+	private void createListOriginal() {
+
+		this.listOriginal = new HashMap<EPhase, TilePile>();
+
+		for (EPhase ePhase : this.list) {
+
+			TilePile tilePile = new TilePile();
+			this.listOriginal.put(ePhase, tilePile);
+
+			for (ITile iTile : this.list.get(ePhase).getArrayList())
+				tilePile.getArrayList().addLast(iTile);
+
+		}
+
+	}
+
+	@Override
+	public void restart() {
+
+		this.list = this.listOriginal;
+
+		createListOriginal();
+
+		for (EPhase ePhase : this.list) {
+
+			TilePile tilePile = this.list.get(ePhase);
+
+			for (ITile iTile : tilePile.getArrayList()) {
+
+				Tile tile = (Tile) iTile;
+				tile.getImageView().setVisible(true);
+				tile.getImageView().setWidth(CredentialSingleton.INSTANCE.DimensionsTilePile.x);
+
+				if (!(tile instanceof TileBuilding))
+					continue;
+
+				TileBuilding tileBuilding = (TileBuilding) tile;
+				tileBuilding.setBuilt();
+
+			}
+
+		}
+
+		shuffleRelocateTiles();
 
 	}
 

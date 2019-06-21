@@ -129,12 +129,10 @@ public class TileLand extends Tile
 	@Override
 	public void setDisaster() {
 
-		if (this.disasterImageView != null) {
-			this.disasterImageView.relocateToFront();
-			return;
-		}
+		if (this.disasterImageView == null)
+			this.disasterImageView = new DisasterImageView(this);
 
-		this.disasterImageView = new DisasterImageView(this);
+		this.disasterImageView.relocateToFrontSetVisibleTrue();
 
 	}
 

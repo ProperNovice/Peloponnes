@@ -1,6 +1,7 @@
 package controller;
 
 import enums.EResource;
+import interfaces.RestartAble;
 import model.PopulationCoinsLuxuryGoods;
 import model.Resource;
 import utils.ArrayList;
@@ -8,7 +9,7 @@ import utils.HashMap;
 import utils.ShutDown;
 import utils.TextIndicator;
 
-public class Resources {
+public class Resources implements RestartAble {
 
 	private ArrayList<Resource> resources = new ArrayList<Resource>();
 	private HashMap<Integer, PopulationCoinsLuxuryGoods> populationCoins = new HashMap<Integer, PopulationCoinsLuxuryGoods>();
@@ -221,6 +222,14 @@ public class Resources {
 
 		for (int counter = populationFrom; counter <= populationTo; counter++)
 			this.populationCoins.put(counter, new PopulationCoinsLuxuryGoods(coins, luxuryGoods));
+
+	}
+
+	@Override
+	public void restart() {
+
+		for (Resource resource : this.resources)
+			resource.resetSetText();
 
 	}
 

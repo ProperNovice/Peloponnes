@@ -34,6 +34,13 @@ public enum EText {
 	STONE("Stone", TextTypeEnum.OPTION),
 	WOOD("Wood", TextTypeEnum.OPTION),
 	FOOD("Food", TextTypeEnum.OPTION),
+	START_CAMPAIGN_LEVEL_1("Start campaign level 1", TextTypeEnum.OPTION),
+	START_CAMPAIGN_LEVEL_2("Start campaign level 2", TextTypeEnum.OPTION),
+	START_CAMPAIGN_LEVEL_3("Start campaign level 3", TextTypeEnum.OPTION),
+	START_CAMPAIGN_LEVEL_4("Start campaign level 4", TextTypeEnum.OPTION),
+	START_CAMPAIGN_LEVEL_5("Start campaign level 5", TextTypeEnum.OPTION),
+	YOU_WON("You won", TextTypeEnum.INDICATOR),
+	YOU_LOST("You lost", TextTypeEnum.INDICATOR),
 	
 	;
 

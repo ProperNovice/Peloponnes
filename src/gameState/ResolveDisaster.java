@@ -129,7 +129,7 @@ public class ResolveDisaster extends AGameState {
 		Logger.INSTANCE.log("current " + text + " -> " + currentResource);
 		Logger.INSTANCE.log(text + " lost -> " + resourceLostInt);
 		Logger.INSTANCE.log(text + " remained -> " + (currentResource - resourceLostInt));
-		
+
 		super.controllerSingleton.flow.proceed();
 
 	}
@@ -146,7 +146,7 @@ public class ResolveDisaster extends AGameState {
 		Logger.INSTANCE.log("current " + text + "-> " + currentResource);
 		Logger.INSTANCE.log(text + " lost -> " + resourceLost);
 		Logger.INSTANCE.log(text + " remained -> " + (currentResource - resourceLost));
-		
+
 		super.controllerSingleton.flow.proceed();
 
 	}
@@ -353,6 +353,7 @@ public class ResolveDisaster extends AGameState {
 
 		}
 
+		this.tileList.clear();
 		super.controllerSingleton.flow.proceed();
 
 	}

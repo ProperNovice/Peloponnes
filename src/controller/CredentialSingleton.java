@@ -88,7 +88,6 @@ public enum CredentialSingleton {
 
 		x = this.CoordinatesDisasterTiles.x + 5 * (this.DimensionsTilePile.x + this.DimensionsGapBetweenComponents.x);
 		y = this.CoordinatesDisasterTiles.y;
-//		y = 600;
 		this.CoordinatesScoring = new NumbersPair(x, y);
 
 	}

@@ -156,7 +156,7 @@ public class TileBuilding extends Tile
 		this.isBuilt = false;
 
 		if (this.buildImageView != null)
-			this.buildImageView.relocateToFront();
+			this.buildImageView.relocateToFrontSetVisibleTrue();
 		else
 			this.buildImageView = new BuildImageView(this);
 
@@ -175,12 +175,10 @@ public class TileBuilding extends Tile
 	@Override
 	public void setDisaster() {
 
-		if (this.disasterImageView != null) {
-			this.disasterImageView.relocateToFront();
-			return;
-		}
+		if (this.disasterImageView == null)
+			this.disasterImageView = new DisasterImageView(this);
 
-		this.disasterImageView = new DisasterImageView(this);
+		this.disasterImageView.relocateToFrontSetVisibleTrue();
 
 	}
 

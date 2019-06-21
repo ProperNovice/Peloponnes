@@ -1,10 +1,11 @@
 package controller;
 
 import interfaces.ITile;
+import interfaces.RestartAble;
 import utils.ContainerImageViewAbles;
 import utils.CoordinatesBuilder;
 
-public class Board extends ContainerImageViewAbles<ITile> {
+public class Board extends ContainerImageViewAbles<ITile> implements RestartAble {
 
 	@Override
 	protected void createCoordinates() {
@@ -23,6 +24,13 @@ public class Board extends ContainerImageViewAbles<ITile> {
 
 		super.relocateList(CredentialSingleton.INSTANCE.CoordinatesBoard.x - totalWidth,
 				CredentialSingleton.INSTANCE.CoordinatesBoard.y);
+
+	}
+
+	@Override
+	public void restart() {
+
+		super.arrayList.clear();
 
 	}
 

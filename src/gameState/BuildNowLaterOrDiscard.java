@@ -157,7 +157,7 @@ public class BuildNowLaterOrDiscard extends ABuildTile {
 				continue;
 
 			if (value)
-				buildAble.getBuildImageView().relocateToFront();
+				buildAble.getBuildImageView().relocateToFrontSetVisibleTrue();
 
 			buildAble.getBuildImageView().getImageView().setVisible(value);
 

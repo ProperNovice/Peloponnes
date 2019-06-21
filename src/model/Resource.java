@@ -63,6 +63,14 @@ public class Resource {
 
 	}
 
+	public void resetSetText() {
+
+		this.currentAmount = 0;
+		this.income = 0;
+		setText();
+
+	}
+
 	public int getIncome() {
 		return this.income;
 	}

@@ -19,6 +19,10 @@ public enum EGameState {
 	REVEAL_DISASTER_CHIT(new RevealDisasterChit()),
 	RESOLVE_DISASTER(new ResolveDisaster()),
 	SCORE(new Score()),
+	START_NEW_CAMPAIGN_LEVEL(new StartNewCampaignLevel()),
+	END_CAMPAIGN_LEVEL(new EndCampaignLevel()),
+	RESTART_GAME(new RestartGame()),
+	ADD_CIVILIZATION_AND_STARTING_RESOURCES(new AddCivilizationAndStartingResources()),
 
 	;
 

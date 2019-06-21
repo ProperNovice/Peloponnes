@@ -3,11 +3,12 @@ package controller;
 import enums.EResource;
 import enums.ETileType;
 import interfaces.ITile;
+import interfaces.RestartAble;
 import model.Tile;
 import model.TileBuilder;
 import utils.ArrayList;
 
-public class Civilizations {
+public class Civilizations implements RestartAble {
 
 	private ArrayList<ITile> list = new ArrayList<ITile>();
 
@@ -91,6 +92,18 @@ public class Civilizations {
 
 	public ITile getLast() {
 		return this.list.getLast();
+	}
+
+	@Override
+	public void restart() {
+
+		for (ITile iTile : this.list) {
+
+			Tile tile = (Tile) iTile;
+			tile.getImageView().setVisible(false);
+
+		}
+
 	}
 
 }
