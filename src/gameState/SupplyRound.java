@@ -185,6 +185,8 @@ public class SupplyRound extends ABuildTile {
 		super.controllerSingleton.board.relocateList();
 		super.controllerSingleton.board.animateAsynchronous();
 
+		super.controllerSingleton.flow.proceed();
+
 	}
 
 }

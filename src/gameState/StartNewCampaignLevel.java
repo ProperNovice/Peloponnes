@@ -137,7 +137,7 @@ public class StartNewCampaignLevel extends AGameState {
 			visibility = true;
 			super.controllerSingleton.tileConquest.getImageView().relocate(
 					CredentialSingleton.INSTANCE.CoordinatesTileConquest.x
-							- (CredentialSingleton.INSTANCE.DimensionsTileGame.x
+							- tilesConquestRow * (CredentialSingleton.INSTANCE.DimensionsTileGame.x
 									+ CredentialSingleton.INSTANCE.DimensionsGapBetweenComponents.x),
 					CredentialSingleton.INSTANCE.CoordinatesTileConquest.y);
 
