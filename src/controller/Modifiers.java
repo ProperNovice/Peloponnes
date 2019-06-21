@@ -19,6 +19,12 @@ public class Modifiers {
 
 	public Modifiers() {
 
+		resetExtraIncome();
+
+	}
+
+	public void resetExtraIncome() {
+
 		this.extraIncome.put(EResource.STONE, 0);
 		this.extraIncome.put(EResource.WOOD, 0);
 		this.extraIncome.put(EResource.FOOD, 0);

@@ -1,5 +1,6 @@
 package gameState;
 
+import enums.EGameState;
 import enums.EText;
 
 public class EndCampaignLevel extends AGameState {
@@ -30,8 +31,10 @@ public class EndCampaignLevel extends AGameState {
 	private void executeGameLost() {
 
 		super.controllerSingleton.text.showText(EText.YOU_LOST);
+		super.controllerSingleton.modifiers.resetExtraIncome();
 		super.controllerSingleton.modifiers.level = 0;
 		super.controllerSingleton.flow.createTurns();
+		super.controllerSingleton.flow.addFirst(EGameState.RESTART_GAME);
 
 	}
 

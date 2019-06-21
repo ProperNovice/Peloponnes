@@ -63,7 +63,7 @@ public class ScoringIndicators {
 			tilesString = "0" + tilesString;
 
 		text += tilesString;
-		text += " - coins: ";
+		text += " + coins: ";
 		text += Integer.toString(this.coinsInt);
 
 		text += " -> ";
