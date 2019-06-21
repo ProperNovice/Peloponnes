@@ -12,6 +12,7 @@ public enum EText {
 	DISCARD("Discard", TextTypeEnum.OPTION),
 	EARN_INCOME("Earn income", TextTypeEnum.OPTION),
 	SUPPLY_ROUND("Supply round", TextTypeEnum.INDICATOR),
+	SUPPLY_ROUND_FINAL("Final supply round", TextTypeEnum.INDICATOR),
 	FEED_POPULATION("Feed population", TextTypeEnum.OPTION),
 	CHOOSE_BUILDING_TO_BUILD("Choose building to build", TextTypeEnum.INDICATOR),
 	DON_T_BUILD_THE_REST("Don't build the rest", TextTypeEnum.OPTION),

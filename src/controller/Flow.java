@@ -31,7 +31,7 @@ public class Flow {
 
 				for (int counter = 1; counter <= 5; counter++) {
 					this.gameStateResolving.addLast(EGameState.REVEAL_TILE);
-					this.gameStateResolving.addLast(EGameState.SUPPLY_ROUND);
+					this.gameStateResolving.addLast(EGameState.SUPPLY_ROUND_TILE);
 				}
 
 				this.gameStateResolving.addLast(EGameState.PURCHASE_TILE_OR_PASS);
@@ -84,7 +84,7 @@ public class Flow {
 		case SET_ONE_TIME_INCOME_PER_ROUND:
 			return ControllerSingleton.INSTANCE.modifiers.tileToBuy != null;
 
-		case SUPPLY_ROUND:
+		case SUPPLY_ROUND_TILE:
 			return ControllerSingleton.INSTANCE.modifiers.supplyRound;
 
 		case RESOLVE_DISASTER:

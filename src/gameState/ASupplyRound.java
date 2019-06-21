@@ -8,16 +8,17 @@ import interfaces.IncomeAble;
 import model.Tile;
 import utils.Logger;
 
-public class SupplyRound extends ABuildTile {
+public class ASupplyRound extends ABuildTile {
 
 	private boolean feedPopulationPhase = true;
+	protected EText eTextSupplyRound = null;
 
 	@Override
 	public void handleGameStateChange() {
 
 		this.feedPopulationPhase = true;
 
-		super.controllerSingleton.text.showText(EText.SUPPLY_ROUND);
+		super.controllerSingleton.text.showText(this.eTextSupplyRound);
 		super.controllerSingleton.text.showText(EText.FEED_POPULATION);
 
 	}
