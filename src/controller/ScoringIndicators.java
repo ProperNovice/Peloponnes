@@ -36,7 +36,7 @@ public class ScoringIndicators {
 
 		setPrestige(0, 0);
 		setPopulation(0, 3);
-		setTotal();
+		setTotal(Math.min(this.prestigeInt, this.populationInt));
 
 	}
 
@@ -95,9 +95,9 @@ public class ScoringIndicators {
 
 	}
 
-	public void setTotal() {
+	public void setTotal(int totalInt) {
 
-		this.totalInt = Math.min(this.prestigeInt, this.populationInt);
+		this.totalInt = totalInt;
 
 		String pointsString = Integer.toString(this.totalInt);
 		if (pointsString.length() == 1)
@@ -122,7 +122,7 @@ public class ScoringIndicators {
 
 	public void setCampaignLevelText(int campaignLevel) {
 		this.campaignLevel = campaignLevel;
-		setTotal();
+		setTotal(Math.min(this.prestigeInt, this.populationInt));
 	}
 
 	public boolean gameWon() {

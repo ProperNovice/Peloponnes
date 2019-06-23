@@ -415,8 +415,8 @@ public class TilePiles implements RestartAble {
 		tileNumber++;
 		this.list.get(ePhase).getArrayList()
 				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
-						.prestigePoints(1).buyCost(5).incomePerRound(EResource.STONE, 4)
-						.eTileAbility(ETileAbility.SUPPLY_ROUND).build());
+						.prestigePoints(1).buyCost(5).oneTimeIncome(EResource.POPULATION_GAIN, 3)
+						.incomePerRound(EResource.STONE, 4).eTileAbility(ETileAbility.SUPPLY_ROUND).build());
 
 	}
 

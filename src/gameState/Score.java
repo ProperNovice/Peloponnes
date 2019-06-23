@@ -40,11 +40,12 @@ public class Score extends AGameState {
 			if (list.contains(ETileAbility.ONE_POINT_FOR_EVERY_TWO_COINS))
 				this.coinDivider = 2;
 
-			else if (list.contains(ETileAbility.FOUR_POINTS_FOR_EACH_POPULATION))
+			if (list.contains(ETileAbility.FOUR_POINTS_FOR_EACH_POPULATION))
 				this.populationMultiplier = 4;
 
-			else if (list.contains(ETileAbility.IF_TWENTY_LUXURY_GOODS_THEN_HIGHER_NUMBER_OF_THE_TWO_SCORES))
-				this.scoreType = ScoreType.MAX;
+			if (list.contains(ETileAbility.IF_TWENTY_LUXURY_GOODS_THEN_HIGHER_NUMBER_OF_THE_TWO_SCORES))
+				if (super.controllerSingleton.resources.getCurrentAmount(EResource.LUXURY_GOODS) >= 20)
+					this.scoreType = ScoreType.MAX;
 
 		}
 
@@ -108,7 +109,7 @@ public class Score extends AGameState {
 
 		super.controllerSingleton.scoringIndicators.setPrestige(this.tileScoreNew, this.coinScoreNew);
 		super.controllerSingleton.scoringIndicators.setPopulation(this.populationScoreNew, this.populationMultiplier);
-		super.controllerSingleton.scoringIndicators.setTotal();
+		super.controllerSingleton.scoringIndicators.setTotal(totalScore);
 
 	}
 
