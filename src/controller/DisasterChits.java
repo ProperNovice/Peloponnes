@@ -36,12 +36,7 @@ public class DisasterChits extends ContainerImageViewAbles<DisasterChit> impleme
 
 			this.list.put(eDisaster, new ArrayList<DisasterChit>());
 
-			int amount = 3;
-
-			if (eDisaster == EDisaster.BLANK)
-				amount = 1;
-
-			for (int counter = 1; counter <= amount; counter++)
+			for (int counter = 1; counter <= 3; counter++)
 				this.list.get(eDisaster).addLast(new DisasterChit(eDisaster));
 
 		}

@@ -42,11 +42,11 @@ public class ScoringIndicators {
 
 	private void createScoringTarget() {
 
-		this.campaignLevelScore.put(1, 24);
-		this.campaignLevelScore.put(2, 28);
-		this.campaignLevelScore.put(3, 32);
-		this.campaignLevelScore.put(4, 35);
-		this.campaignLevelScore.put(5, 35);
+		this.campaignLevelScore.put(1, 28);
+		this.campaignLevelScore.put(2, 32);
+		this.campaignLevelScore.put(3, 36);
+		this.campaignLevelScore.put(4, 39);
+		this.campaignLevelScore.put(5, 40);
 
 	}
 

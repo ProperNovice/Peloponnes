@@ -45,11 +45,11 @@ public enum CredentialSingleton {
 		this.DimensionsDisasterChit = new NumbersPair(x, x);
 
 		x = DimensionsGapBetweenBorders.x;
-		y = DimensionsGapBetweenBorders.y + 3 * (DimensionsTilePile.x + DimensionsGapBetweenComponents.y);
+		y = DimensionsGapBetweenBorders.y + 4 * (DimensionsTilePile.x + DimensionsGapBetweenComponents.y);
 		this.CoordinatesDisasterTiles = new NumbersPair(x, y);
 
 		x = this.CoordinatesTilePiles.x;
-		y = this.CoordinatesTilePiles.y + 4 * (this.DimensionsTilePile.x + this.DimensionsGapBetweenComponents.y);
+		y = this.CoordinatesDisasterTiles.y + this.DimensionsTilePile.x + this.DimensionsGapBetweenComponents.y;
 		this.CoordinatesDisasterChits = new NumbersPair(x, y);
 
 		x = DimensionsGapBetweenBorders.x;

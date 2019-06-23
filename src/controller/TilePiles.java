@@ -383,7 +383,40 @@ public class TilePiles implements RestartAble {
 
 		tileNumber++;
 		this.list.get(ePhase).getArrayList().addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber)
-				.eTileType(ETileType.LAND).prestigePoints(3).buyCost(3).incomePerRound(EResource.STONE, 3).build());
+				.eTileType(ETileType.BUILDING).prestigePoints(2).buyCost(1).oneTimeIncome(EResource.COIN, 5)
+				.oneTimeIncome(EResource.POPULATION_GAIN, 2).constructionCost(EResource.STONE, 2)
+				.constructionCost(EResource.WOOD, 2).eTileAbility(ETileAbility.ONE_POINT_FOR_EVERY_TWO_COINS).build());
+
+		// 02
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(10).buyCost(10).oneTimeIncome(EResource.FOOD, 4)
+						.constructionCost(EResource.STONE, 8).constructionCost(EResource.WOOD, 2)
+						.eTileAbility(ETileAbility.FOUR_POINTS_FOR_EACH_POPULATION).build());
+
+		// 03
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList().addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber)
+				.eTileType(ETileType.BUILDING).prestigePoints(5).buyCost(7).oneTimeIncome(EResource.POPULATION_LOST, 4)
+				.constructionCost(EResource.STONE, 6).constructionCost(EResource.WOOD, 2)
+				.eTileAbility(ETileAbility.IF_TWENTY_LUXURY_GOODS_THEN_HIGHER_NUMBER_OF_THE_TWO_SCORES).build());
+
+		// 04
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList().addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber)
+				.eTileType(ETileType.LAND).prestigePoints(6).buyCost(6).incomePerRound(EResource.FOOD, 4).build());
+
+		// 05
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
+						.prestigePoints(1).buyCost(5).incomePerRound(EResource.STONE, 4)
+						.eTileAbility(ETileAbility.SUPPLY_ROUND).build());
 
 	}
 

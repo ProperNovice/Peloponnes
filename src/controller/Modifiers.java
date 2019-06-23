@@ -12,7 +12,7 @@ public class Modifiers {
 	public ITile tileToBuy = null;
 	public boolean supplyRound = false;
 	public EDisaster eDisasterDrawn = null;
-	public int totalTurns = 8;
+	public int totalTurns = 9;
 	public int level = 0;
 	public HashMap<EResource, Integer> extraIncome = new HashMap<EResource, Integer>();
 	public TileCivilization tileCivilization = null;
