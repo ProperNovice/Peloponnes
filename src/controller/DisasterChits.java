@@ -48,14 +48,10 @@ public class DisasterChits extends ContainerImageViewAbles<DisasterChit> impleme
 
 		super.arrayList.clear();
 
-		ArrayList<EDisaster> listEDisaster = new ArrayList<EDisaster>(EDisaster.values());
-		listEDisaster.shuffle();
-		listEDisaster.remove(EDisaster.BLANK);
+		ArrayList<EDisaster> listEDisaster = ControllerSingleton.INSTANCE.modifiers.eDisasters;
 
 		for (EDisaster eDisaster : listEDisaster)
 			super.arrayList.addAll(this.list.get(eDisaster).clone());
-
-		super.arrayList.addAll(this.list.get(EDisaster.BLANK));
 
 		for (DisasterChit disasterChit : this.list.get(EDisaster.BLANK))
 			disasterChit.getImageView().setVisible(true);

@@ -9,9 +9,7 @@ import utils.CoordinatesBuilder;
 public class DisasterTiles extends ContainerImageViewAbles<TileDisaster> implements RestartAble {
 
 	public DisasterTiles() {
-
 		createTileDisasters();
-
 	}
 
 	@Override
@@ -26,16 +24,10 @@ public class DisasterTiles extends ContainerImageViewAbles<TileDisaster> impleme
 
 	private void createTileDisasters() {
 
-		for (EDisaster eDisaster : EDisaster.values()) {
+		for (EDisaster eDisaster : ControllerSingleton.INSTANCE.modifiers.eDisasters)
+			if (eDisaster != EDisaster.BLANK)
+				super.arrayList.addLast(new TileDisaster(eDisaster));
 
-			if (eDisaster == EDisaster.BLANK)
-				continue;
-
-			super.arrayList.addLast(new TileDisaster(eDisaster));
-
-		}
-
-		super.arrayList.shuffle();
 		relocateImageViews();
 
 		for (TileDisaster tileDisaster : super.arrayList)
