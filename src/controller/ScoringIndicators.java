@@ -35,7 +35,7 @@ public class ScoringIndicators {
 		this.total.relocate(x, y);
 
 		setPrestige(0, 0);
-		setPopulation(0);
+		setPopulation(0, 3);
 		setTotal();
 
 	}
@@ -78,7 +78,7 @@ public class ScoringIndicators {
 
 	}
 
-	public void setPopulation(int points) {
+	public void setPopulation(int points, int devidedBy) {
 
 		this.populationInt = points;
 
@@ -87,8 +87,9 @@ public class ScoringIndicators {
 			populationString = "0" + populationString;
 
 		String text = "population: ";
-		text += points / 3;
-		text += "*3 -> ";
+		text += points / devidedBy;
+
+		text += "*" + devidedBy + " -> ";
 		text += populationString;
 		this.population.setText(text);
 

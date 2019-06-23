@@ -1,6 +1,7 @@
 package controller;
 
 import enums.EResource;
+import interfaces.IncomeAble;
 import interfaces.RestartAble;
 import model.PopulationCoinsLuxuryGoods;
 import model.Resource;
@@ -87,6 +88,18 @@ public class Resources implements RestartAble {
 
 	private void handlePopulationToCoinsAndLuxury() {
 
+		// set luxury income default
+
+		int luxuryGoodsIncomeDefault = 0;
+
+		IncomeAble incomeAble = (IncomeAble) ControllerSingleton.INSTANCE.modifiers.tileCivilization;
+
+		for (EResource eResource : incomeAble.getIncomePerRound())
+			if (eResource == EResource.LUXURY_GOODS)
+				luxuryGoodsIncomeDefault++;
+
+		//
+
 		int currentPopulation = -1;
 
 		for (Resource resource : this.resources)
@@ -97,6 +110,8 @@ public class Resources implements RestartAble {
 
 		int coinIncome = this.populationCoins.get(currentPopulation).getCoins();
 		int luxuryGoodsIncome = this.populationCoins.get(currentPopulation).getLuxuryGoods();
+
+		luxuryGoodsIncome += luxuryGoodsIncomeDefault;
 
 		for (Resource resource : this.resources)
 			if (resource.getEResource() == EResource.COIN)

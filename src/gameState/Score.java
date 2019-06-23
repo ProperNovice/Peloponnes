@@ -62,7 +62,7 @@ public class Score extends AGameState {
 		this.populationScoreOld = this.populationScoreNew;
 
 		super.controllerSingleton.scoringIndicators.setPrestige(this.tileScoreNew, this.coinScoreNew);
-		super.controllerSingleton.scoringIndicators.setPopulation(this.populationScoreNew);
+		super.controllerSingleton.scoringIndicators.setPopulation(this.populationScoreNew, 3);
 		super.controllerSingleton.scoringIndicators.setTotal();
 
 	}

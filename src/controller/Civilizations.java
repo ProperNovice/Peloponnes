@@ -1,6 +1,7 @@
 package controller;
 
 import enums.EResource;
+import enums.ETileAbility;
 import enums.ETileType;
 import interfaces.ITile;
 import interfaces.RestartAble;
@@ -22,7 +23,14 @@ public class Civilizations implements RestartAble {
 	private void createCivilizations() {
 
 		ETileType eTileType = ETileType.CIVILIZATION;
-		int tileNumber = 0;
+		int tileNumber = -1;
+
+		// 00
+
+		tileNumber++;
+		this.list.addLast(new TileBuilder().eTileType(eTileType).tileNumber(tileNumber).oneTimeIncome(EResource.COIN, 5)
+				.oneTimeIncome(EResource.POPULATION_GAIN, 4).incomePerRound(EResource.STONE)
+				.eTileAbility(ETileAbility.PROTECTION_FROM_PLAGUE).build());
 
 		// 01
 
@@ -68,6 +76,26 @@ public class Civilizations implements RestartAble {
 		tileNumber++;
 		this.list.addLast(new TileBuilder().eTileType(eTileType).tileNumber(tileNumber).oneTimeIncome(EResource.COIN, 5)
 				.oneTimeIncome(EResource.POPULATION_GAIN, 2).incomePerRound(EResource.WOOD, EResource.STONE).build());
+
+		// 08
+
+		tileNumber++;
+		this.list.addLast(new TileBuilder().eTileType(eTileType).tileNumber(tileNumber).oneTimeIncome(EResource.COIN, 6)
+				.oneTimeIncome(EResource.POPULATION_GAIN, 2)
+				.eTileAbility(ETileAbility.PROTECTION_FROM_EARTHQUAKE, ETileAbility.PROTECTION_FROM_DROUGHT).build());
+
+		// 09
+
+		tileNumber++;
+		this.list.addLast(new TileBuilder().eTileType(eTileType).tileNumber(tileNumber).oneTimeIncome(EResource.COIN, 6)
+				.oneTimeIncome(EResource.POPULATION_GAIN, 1).incomePerRound(EResource.LUXURY_GOODS, 2)
+				.eTileAbility(ETileAbility.IGNORE_PLACEMENT_RULES_WHEN_PLACING_LAND_TILES).build());
+
+		// 10
+
+		tileNumber++;
+		this.list.addLast(new TileBuilder().eTileType(eTileType).tileNumber(tileNumber).oneTimeIncome(EResource.COIN, 4)
+				.oneTimeIncome(EResource.POPULATION_GAIN, 2).incomePerRound(EResource.POPULATION_GAIN, 2).build());
 
 	}
 

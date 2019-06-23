@@ -38,7 +38,7 @@ public class AddCivilizationAndStartingResources extends AGameState {
 
 		ArrayList<EResource> oneTimeIncome = tile.getOneTimeIncome();
 		ArrayList<EResource> incomePerRound = tile.getIncomePerRound();
-
+		
 		super.controllerSingleton.resources.addCurrentAmount(oneTimeIncome);
 		super.controllerSingleton.resources.addIncome(incomePerRound);
 

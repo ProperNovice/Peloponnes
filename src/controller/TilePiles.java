@@ -374,6 +374,17 @@ public class TilePiles implements RestartAble {
 						.incomePerRound(EResource.WOOD, EResource.FOOD).constructionCost(EResource.STONE, 3)
 						.constructionCost(EResource.WOOD).build());
 
+		// D
+
+		ePhase = EPhase.D;
+		tileNumber = 0;
+
+		// 01
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList().addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber)
+				.eTileType(ETileType.LAND).prestigePoints(3).buyCost(3).incomePerRound(EResource.STONE, 3).build());
+
 	}
 
 	private void shuffleRelocateTiles() {
