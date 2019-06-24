@@ -130,6 +130,8 @@ public class TileSeaPile extends ContainerImageViewAbles<ITile> implements Resta
 		this.seaTileImageViewBuild.relocateToFrontSetVisibleTrue();
 		this.seaTileImageViewSelect.getImageView().setVisible(false);
 
+		this.isBuilt = false;
+
 	}
 
 	public ITile getSeaTile() {

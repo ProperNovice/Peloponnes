@@ -103,7 +103,7 @@ public class ASupplyRound extends ABuildTile {
 
 		if (super.controllerSingleton.tileSeaPile.tileSeaIsBuilt()) {
 			foodNeeded--;
-			Logger.INSTANCE.log("sea tile is build");
+			Logger.INSTANCE.log("sea tile is built");
 		}
 
 		int foodSpent = Math.min(foodNeeded, foodCurrent);
