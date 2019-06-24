@@ -17,9 +17,9 @@ public enum ControllerSingleton {
 	public DisasterTiles disasterTiles = null;
 	public ScoringIndicators scoringIndicators = null;
 	public Flow flow = null;
-	public Restart restart = null;
 	public TileConquest tileConquest = null;
 	public TileSeaPile tileSeaPile = null;
+	public Restart restart = null;
 
 	public void createInstances() {
 
@@ -36,9 +36,9 @@ public enum ControllerSingleton {
 		this.disasterTiles = new DisasterTiles();
 		this.scoringIndicators = new ScoringIndicators();
 		this.flow = new Flow();
-		this.restart = new Restart();
 		this.tileConquest = new TileConquest();
 		this.tileSeaPile = new TileSeaPile();
+		this.restart = new Restart();
 
 	}
 

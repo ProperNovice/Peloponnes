@@ -14,6 +14,7 @@ public class AddCivilizationAndStartingResources extends AGameState {
 		addCivilization();
 		addCivilizationResources();
 		addAdditionalIncome();
+		restartSeaTileList();
 
 		super.controllerSingleton.flow.proceed();
 
@@ -38,7 +39,7 @@ public class AddCivilizationAndStartingResources extends AGameState {
 
 		ArrayList<EResource> oneTimeIncome = tile.getOneTimeIncome();
 		ArrayList<EResource> incomePerRound = tile.getIncomePerRound();
-		
+
 		super.controllerSingleton.resources.addCurrentAmount(oneTimeIncome);
 		super.controllerSingleton.resources.addIncome(incomePerRound);
 
@@ -58,6 +59,10 @@ public class AddCivilizationAndStartingResources extends AGameState {
 
 		super.controllerSingleton.resources.addIncome(income);
 
+	}
+
+	private void restartSeaTileList() {
+		super.controllerSingleton.tileSeaPile.restartList();
 	}
 
 }

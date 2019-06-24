@@ -3,6 +3,7 @@ package controller;
 import enums.EResource;
 import enums.ETileType;
 import interfaces.ITile;
+import interfaces.RestartAble;
 import model.SeaTileImageViewBuild;
 import model.SeaTileImageViewSelect;
 import model.Tile;
@@ -12,7 +13,7 @@ import utils.ContainerImageViewAbles;
 import utils.CoordinatesBuilder;
 import utils.RearrangeTypeEnum;
 
-public class TileSeaPile extends ContainerImageViewAbles<ITile> {
+public class TileSeaPile extends ContainerImageViewAbles<ITile> implements RestartAble {
 
 	private SeaTileImageViewBuild seaTileImageViewBuild = null;
 	private SeaTileImageViewSelect seaTileImageViewSelect = null;
@@ -23,14 +24,11 @@ public class TileSeaPile extends ContainerImageViewAbles<ITile> {
 	public TileSeaPile() {
 
 		createList();
-		this.listCurrent.addAll(super.arrayList);
-
-		this.listCurrent.shuffle();
-		toFront();
+//		restartList();
 		relocateImageViews();
 
 		createIconImageViews();
-		setNewSeaTile();
+//		setNewSeaTile();
 
 	}
 
@@ -130,11 +128,29 @@ public class TileSeaPile extends ContainerImageViewAbles<ITile> {
 		tile.getImageView().toFront();
 
 		this.seaTileImageViewBuild.relocateToFrontSetVisibleTrue();
+		this.seaTileImageViewSelect.getImageView().setVisible(false);
 
 	}
 
 	public ITile getSeaTile() {
 		return this.iTile;
+	}
+
+	@Override
+	public void restart() {
+		setNewSeaTile();
+	}
+
+	public void restartList() {
+
+		this.listCurrent.clear();
+		this.listCurrent.addAll(super.arrayList);
+
+		this.listCurrent.shuffle();
+		toFront();
+
+		setNewSeaTile();
+
 	}
 
 }

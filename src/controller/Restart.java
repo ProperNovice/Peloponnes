@@ -19,14 +19,23 @@ public class Restart implements RestartAble {
 		this.list.addLast(ControllerSingleton.INSTANCE.board);
 		this.list.addLast(ControllerSingleton.INSTANCE.civilizations);
 		this.list.addLast(ControllerSingleton.INSTANCE.resources);
+		this.list.addLast(ControllerSingleton.INSTANCE.tileSeaPile);
 
 	}
 
 	@Override
 	public void restart() {
 
-		for (RestartAble restartAble : this.list)
+		for (RestartAble restartAble : this.list) {
+
+			if (restartAble == null)
+				System.out.println("null yo");
+			else
+				System.out.println("not null");
+
 			restartAble.restart();
+
+		}
 
 	}
 
