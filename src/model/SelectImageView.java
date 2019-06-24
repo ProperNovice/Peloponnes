@@ -3,15 +3,15 @@ package model;
 import controller.CredentialSingleton;
 import interfaces.ITile;
 
-public class DisasterImageView extends ATileImageView {
+public class SelectImageView extends ATileImageView {
 
-	public DisasterImageView(ITile iTile) {
+	public SelectImageView(ITile iTile) {
 		super(iTile);
 	}
 
 	@Override
 	protected String getFilePath() {
-		return "disaster";
+		return "select";
 	}
 
 	@Override
@@ -21,7 +21,8 @@ public class DisasterImageView extends ATileImageView {
 
 	@Override
 	protected double getY() {
-		return CredentialSingleton.INSTANCE.DimensionsTileGame.y - CredentialSingleton.INSTANCE.DimensionsImageViewIcon.y;
+		return CredentialSingleton.INSTANCE.DimensionsTileGame.y
+				- CredentialSingleton.INSTANCE.DimensionsImageViewIcon.y;
 	}
 
 }

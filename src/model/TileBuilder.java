@@ -102,6 +102,10 @@ public class TileBuilder {
 			return new TileCivilization(this.tileNumber, this.eTileType, this.oneTimeIncome, this.incomePerRound,
 					this.eTileAbility);
 
+		case SEA:
+			return new TileSea(this.tileNumber, this.eTileType, this.prestigePoints, this.oneTimeIncome,
+					this.constructionCost);
+
 		}
 
 		return null;

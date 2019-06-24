@@ -2,7 +2,7 @@ package enums;
 
 public enum ETileType {
 
-	CIVILIZATION("civilizations"), BUILDING("tiles"), LAND("tiles");
+	CIVILIZATION("civilizations"), BUILDING("tiles"), LAND("tiles"), SEA("sea");
 
 	private String string = null;
 

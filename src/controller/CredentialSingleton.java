@@ -8,10 +8,10 @@ public enum CredentialSingleton {
 
 	public NumbersPair DimensionsFrame, DimensionsInsets, DimensionsGapBetweenBorders, DimensionsNumberImageView,
 			DimensionsTilePile, DimensionsGapBetweenComponents, DimensionsDisasterChit, DimensionsTileGame,
-			DimensionsBuildIcon;
+			DimensionsImageViewIcon;
 	public NumbersPair CoordinatesTextPanel, CoordinatesTilePiles, CoordinatesDisasterChits, CoordinatesResources,
 			CoordinatesIncome, CoordinatesBoard, CoordinatesTileRowConquest, CoordinatesTileRowNormal,
-			CoordinatesTileConquest, CoordinatesDisasterTiles, CoordinatesScoring;
+			CoordinatesTileConquest, CoordinatesDisasterTiles, CoordinatesScoring, CoordinatesSeaTiles;
 	public double textHeight, textResourcesHeight, textScoringHeight, frameX, frameY;
 
 	public void calculateCredentials() {
@@ -80,13 +80,17 @@ public enum CredentialSingleton {
 
 		x = DimensionsTileGame.x * 0.4;
 		y = x;
-		this.DimensionsBuildIcon = new NumbersPair(x, y);
+		this.DimensionsImageViewIcon = new NumbersPair(x, y);
 
 		x = 350;
 		y = this.CoordinatesResources.y + 7 * this.textHeight / 2 - this.textHeight / 2;
 		this.CoordinatesTextPanel = new NumbersPair(x, y);
 
 		x = this.CoordinatesDisasterTiles.x + 5 * (this.DimensionsTilePile.x + this.DimensionsGapBetweenComponents.x);
+		y = this.CoordinatesDisasterTiles.y;
+		this.CoordinatesSeaTiles = new NumbersPair(x, y);
+
+		x = this.CoordinatesSeaTiles.x + this.DimensionsTilePile.x + this.DimensionsGapBetweenComponents.x;
 		y = this.CoordinatesDisasterTiles.y;
 		this.CoordinatesScoring = new NumbersPair(x, y);
 

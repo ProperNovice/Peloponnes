@@ -64,7 +64,7 @@ public class PurchaseTileOrPass extends AGameState {
 		Logger.INSTANCE.log("additional cost - " + additionalCost);
 		Logger.INSTANCE.log("current coins - " + currentCoins);
 		Logger.INSTANCE.log("current luxury goods - " + luxuryGoods);
-		Logger.INSTANCE.log("total cost - " + buyCost);
+		Logger.INSTANCE.log("total cost affordable - " + buyCost);
 		Logger.INSTANCE.log("coins available - " + (currentCoins + luxuryGoods / 2));
 		Logger.INSTANCE.newLine();
 

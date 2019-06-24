@@ -19,7 +19,7 @@ public abstract class ATileImageView implements ImageViewAble {
 	private void createImageView() {
 
 		ImageView imageView = new ImageView(getFilePath() + ".png", this);
-		imageView.setWidth(CredentialSingleton.INSTANCE.DimensionsBuildIcon.x);
+		imageView.setWidth(CredentialSingleton.INSTANCE.DimensionsImageViewIcon.x);
 		relocateToFrontSetVisibleTrue();
 
 	}

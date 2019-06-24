@@ -16,7 +16,7 @@ public class BuildImageView extends ATileImageView {
 
 	@Override
 	protected double getX() {
-		return CredentialSingleton.INSTANCE.DimensionsTileGame.x - CredentialSingleton.INSTANCE.DimensionsBuildIcon.x;
+		return CredentialSingleton.INSTANCE.DimensionsTileGame.x - CredentialSingleton.INSTANCE.DimensionsImageViewIcon.x;
 	}
 
 	@Override
