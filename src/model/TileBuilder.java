@@ -104,7 +104,7 @@ public class TileBuilder {
 
 		case SEA:
 			return new TileSea(this.tileNumber, this.eTileType, this.prestigePoints, this.oneTimeIncome,
-					this.constructionCost);
+					this.incomePerRound, this.constructionCost);
 
 		}
 

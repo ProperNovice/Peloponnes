@@ -2,13 +2,14 @@ package model;
 
 import enums.EResource;
 import enums.ETileType;
+import interfaces.ConstructAble;
 import interfaces.ITileSea;
 import interfaces.IncomeAble;
 import interfaces.PrestigePointsAble;
 import utils.ArrayList;
 import utils.Logger;
 
-public class TileSea extends Tile implements ITileSea, IncomeAble, PrestigePointsAble {
+public class TileSea extends Tile implements ITileSea, IncomeAble, PrestigePointsAble, ConstructAble {
 
 	private ETileType eTileType = null;
 	private int prestigePoints = -1;
@@ -17,11 +18,12 @@ public class TileSea extends Tile implements ITileSea, IncomeAble, PrestigePoint
 	private ArrayList<EResource> incomePerRound = new ArrayList<EResource>();
 
 	public TileSea(int tileNumber, ETileType eTileType, int prestigePoints, ArrayList<EResource> oneTimeIncome,
-			ArrayList<EResource> constructionCost) {
+			ArrayList<EResource> incomePerRound, ArrayList<EResource> constructionCost) {
 
 		this.eTileType = eTileType;
 		this.prestigePoints = prestigePoints;
 		this.oneTimeIncome = oneTimeIncome;
+		this.incomePerRound = incomePerRound;
 		this.constructionCost = constructionCost;
 
 		String fileName = "";

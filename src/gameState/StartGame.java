@@ -8,6 +8,7 @@ import interfaces.ITileCivilization;
 import interfaces.ITileLand;
 import interfaces.IncomeAble;
 import model.Tile;
+import model.TileCivilization;
 import model.TilePile;
 
 public class StartGame extends AGameState {
@@ -15,6 +16,7 @@ public class StartGame extends AGameState {
 	@Override
 	public void handleGameStateChange() {
 
+//		civilization();
 //		board();
 //		tileRows();
 //		addCurrentResources();
@@ -24,6 +26,13 @@ public class StartGame extends AGameState {
 //		super.controllerSingleton.flow.addFirst(EGameState.RESOLVE_DISASTER);
 
 		super.controllerSingleton.flow.proceed();
+
+	}
+
+	public void civilization() {
+
+		ITile iTile = super.controllerSingleton.civilizations.getRandomCivilization();
+		super.controllerSingleton.modifiers.tileCivilization = (TileCivilization) iTile;
 
 	}
 
@@ -109,10 +118,9 @@ public class StartGame extends AGameState {
 
 		super.controllerSingleton.resources.addCurrentAmount(EResource.POPULATION_GAIN, 8);
 		super.controllerSingleton.resources.addCurrentAmount(EResource.WOOD, 6);
-		super.controllerSingleton.resources.addCurrentAmount(EResource.FOOD, 1);
+		super.controllerSingleton.resources.addCurrentAmount(EResource.FOOD, 16);
 		super.controllerSingleton.resources.addCurrentAmount(EResource.LUXURY_GOODS, 30);
 		super.controllerSingleton.resources.addCurrentAmount(EResource.STONE, 4);
-		super.controllerSingleton.resources.removeCurrentAmount(EResource.COIN, 4);
 
 	}
 

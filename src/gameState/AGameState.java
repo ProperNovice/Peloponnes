@@ -49,6 +49,8 @@ public abstract class AGameState {
 			handleTilePressedRowCoquest(iTile);
 		else if (this.controllerSingleton.board.getArrayList().contains(iTile))
 			handleTilePressedBoard(iTile);
+		else if (this.controllerSingleton.tileSeaPile.getArrayList().contains(iTile))
+			handleSeaTilePressed(iTile);
 
 	}
 
@@ -61,6 +63,10 @@ public abstract class AGameState {
 	}
 
 	protected void handleTilePressedBoard(ITile iTile) {
+
+	}
+
+	protected void handleSeaTilePressed(ITile iTile) {
 
 	}
 

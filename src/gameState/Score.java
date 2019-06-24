@@ -56,7 +56,12 @@ public class Score extends AGameState {
 		this.coinScoreNew = super.controllerSingleton.resources.getCurrentAmount(EResource.COIN) / this.coinDivider;
 		this.tileScoreNew = 0;
 
-		for (ITile iTile : super.controllerSingleton.board.getArrayList()) {
+		ArrayList<ITile> tilesToScore = new ArrayList<ITile>();
+		tilesToScore.addAll(super.controllerSingleton.board.getArrayList().clone());
+		if (super.controllerSingleton.tileSeaPile.tileSeaIsBuilt())
+			tilesToScore.addLast(super.controllerSingleton.tileSeaPile.getSeaTile());
+
+		for (ITile iTile : tilesToScore) {
 
 			if (!(iTile instanceof PrestigePointsAble))
 				continue;

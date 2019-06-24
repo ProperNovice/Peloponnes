@@ -92,7 +92,6 @@ public class ASupplyRound extends ABuildTile {
 		Logger.INSTANCE.log("population -> " + populationCurrent);
 
 		int populationCanBeFed = foodCurrent + luxuryGoodsCurrent / 2;
-
 		Logger.INSTANCE.log("pop can be fed -> " + populationCanBeFed);
 
 		int populationFinal = Math.min(populationCanBeFed, populationCurrent);
@@ -101,12 +100,21 @@ public class ASupplyRound extends ABuildTile {
 		Logger.INSTANCE.log("population lost -> " + populationLost);
 		int foodNeeded = populationFinal;
 
+		if (super.controllerSingleton.tileSeaPile.tileSeaIsBuilt())
+			foodNeeded--;
+
+		Logger.INSTANCE.log("sea tile is build");
+
 		int foodSpent = Math.min(foodNeeded, foodCurrent);
-		Logger.INSTANCE.log("food spent -> " + foodSpent);
+
+		if (foodSpent > 0)
+			Logger.INSTANCE.log("food spent -> " + foodSpent);
 
 		foodNeeded -= foodSpent;
 		int luxuryGoodsSpent = 2 * foodNeeded;
-		Logger.INSTANCE.log("luxury goods spent -> " + luxuryGoodsSpent);
+
+		if (luxuryGoodsSpent > 0)
+			Logger.INSTANCE.log("luxury goods spent -> " + luxuryGoodsSpent);
 
 		super.controllerSingleton.resources.removeCurrentAmount(EResource.FOOD, foodSpent);
 		super.controllerSingleton.resources.removeCurrentAmount(EResource.LUXURY_GOODS, luxuryGoodsSpent);

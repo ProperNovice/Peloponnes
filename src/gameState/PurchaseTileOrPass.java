@@ -14,7 +14,7 @@ import model.Tile;
 import utils.ImageViewAble;
 import utils.Logger;
 
-public class PurchaseTileOrPass extends AGameState {
+public class PurchaseTileOrPass extends ABuildTile {
 
 	@Override
 	public void handleGameStateChange() {
@@ -93,6 +93,27 @@ public class PurchaseTileOrPass extends AGameState {
 
 		super.controllerSingleton.text.concealText();
 		super.controllerSingleton.flow.proceed();
+
+	}
+
+	@Override
+	protected void handleSeaTilePressed(ITile iTile) {
+
+		if (super.controllerSingleton.tileSeaPile.tileSeaIsBuilt()) {
+			Logger.INSTANCE.logNewLine("sea tile is built");
+			return;
+		}
+
+		if (!super.tileBuildingCanBeBuiltNow(iTile))
+			return;
+
+		super.executeBuildResources();
+		super.controllerSingleton.tileSeaPile.tileSeaSetBuilt();
+
+		IncomeAble incomeAble = (IncomeAble) iTile;
+
+		super.controllerSingleton.resources.addCurrentAmount(incomeAble.getOneTimeIncome());
+		super.controllerSingleton.resources.addIncome(incomeAble.getIncomePerRound());
 
 	}
 

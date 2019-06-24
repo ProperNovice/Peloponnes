@@ -3,23 +3,34 @@ package controller;
 import enums.EResource;
 import enums.ETileType;
 import interfaces.ITile;
-import interfaces.SelectAble;
-import model.SelectImageView;
+import model.SeaTileImageViewBuild;
+import model.SeaTileImageViewSelect;
+import model.Tile;
 import model.TileBuilder;
+import utils.ArrayList;
 import utils.ContainerImageViewAbles;
 import utils.CoordinatesBuilder;
 import utils.RearrangeTypeEnum;
 
-public class TileSeaPile extends ContainerImageViewAbles<ITile> implements SelectAble {
+public class TileSeaPile extends ContainerImageViewAbles<ITile> {
+
+	private SeaTileImageViewBuild seaTileImageViewBuild = null;
+	private SeaTileImageViewSelect seaTileImageViewSelect = null;
+	private boolean isBuilt = false;
+	private ITile iTile = null;
+	private ArrayList<ITile> listCurrent = new ArrayList<ITile>();
 
 	public TileSeaPile() {
 
 		createList();
+		this.listCurrent.addAll(super.arrayList);
 
-		super.arrayList.shuffle();
+		this.listCurrent.shuffle();
 		toFront();
-
 		relocateImageViews();
+
+		createIconImageViews();
+		setNewSeaTile();
 
 	}
 
@@ -80,7 +91,7 @@ public class TileSeaPile extends ContainerImageViewAbles<ITile> implements Selec
 		super.arrayList.addLast(new TileBuilder().tileNumber(tileNumber).eTileType(ETileType.SEA).prestigePoints(4)
 				.constructionCost(EResource.LUXURY_GOODS, 12).oneTimeIncome(EResource.POPULATION_GAIN, 2).build());
 
-		// 07
+		// 08
 
 		tileNumber++;
 		super.arrayList.addLast(new TileBuilder().tileNumber(tileNumber).eTileType(ETileType.SEA).prestigePoints(3)
@@ -89,24 +100,41 @@ public class TileSeaPile extends ContainerImageViewAbles<ITile> implements Selec
 
 	}
 
-	@Override
-	public void setBuilt() {
+	private void createIconImageViews() {
+
+		this.seaTileImageViewBuild = new SeaTileImageViewBuild(super.arrayList.getFirst());
+		this.seaTileImageViewBuild.getImageView().setVisible(false);
+
+		this.seaTileImageViewSelect = new SeaTileImageViewSelect(super.arrayList.getFirst());
+		this.seaTileImageViewSelect.getImageView().setVisible(false);
 
 	}
 
-	@Override
-	public void setUnbuilt() {
+	public void tileSeaSetBuilt() {
+
+		this.isBuilt = true;
+		this.seaTileImageViewBuild.getImageView().setVisible(false);
+		this.seaTileImageViewSelect.relocateToFrontSetVisibleTrue();
 
 	}
 
-	@Override
-	public boolean isBuilt() {
-		return false;
+	public boolean tileSeaIsBuilt() {
+		return this.isBuilt;
 	}
 
-	@Override
-	public SelectImageView getSelectImageView() {
-		return null;
+	private void setNewSeaTile() {
+
+		this.iTile = this.listCurrent.removeFirst();
+
+		Tile tile = (Tile) this.iTile;
+		tile.getImageView().toFront();
+
+		this.seaTileImageViewBuild.relocateToFrontSetVisibleTrue();
+
+	}
+
+	public ITile getSeaTile() {
+		return this.iTile;
 	}
 
 }
