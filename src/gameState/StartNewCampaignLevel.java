@@ -88,7 +88,8 @@ public class StartNewCampaignLevel extends AGameState {
 	}
 
 	private void handleTileRowNormalCapacity() {
-		super.controllerSingleton.modifiers.tileRowNormalCapacity = 5 + 1 - super.controllerSingleton.modifiers.level;
+		super.controllerSingleton.modifiers.tileRowNormalCapacity = super.controllerSingleton.modifiers.tilesRevealed
+				+ 1 - super.controllerSingleton.modifiers.level;
 	}
 
 	private void handleChooseIncome() {
@@ -129,7 +130,8 @@ public class StartNewCampaignLevel extends AGameState {
 
 	private void setConquestTile() {
 
-		int tilesConquestRow = 5 - super.controllerSingleton.modifiers.tileRowNormalCapacity;
+		int tilesConquestRow = super.controllerSingleton.modifiers.tilesRevealed
+				- super.controllerSingleton.modifiers.tileRowNormalCapacity;
 		boolean visibility = false;
 
 		if (tilesConquestRow > 0) {

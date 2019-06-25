@@ -10,6 +10,7 @@ import utils.HashMap;
 public class Modifiers {
 
 	public int tileRowNormalCapacity = 5;
+	public int tilesRevealed = 5;
 	public ITile tileToBuy = null;
 	public boolean supplyRound = false;
 	public EDisaster eDisasterDrawn = null;

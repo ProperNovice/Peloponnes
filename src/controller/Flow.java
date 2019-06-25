@@ -29,7 +29,7 @@ public class Flow {
 
 			for (int turns = 1; turns <= ControllerSingleton.INSTANCE.modifiers.totalTurns; turns++) {
 
-				for (int counter = 1; counter <= 5; counter++) {
+				for (int counter = 1; counter <= ControllerSingleton.INSTANCE.modifiers.tilesRevealed; counter++) {
 					this.gameStateResolving.addLast(EGameState.REVEAL_TILE);
 					this.gameStateResolving.addLast(EGameState.SUPPLY_ROUND_TILE);
 				}
