@@ -92,7 +92,8 @@ public class RevealTile extends AGameState {
 		super.controllerSingleton.tileRows.getTileRowNormal().animateAsynchronous();
 		super.controllerSingleton.tileRows.getTileRowConquest().animateAsynchronous();
 
-		if (tilesRevealed == 5 || super.controllerSingleton.modifiers.supplyRound)
+		if (tilesRevealed == super.controllerSingleton.modifiers.tilesRevealed
+				|| super.controllerSingleton.modifiers.supplyRound)
 			Animation.INSTANCE.moveAsynchronousToSynchronousLock();
 
 		super.controllerSingleton.flow.proceed();
