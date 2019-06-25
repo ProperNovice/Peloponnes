@@ -26,16 +26,8 @@ public class Restart implements RestartAble {
 	@Override
 	public void restart() {
 
-		for (RestartAble restartAble : this.list) {
-
-			if (restartAble == null)
-				System.out.println("null yo");
-			else
-				System.out.println("not null");
-
+		for (RestartAble restartAble : this.list)
 			restartAble.restart();
-
-		}
 
 	}
 
