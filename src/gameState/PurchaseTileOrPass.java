@@ -1,5 +1,6 @@
 package gameState;
 
+import enums.EGameState;
 import enums.EResource;
 import enums.EText;
 import enums.ETileAbility;
@@ -114,6 +115,8 @@ public class PurchaseTileOrPass extends ABuildTile {
 
 		super.controllerSingleton.resources.addCurrentAmount(incomeAble.getOneTimeIncome());
 		super.controllerSingleton.resources.addIncome(incomeAble.getIncomePerRound());
+
+		EGameState.SCORE.getGameState().handleGameStateChange();
 
 	}
 
