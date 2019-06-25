@@ -16,10 +16,10 @@ public class StartGame extends AGameState {
 	@Override
 	public void handleGameStateChange() {
 
-		civilization();
+//		civilization();
 //		board();
 //		tileRows();
-		addCurrentResources();
+//		addCurrentResources();
 //		setSupplyRound();
 
 //		super.controllerSingleton.modifiers.eDisasterDrawn = EDisaster.TEMPEST;
