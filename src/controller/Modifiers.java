@@ -19,6 +19,7 @@ public class Modifiers {
 	public HashMap<EResource, Integer> extraIncome = new HashMap<EResource, Integer>();
 	public TileCivilization tileCivilization = null;
 	public ArrayList<EDisaster> eDisasters = new ArrayList<EDisaster>();
+	public boolean sacrificeInhabitants = false;
 
 	public Modifiers() {
 

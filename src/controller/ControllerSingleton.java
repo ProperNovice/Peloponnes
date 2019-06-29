@@ -19,6 +19,7 @@ public enum ControllerSingleton {
 	public Flow flow = null;
 	public TileConquest tileConquest = null;
 	public TileSeaPile tileSeaPile = null;
+	public SacrumChits sacrumChits = null;
 	public Restart restart = null;
 
 	public void createInstances() {
@@ -38,6 +39,7 @@ public enum ControllerSingleton {
 		this.flow = new Flow();
 		this.tileConquest = new TileConquest();
 		this.tileSeaPile = new TileSeaPile();
+		this.sacrumChits = new SacrumChits();
 		this.restart = new Restart();
 
 	}

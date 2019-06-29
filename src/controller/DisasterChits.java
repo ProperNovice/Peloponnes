@@ -24,7 +24,7 @@ public class DisasterChits extends ContainerImageViewAbles<DisasterChit> impleme
 	protected void createCoordinates() {
 
 		super.coordinates = new CoordinatesBuilder()
-				.dimensionsNumbersPair(CredentialSingleton.INSTANCE.DimensionsDisasterChit)
+				.dimensionsNumbersPair(CredentialSingleton.INSTANCE.DimensionsChit)
 				.coordinatesNumbersPair(CredentialSingleton.INSTANCE.CoordinatesDisasterChits)
 				.gapNumbersPair(CredentialSingleton.INSTANCE.DimensionsGapBetweenComponents).build();
 

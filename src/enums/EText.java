@@ -42,6 +42,8 @@ public enum EText {
 	START_CAMPAIGN_LEVEL_5("Start campaign level 5", TextTypeEnum.OPTION),
 	YOU_WON("You won", TextTypeEnum.INDICATOR),
 	YOU_LOST("You lost", TextTypeEnum.INDICATOR),
+	DRAW_SACRUM_CHITS("Draw sacrum chits", TextTypeEnum.OPTION),
+	SACRIFICE_INHABITANT("Sacrifice inhabitant", TextTypeEnum.OPTION),
 	
 	;
 

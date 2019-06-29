@@ -6,6 +6,7 @@ public class EndRound extends AGameState {
 	public void handleGameStateChange() {
 
 		super.controllerSingleton.modifiers.tileToBuy = null;
+		super.controllerSingleton.modifiers.sacrificeInhabitants = false;
 
 		super.controllerSingleton.flow.proceed();
 

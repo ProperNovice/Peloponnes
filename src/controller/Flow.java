@@ -39,6 +39,9 @@ public class Flow {
 				this.gameStateResolving.addLast(EGameState.SET_ONE_TIME_INCOME_PER_ROUND);
 				this.gameStateResolving.addLast(EGameState.EARN_INCOME_FOR_THE_ROUND);
 
+				this.gameStateResolving.addLast(EGameState.REVEAL_SACRUM_CHITS);
+				this.gameStateResolving.addLast(EGameState.RESOLVE_SACRIFICE_INHABITANTS);
+
 				for (int counter = 1; counter <= 2; counter++) {
 					this.gameStateResolving.addLast(EGameState.REVEAL_DISASTER_CHIT);
 					this.gameStateResolving.addLast(EGameState.RESOLVE_DISASTER);
@@ -89,6 +92,10 @@ public class Flow {
 
 		case RESOLVE_DISASTER:
 			return resolveDisaster();
+
+		case RESOLVE_SACRIFICE_INHABITANTS:
+//			return ControllerSingleton.INSTANCE.modifiers.sacrificeInhabitants;
+			return true;
 
 		default:
 			return true;

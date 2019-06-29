@@ -8,7 +8,7 @@ public enum Executor {
 	INSTANCE;
 
 	private ExecutorService executorService = Executors.newCachedThreadPool();
-	private ThreadRunning threadRunning = ThreadRunning.FX;
+	private ThreadRunning threadRunning = ThreadRunning.EXECUTOR_SERVICE;
 
 	private Executor() {
 

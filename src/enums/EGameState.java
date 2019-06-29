@@ -23,6 +23,8 @@ public enum EGameState {
 	END_CAMPAIGN_LEVEL(new EndCampaignLevel()),
 	RESTART_GAME(new RestartGame()),
 	ADD_CIVILIZATION_AND_STARTING_RESOURCES(new AddCivilizationAndStartingResources()),
+	REVEAL_SACRUM_CHITS(new RevealSacrumChits()),
+	RESOLVE_SACRIFICE_INHABITANTS(new ResolveSacrificeInhabitants()),
 
 	;
 

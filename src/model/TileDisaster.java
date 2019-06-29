@@ -60,9 +60,9 @@ public class TileDisaster extends Tile implements ITileDisaster {
 			super.arrayList.setCapacity(3);
 
 			super.coordinates = new CoordinatesBuilder()
-					.dimensionsNumbersPair(CredentialSingleton.INSTANCE.DimensionsDisasterChit)
+					.dimensionsNumbersPair(CredentialSingleton.INSTANCE.DimensionsChit)
 					.rearrangeTypeEnum(RearrangeTypeEnum.PIVOT)
-					.gapX(-CredentialSingleton.INSTANCE.DimensionsDisasterChit.x / 2).listSizeAble(this).build();
+					.gapX(-CredentialSingleton.INSTANCE.DimensionsChit.x / 2).listSizeAble(this).build();
 
 		}
 
