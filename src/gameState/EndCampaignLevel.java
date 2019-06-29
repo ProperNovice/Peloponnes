@@ -23,8 +23,10 @@ public class EndCampaignLevel extends AGameState {
 	}
 
 	private void executeGameWon() {
+
 		super.controllerSingleton.text.showText(EText.YOU_WON);
 		super.controllerSingleton.text.showText(EText.CONTINUE);
+
 	}
 
 	private void executeGameLost() {
