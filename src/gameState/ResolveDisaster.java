@@ -370,6 +370,8 @@ public class ResolveDisaster extends AGameState {
 
 			if (abilityAble.getTileAbility().contains(protectionAbility))
 				return true;
+			else if (abilityAble.getTileAbility().contains(ETileAbility.PROTECTION_FROM_DISASTERS))
+				return true;
 
 		}
 

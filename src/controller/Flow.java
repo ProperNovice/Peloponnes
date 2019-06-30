@@ -2,6 +2,10 @@ package controller;
 
 import enums.EDisaster;
 import enums.EGameState;
+import enums.EResource;
+import enums.ETileAbility;
+import interfaces.AbilityAble;
+import interfaces.ITile;
 import model.TileDisaster;
 import utils.ArrayList;
 import utils.Logger;
@@ -90,12 +94,14 @@ public class Flow {
 		case SUPPLY_ROUND_TILE:
 			return ControllerSingleton.INSTANCE.modifiers.supplyRound;
 
-		case RESOLVE_DISASTER:
-			return resolveDisaster();
+		case REVEAL_SACRUM_CHITS:
+			return revealSacrumChits();
 
 		case RESOLVE_SACRIFICE_INHABITANTS:
-//			return ControllerSingleton.INSTANCE.modifiers.sacrificeInhabitants;
-			return true;
+			return sacrificeInhabitants();
+
+		case RESOLVE_DISASTER:
+			return resolveDisaster();
 
 		default:
 			return true;
@@ -135,6 +141,33 @@ public class Flow {
 
 		Logger.INSTANCE.log("flow");
 		this.gameStateResolving.printList();
+
+	}
+
+	private boolean revealSacrumChits() {
+
+		for (ITile iTile : ControllerSingleton.INSTANCE.board.getArrayList()) {
+
+			AbilityAble abilityAble = (AbilityAble) iTile;
+
+			if (!abilityAble.getTileAbility().contains(ETileAbility.SACRIFICE_INHABITANTS_EACH_ROUND))
+				continue;
+
+			ControllerSingleton.INSTANCE.modifiers.sacrificeInhabitants = true;
+			return false;
+
+		}
+
+		return true;
+
+	}
+
+	private boolean sacrificeInhabitants() {
+
+		if (ControllerSingleton.INSTANCE.resources.getCurrentAmount(EResource.POPULATION_GAIN) == 0)
+			return false;
+		else
+			return ControllerSingleton.INSTANCE.modifiers.sacrificeInhabitants;
 
 	}
 

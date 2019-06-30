@@ -156,6 +156,31 @@ public class TilePiles implements RestartAble {
 				.constructionCost(EResource.STONE, 3).constructionCost(EResource.WOOD)
 				.incomePerRound(EResource.CHOOSE_INCOME).eTileAbility(ETileAbility.PROTECTION_FROM_DECLINE).build());
 
+		// 16
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(3).buyCost(3).constructionCost(EResource.STONE, 2)
+						.constructionCost(EResource.WOOD).incomePerRound(EResource.STONE)
+						.eTileAbility(ETileAbility.SACRIFICE_INHABITANTS_EACH_ROUND).build());
+
+		// 17
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList().addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber)
+				.eTileType(ETileType.BUILDING).prestigePoints(4).buyCost(2).constructionCost(EResource.STONE, 2)
+				.constructionCost(EResource.WOOD, 4).oneTimeIncome(EResource.POPULATION_GAIN)
+				.incomePerRound(EResource.CHOOSE_INCOME).eTileAbility(ETileAbility.PROTECTION_FROM_PLAGUE).build());
+
+		// 18
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
+						.prestigePoints(0).buyCost(5).incomePerRound(EResource.FOOD, 3)
+						.oneTimeIncome(EResource.POPULATION_GAIN).build());
+
 		// B
 
 		ePhase = EPhase.B;
@@ -287,6 +312,32 @@ public class TilePiles implements RestartAble {
 						.oneTimeIncome(EResource.POPULATION_GAIN, 2).incomePerRound(EResource.CHOOSE_INCOME)
 						.eTileAbility(ETileAbility.PROTECTION_FROM_DROUGHT).build());
 
+		// 16
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
+						.prestigePoints(2).buyCost(3).oneTimeIncome(EResource.POPULATION_GAIN, 2)
+						.incomePerRound(EResource.WOOD, 2).incomePerRound(EResource.STONE).build());
+
+		// 17
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(5).buyCost(4).constructionCost(EResource.STONE)
+						.constructionCost(EResource.WOOD, 3).oneTimeIncome(EResource.COIN, 3)
+						.oneTimeIncome(EResource.POPULATION_GAIN, 2).eTileAbility(ETileAbility.PROTECTION_FROM_TEMPEST)
+						.eTileAbility(ETileAbility.SACRIFICE_INHABITANTS_EACH_ROUND).build());
+
+		// 18
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
+						.prestigePoints(3).buyCost(5).oneTimeIncome(EResource.POPULATION_GAIN, 3)
+						.incomePerRound(EResource.FOOD, 2).build());
+
 		// C
 
 		ePhase = EPhase.C;
@@ -374,6 +425,23 @@ public class TilePiles implements RestartAble {
 						.incomePerRound(EResource.WOOD, EResource.FOOD).constructionCost(EResource.STONE, 3)
 						.constructionCost(EResource.WOOD).build());
 
+		// 11
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
+						.prestigePoints(5).buyCost(6).oneTimeIncome(EResource.POPULATION_GAIN, 3)
+						.incomePerRound(EResource.WOOD).incomePerRound(EResource.STONE, 2).build());
+
+		// 12
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(7).buyCost(7).oneTimeIncome(EResource.POPULATION_GAIN, 3)
+						.incomePerRound(EResource.WOOD).incomePerRound(EResource.FOOD).incomePerRound(EResource.STONE)
+						.constructionCost(EResource.STONE, 5).constructionCost(EResource.WOOD, 2).build());
+
 		// D
 
 		ePhase = EPhase.D;
@@ -417,6 +485,15 @@ public class TilePiles implements RestartAble {
 				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.LAND)
 						.prestigePoints(1).buyCost(5).oneTimeIncome(EResource.POPULATION_GAIN, 3)
 						.incomePerRound(EResource.STONE, 4).eTileAbility(ETileAbility.SUPPLY_ROUND).build());
+
+		// 06
+
+		tileNumber++;
+		this.list.get(ePhase).getArrayList()
+				.addLast(new TileBuilder().ePhase(ePhase).tileNumber(tileNumber).eTileType(ETileType.BUILDING)
+						.prestigePoints(6).buyCost(9).oneTimeIncome(EResource.POPULATION_GAIN, 4)
+						.constructionCost(EResource.STONE, 7)
+						.eTileAbility(ETileAbility.SACRIFICED_INHABITANTS_WORTH_3_POINTS).build());
 
 	}
 

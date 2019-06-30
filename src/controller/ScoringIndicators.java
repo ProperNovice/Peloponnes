@@ -35,7 +35,7 @@ public class ScoringIndicators {
 		this.total.relocate(x, y);
 
 		setPrestige(0, 0);
-		setPopulation(0, 3);
+		setPopulation(0, 0, 3, 0, 2);
 		setTotal(Math.min(this.prestigeInt, this.populationInt));
 
 	}
@@ -78,7 +78,8 @@ public class ScoringIndicators {
 
 	}
 
-	public void setPopulation(int points, int devidedBy) {
+	public void setPopulation(int points, int populationNormal, int devidedByNormal, int populationSacrum,
+			int devidedBySacrum) {
 
 		this.populationInt = points;
 
@@ -87,10 +88,16 @@ public class ScoringIndicators {
 			populationString = "0" + populationString;
 
 		String text = "population: ";
-		text += points / devidedBy;
 
-		text += "*" + devidedBy + " -> ";
+		text += populationNormal / devidedByNormal;
+		text += "*" + devidedByNormal;
+		
+		text += " + ";
+		
+		text += populationSacrum / devidedBySacrum;
+		text += "*" + devidedBySacrum + " -> ";
 		text += populationString;
+
 		this.population.setText(text);
 
 	}

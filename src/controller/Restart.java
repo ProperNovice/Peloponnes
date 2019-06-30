@@ -20,6 +20,7 @@ public class Restart implements RestartAble {
 		this.list.addLast(ControllerSingleton.INSTANCE.civilizations);
 		this.list.addLast(ControllerSingleton.INSTANCE.resources);
 		this.list.addLast(ControllerSingleton.INSTANCE.tileSeaPile);
+		this.list.addLast(ControllerSingleton.INSTANCE.sacrumChits);
 
 	}
 

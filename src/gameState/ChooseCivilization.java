@@ -9,6 +9,7 @@ public class ChooseCivilization extends AGameState {
 	public void handleGameStateChange() {
 
 		ITile iTile = super.controllerSingleton.civilizations.getRandomCivilization();
+		iTile = super.controllerSingleton.civilizations.getLast();
 
 		super.controllerSingleton.modifiers.tileCivilization = (TileCivilization) iTile;
 

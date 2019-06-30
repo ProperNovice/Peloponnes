@@ -59,8 +59,9 @@ public class EarnIncomeForTheRound extends AGameState {
 
 			IncomeAble incomeAble = (IncomeAble) iTile;
 
-			if (incomeAble.getIncomePerRound().contains(EResource.CHOOSE_INCOME))
-				this.chooseIncomeTiles++;
+			for (EResource eResource : incomeAble.getIncomePerRound())
+				if (eResource == EResource.CHOOSE_INCOME)
+					this.chooseIncomeTiles++;
 
 		}
 

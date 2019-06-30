@@ -27,7 +27,7 @@ public enum CredentialSingleton {
 
 		this.textHeight = 40;
 
-		x = 90;
+		x = 78;
 //		x = 118;
 		this.DimensionsTilePile = new NumbersPair(x, x);
 
@@ -61,8 +61,8 @@ public enum CredentialSingleton {
 		y = this.CoordinatesResources.y;
 		this.CoordinatesIncome = new NumbersPair(x, y);
 
-		this.frameX = 2 * this.DimensionsGapBetweenBorders.x + 15 * this.DimensionsTilePile.x
-				+ 14 * this.DimensionsGapBetweenComponents.x;
+		this.frameX = 2 * this.DimensionsGapBetweenBorders.x + 18 * this.DimensionsTilePile.x
+				+ 17 * this.DimensionsGapBetweenComponents.x;
 
 		x = this.frameX - this.DimensionsGapBetweenBorders.x - this.DimensionsTileGame.x;
 		y = this.CoordinatesDisasterChits.y + DimensionsChit.y + 2 * this.DimensionsGapBetweenComponents.y;

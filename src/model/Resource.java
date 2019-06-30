@@ -10,21 +10,24 @@ public class Resource {
 	private int capacity = -1, currentAmount = 0, income = 0;
 	private TextIndicator textIndicatorCurrentAmount = new TextIndicator();
 	private TextIndicator textIndicatorIncome = new TextIndicator();
+	private boolean hasIncome;
 
-	public Resource(EResource eResource, int capacity) {
+	public Resource(EResource eResource, int capacity, boolean hasIncome) {
 
 		this.eResource = eResource;
 		this.capacity = capacity;
 		this.textIndicatorCurrentAmount.setHeight(CredentialSingleton.INSTANCE.textResourcesHeight);
 		this.textIndicatorIncome.setHeight(CredentialSingleton.INSTANCE.textResourcesHeight);
+		this.hasIncome = hasIncome;
 
 	}
 
-	public Resource(EResource eResource) {
+	public Resource(EResource eResource, boolean hasIncome) {
 
 		this.eResource = eResource;
 		this.textIndicatorCurrentAmount.setHeight(CredentialSingleton.INSTANCE.textResourcesHeight);
 		this.textIndicatorIncome.setHeight(CredentialSingleton.INSTANCE.textResourcesHeight);
+		this.hasIncome = hasIncome;
 
 	}
 
@@ -100,7 +103,9 @@ public class Resource {
 	public void setText() {
 
 		setTextIndicator(this.textIndicatorCurrentAmount);
-		setTextIndicator(this.textIndicatorIncome);
+
+		if (this.hasIncome)
+			setTextIndicator(this.textIndicatorIncome);
 
 	}
 

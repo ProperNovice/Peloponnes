@@ -1,5 +1,6 @@
 package controller;
 
+import interfaces.RestartAble;
 import model.ASacrumChit;
 import model.SacrumChitNonSkull;
 import model.SacrumChitSkull;
@@ -7,7 +8,7 @@ import utils.ContainerImageViewAbles;
 import utils.CoordinatesBuilder;
 import utils.DirectionEnum;
 
-public class SacrumChits extends ContainerImageViewAbles<ASacrumChit> {
+public class SacrumChits extends ContainerImageViewAbles<ASacrumChit> implements RestartAble {
 
 	public SacrumChits() {
 		createList();
@@ -31,6 +32,14 @@ public class SacrumChits extends ContainerImageViewAbles<ASacrumChit> {
 		super.arrayList.addFirst(new SacrumChitSkull());
 		super.arrayList.shuffle();
 
+		relocateImageViews();
+
+	}
+
+	@Override
+	public void restart() {
+
+		super.arrayList.shuffle();
 		relocateImageViews();
 
 	}

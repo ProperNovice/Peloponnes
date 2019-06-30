@@ -14,6 +14,7 @@ public class Resources implements RestartAble {
 
 	private ArrayList<Resource> resources = new ArrayList<Resource>();
 	private HashMap<Integer, PopulationCoinsLuxuryGoods> populationCoins = new HashMap<Integer, PopulationCoinsLuxuryGoods>();
+	private int populationLostPerRound = 0, coinsPerRound = 0, woodLostPerRound = 0, stoneLostPerRound = 0;
 
 	public Resources() {
 
@@ -70,6 +71,28 @@ public class Resources implements RestartAble {
 
 		for (EResource eResource : list) {
 
+			if (eResource == EResource.POPULATION_LOST) {
+
+				this.populationLostPerRound++;
+				continue;
+
+			} else if (eResource == EResource.COIN) {
+
+				this.coinsPerRound++;
+				continue;
+
+			} else if (eResource == EResource.WOOD_LOST) {
+
+				this.woodLostPerRound++;
+				continue;
+
+			} else if (eResource == EResource.STONE_LOST) {
+
+				this.stoneLostPerRound++;
+				continue;
+
+			}
+
 			for (Resource resource : this.resources) {
 
 				if (resource.getEResource() != eResource)
@@ -109,6 +132,7 @@ public class Resources implements RestartAble {
 		currentPopulation = Math.min(currentPopulation, 20);
 
 		int coinIncome = this.populationCoins.get(currentPopulation).getCoins();
+		coinIncome += this.coinsPerRound;
 		int luxuryGoodsIncome = this.populationCoins.get(currentPopulation).getLuxuryGoods();
 
 		luxuryGoodsIncome += luxuryGoodsIncomeDefault;
@@ -145,6 +169,21 @@ public class Resources implements RestartAble {
 
 		for (Resource resource : this.resources)
 			addCurrentAmount(resource.getEResource(), resource.getIncome());
+
+		if (this.populationLostPerRound > 0)
+			for (int counter = 1; counter <= this.populationLostPerRound; counter++)
+				if (getCurrentAmount(EResource.POPULATION_GAIN) > 0)
+					removeCurrentAmount(EResource.POPULATION_GAIN, this.populationLostPerRound);
+
+		if (this.woodLostPerRound > 0)
+			for (int counter = 1; counter <= this.woodLostPerRound; counter++)
+				if (getCurrentAmount(EResource.WOOD) > 0)
+					removeCurrentAmount(EResource.WOOD, this.woodLostPerRound);
+
+		if (this.stoneLostPerRound > 0)
+			for (int counter = 1; counter <= this.stoneLostPerRound; counter++)
+				if (getCurrentAmount(EResource.STONE) > 0)
+					removeCurrentAmount(EResource.STONE, this.stoneLostPerRound);
 
 		handlePopulationToCoinsAndLuxury();
 
@@ -185,12 +224,13 @@ public class Resources implements RestartAble {
 
 	private void createResourceList() {
 
-		this.resources.addLast(new Resource(EResource.COIN));
-		this.resources.addLast(new Resource(EResource.STONE, 10));
-		this.resources.addLast(new Resource(EResource.WOOD, 10));
-		this.resources.addLast(new Resource(EResource.FOOD, 13));
-		this.resources.addLast(new Resource(EResource.LUXURY_GOODS));
-		this.resources.addLast(new Resource(EResource.POPULATION_GAIN));
+		this.resources.addLast(new Resource(EResource.COIN, true));
+		this.resources.addLast(new Resource(EResource.STONE, 10, true));
+		this.resources.addLast(new Resource(EResource.WOOD, 10, true));
+		this.resources.addLast(new Resource(EResource.FOOD, 13, true));
+		this.resources.addLast(new Resource(EResource.LUXURY_GOODS, true));
+		this.resources.addLast(new Resource(EResource.POPULATION_GAIN, true));
+		this.resources.addLast(new Resource(EResource.POPULATION_SACRUM, false));
 
 	}
 
@@ -245,6 +285,11 @@ public class Resources implements RestartAble {
 
 		for (Resource resource : this.resources)
 			resource.resetSetText();
+
+		this.populationLostPerRound = 0;
+		this.coinsPerRound = 0;
+		this.woodLostPerRound = 0;
+		this.stoneLostPerRound = 0;
 
 	}
 

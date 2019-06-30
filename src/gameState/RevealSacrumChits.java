@@ -2,9 +2,6 @@ package gameState;
 
 import controller.CredentialSingleton;
 import enums.EText;
-import enums.ETileAbility;
-import interfaces.AbilityAble;
-import interfaces.ITile;
 import model.ASacrumChit;
 import utils.Animation;
 import utils.Animation.AnimationSynch;
@@ -31,7 +28,7 @@ public class RevealSacrumChits extends AGameState {
 		Executor.INSTANCE.sleep(1000);
 		animateChitsToThirdListPosition();
 		addChitsToSacrumList();
-		checkForSacrificeInhabitants();
+		checkAndSetForSacrificeInhabitants();
 
 		super.controllerSingleton.flow.proceed();
 
@@ -92,20 +89,11 @@ public class RevealSacrumChits extends AGameState {
 
 	}
 
-	private void checkForSacrificeInhabitants() {
+	private void checkAndSetForSacrificeInhabitants() {
 
 		for (ASacrumChit aSacrumChit : this.list)
 			if (aSacrumChit.isSkull())
 				super.controllerSingleton.modifiers.sacrificeInhabitants = true;
-
-		for (ITile iTile : super.controllerSingleton.board.getArrayList()) {
-
-			AbilityAble abilityAble = (AbilityAble) iTile;
-
-			if (abilityAble.getTileAbility().contains(ETileAbility.SACRIFICE_INHABITANTS))
-				super.controllerSingleton.modifiers.sacrificeInhabitants = true;
-
-		}
 
 	}
 

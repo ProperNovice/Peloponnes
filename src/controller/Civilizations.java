@@ -97,6 +97,30 @@ public class Civilizations implements RestartAble {
 		this.list.addLast(new TileBuilder().eTileType(eTileType).tileNumber(tileNumber).oneTimeIncome(EResource.COIN, 4)
 				.oneTimeIncome(EResource.POPULATION_GAIN, 2).incomePerRound(EResource.POPULATION_GAIN, 2).build());
 
+		// 11
+		tileNumber++;
+		this.list.addLast(new TileBuilder().eTileType(eTileType).tileNumber(tileNumber).oneTimeIncome(EResource.COIN, 9)
+				.oneTimeIncome(EResource.POPULATION_GAIN, 3).incomePerRound(EResource.POPULATION_LOST)
+				.eTileAbility(ETileAbility.PROTECTION_FROM_DISASTERS).build());
+
+		// 12
+		tileNumber++;
+		this.list.addLast(new TileBuilder().eTileType(eTileType).tileNumber(tileNumber).oneTimeIncome(EResource.COIN, 8)
+				.oneTimeIncome(EResource.POPULATION_GAIN, 2).incomePerRound(EResource.COIN, EResource.WOOD)
+				.eTileAbility(ETileAbility.SACRIFICE_INHABITANTS_EACH_ROUND).build());
+
+		// 13
+		tileNumber++;
+		this.list.addLast(new TileBuilder().eTileType(eTileType).tileNumber(tileNumber).oneTimeIncome(EResource.COIN, 3)
+				.oneTimeIncome(EResource.POPULATION_GAIN).incomePerRound(EResource.CHOOSE_INCOME, 3).build());
+
+		// 14
+		tileNumber++;
+		this.list.addLast(new TileBuilder().eTileType(eTileType).tileNumber(tileNumber).oneTimeIncome(EResource.COIN, 9)
+				.oneTimeIncome(EResource.FOOD, 9).oneTimeIncome(EResource.POPULATION_GAIN, 3)
+				.incomePerRound(EResource.WOOD_LOST, EResource.STONE_LOST, EResource.FOOD)
+				.eTileAbility(ETileAbility.PROTECTION_FROM_TEMPEST).build());
+
 	}
 
 	private void setVisibleFalse() {
