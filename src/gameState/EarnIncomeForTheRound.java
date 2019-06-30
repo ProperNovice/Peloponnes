@@ -1,5 +1,6 @@
 package gameState;
 
+import enums.EGameState;
 import enums.EResource;
 import enums.EText;
 import interfaces.ITile;
@@ -22,6 +23,7 @@ public class EarnIncomeForTheRound extends AGameState {
 		case EARN_INCOME:
 
 			handleEarnIncome();
+			EGameState.SCORE.getGameState().handleGameStateChange();
 			setChooseIncomeTilesAmount();
 			handleContinue();
 			break;

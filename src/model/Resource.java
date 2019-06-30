@@ -116,7 +116,7 @@ public class Resource {
 		text += ": ";
 
 		if (textIndicator == this.textIndicatorCurrentAmount)
-			text += Integer.toString(this.currentAmount);
+			text += Integer.toString(Math.max(this.currentAmount, 0));
 		else if (textIndicator == this.textIndicatorIncome)
 			text += Integer.toString(this.income);
 
