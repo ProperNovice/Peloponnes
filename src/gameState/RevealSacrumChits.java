@@ -27,6 +27,7 @@ public class RevealSacrumChits extends AGameState {
 		animateChitsDown();
 		Executor.INSTANCE.sleep(1000);
 		animateChitsToThirdListPosition();
+		Executor.INSTANCE.sleep(100);
 		addChitsToSacrumList();
 		checkAndSetForSacrificeInhabitants();
 
@@ -53,7 +54,7 @@ public class RevealSacrumChits extends AGameState {
 
 		}
 
-		super.controllerSingleton.sacrumChits.animateAsynchronous();
+		super.controllerSingleton.sacrumChits.animateSynchronous();
 
 		Lock.INSTANCE.lock();
 
