@@ -36,7 +36,7 @@ public class Modifiers {
 
 	}
 
-	public void createEDisasters() {
+	private void createEDisasters() {
 
 		this.eDisasters.clear();
 		this.eDisasters.addAll(EDisaster.values());

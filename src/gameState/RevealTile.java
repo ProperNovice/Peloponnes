@@ -37,20 +37,31 @@ public class RevealTile extends AGameState {
 
 	private void drawTile() {
 
+		System.out.println("1");
 		removeTileFromPileAnimateAsynchronous();
+		System.out.println("2");
 		setTileDimensions();
+		System.out.println("3");
 		checkForSupplyRound();
+		System.out.println("4");
 		addTileToRowAnimateAsynchronous();
+		System.out.println("5");
 		proceed();
 
 	}
 
 	private void removeTileFromPileAnimateAsynchronous() {
 
+		System.out.println("6");
+		
 		TilePile tilePile = super.controllerSingleton.tilePiles.getFirstNonEmptyTilePile();
+		
+		System.out.println("7");
 
 		this.iTile = tilePile.getArrayList().removeRandom();
+		System.out.println("8");
 		tilePile.animateAsynchronous();
+		System.out.println("9");
 
 	}
 
