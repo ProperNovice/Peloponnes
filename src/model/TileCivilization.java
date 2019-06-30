@@ -1,5 +1,6 @@
 package model;
 
+import controller.CredentialSingleton;
 import enums.EResource;
 import enums.ETileAbility;
 import enums.ETileType;
@@ -36,6 +37,7 @@ public class TileCivilization extends Tile implements ITileCivilization, IncomeA
 		fileName += ".png";
 
 		super.createImageView(fileName);
+		getImageView().setWidth(CredentialSingleton.INSTANCE.DimensionsTileGame.x);
 
 	}
 

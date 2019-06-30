@@ -1,6 +1,5 @@
 package gameState;
 
-import controller.CredentialSingleton;
 import enums.EResource;
 import model.TileCivilization;
 import utils.ArrayList;
@@ -25,7 +24,6 @@ public class AddCivilizationAndStartingResources extends AGameState {
 		TileCivilization tile = super.controllerSingleton.modifiers.tileCivilization;
 
 		tile.getImageView().setVisible(true);
-		tile.getImageView().setWidth(CredentialSingleton.INSTANCE.DimensionsTileGame.x);
 
 		super.controllerSingleton.board.getArrayList().addLast(tile);
 		super.controllerSingleton.board.relocateList();

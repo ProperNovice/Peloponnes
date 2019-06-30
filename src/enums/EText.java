@@ -44,6 +44,8 @@ public enum EText {
 	YOU_LOST("You lost", TextTypeEnum.INDICATOR),
 	DRAW_SACRUM_CHITS("Draw sacrum chits", TextTypeEnum.OPTION),
 	SACRIFICE_INHABITANT("Sacrifice inhabitant", TextTypeEnum.OPTION),
+	CHOOSE_CIVILIZATION("Choose civilization", TextTypeEnum.INDICATOR),
+	RANDOM("Random", TextTypeEnum.OPTION),
 	
 	;
 

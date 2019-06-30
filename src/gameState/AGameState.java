@@ -51,6 +51,8 @@ public abstract class AGameState {
 			handleTilePressedBoard(iTile);
 		else if (this.controllerSingleton.tileSeaPile.getArrayList().contains(iTile))
 			handleSeaTilePressed(iTile);
+		else if (this.controllerSingleton.civilizations.getArrayList().contains(iTile))
+			handleCivilizationTilePressed(iTile);
 
 	}
 
@@ -67,6 +69,10 @@ public abstract class AGameState {
 	}
 
 	protected void handleSeaTilePressed(ITile iTile) {
+
+	}
+
+	protected void handleCivilizationTilePressed(ITile iTile) {
 
 	}
 
