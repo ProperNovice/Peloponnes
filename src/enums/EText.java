@@ -46,6 +46,7 @@ public enum EText {
 	SACRIFICE_INHABITANT("Sacrifice inhabitant", TextTypeEnum.OPTION),
 	CHOOSE_CIVILIZATION("Choose civilization", TextTypeEnum.INDICATOR),
 	RANDOM("Random", TextTypeEnum.OPTION),
+	CONGRATULATIONS("Congratulations", TextTypeEnum.INDICATOR),
 	
 	;
 
