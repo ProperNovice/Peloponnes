@@ -103,6 +103,9 @@ public class Flow {
 		case RESOLVE_DISASTER:
 			return resolveDisaster();
 
+		case REVEAL_DISASTER_CHIT:
+			return revealDisasterChit();
+
 		default:
 			return true;
 
@@ -113,6 +116,9 @@ public class Flow {
 	private boolean resolveDisaster() {
 
 		EDisaster eDisaster = ControllerSingleton.INSTANCE.modifiers.eDisasterDrawn;
+
+		if (eDisaster == null)
+			return false;
 
 		if (eDisaster == EDisaster.BLANK)
 			return false;
@@ -168,6 +174,21 @@ public class Flow {
 			return false;
 		else
 			return ControllerSingleton.INSTANCE.modifiers.sacrificeInhabitants;
+
+	}
+
+	private boolean revealDisasterChit() {
+
+		for (ITile iTile : ControllerSingleton.INSTANCE.board.getArrayList()) {
+
+			AbilityAble abilityAble = (AbilityAble) iTile;
+
+			if (abilityAble.getTileAbility().contains(ETileAbility.PROTECTION_FROM_DISASTERS))
+				return false;
+
+		}
+
+		return true;
 
 	}
 
