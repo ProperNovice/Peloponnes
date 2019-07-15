@@ -28,7 +28,6 @@ public class EndCampaignLevel extends AGameState {
 
 			super.controllerSingleton.text.showText(EText.CONGRATULATIONS);
 			handleRestartGame();
-			super.controllerSingleton.text.showText(EText.YOU_WON);
 			super.controllerSingleton.text.showText(EText.RESTART);
 
 		} else {
