@@ -6,7 +6,7 @@ public enum Animation {
 
 	INSTANCE;
 
-	private final double ANIMATION_STEP = 10;
+	private final double ANIMATION_STEP = 4;
 
 	private ArrayList<NodeAnimation> animationsSynchronous = new ArrayList<NodeAnimation>();
 	private ArrayList<NodeAnimation> animationsAsynchronous = new ArrayList<NodeAnimation>();
