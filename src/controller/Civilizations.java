@@ -136,12 +136,12 @@ public class Civilizations extends ContainerImageViewAbles<ITile> implements Res
 						.oneTimeIncome(EResource.POPULATION_GAIN).incomePerRound(EResource.CHOOSE_INCOME, 3).build());
 
 		// 14
-		tileNumber++;
-		super.arrayList
-				.addLast(new TileBuilder().eTileType(eTileType).tileNumber(tileNumber).oneTimeIncome(EResource.COIN, 9)
-						.oneTimeIncome(EResource.FOOD, 9).oneTimeIncome(EResource.POPULATION_GAIN, 3)
-						.incomePerRound(EResource.WOOD_LOST, EResource.STONE_LOST, EResource.FOOD)
-						.eTileAbility(ETileAbility.PROTECTION_FROM_TEMPEST).build());
+//		tileNumber++;
+//		super.arrayList
+//				.addLast(new TileBuilder().eTileType(eTileType).tileNumber(tileNumber).oneTimeIncome(EResource.COIN, 9)
+//						.oneTimeIncome(EResource.FOOD, 9).oneTimeIncome(EResource.POPULATION_GAIN, 3)
+//						.incomePerRound(EResource.WOOD_LOST, EResource.STONE_LOST, EResource.FOOD)
+//						.eTileAbility(ETileAbility.PROTECTION_FROM_TEMPEST).build());
 
 	}
 
