@@ -23,11 +23,14 @@ public class Peloponnes extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
+		logJavaVersion();
+
 		CredentialSingleton.INSTANCE.calculateCredentials();
 
 		this.panel = new Panel();
 
-		double width = CredentialSingleton.INSTANCE.DimensionsFrame.x + CredentialSingleton.INSTANCE.DimensionsInsets.x;
+		double width = CredentialSingleton.INSTANCE.DimensionsFrame.x
+				+ CredentialSingleton.INSTANCE.DimensionsInsets.x;
 		double height = CredentialSingleton.INSTANCE.DimensionsFrame.y
 				+ CredentialSingleton.INSTANCE.DimensionsInsets.y;
 
@@ -50,7 +53,8 @@ public class Peloponnes extends Application {
 					else if (Animation.INSTANCE.isAnimatingSynchronous())
 						return;
 
-					ControllerSingleton.INSTANCE.gameState.getCurrentGameState().executeKeyPressed(keyCode);
+					ControllerSingleton.INSTANCE.gameState.getCurrentGameState()
+							.executeKeyPressed(keyCode);
 
 				});
 
@@ -64,7 +68,8 @@ public class Peloponnes extends Application {
 
 		primaryStage.setTitle("Peloponnes");
 
-		primaryStage.setX((Screen.getPrimary().getBounds().getWidth() - width) / 2 - this.pixesOnTheLeft);
+		primaryStage.setX(
+				(Screen.getPrimary().getBounds().getWidth() - width) / 2 - this.pixesOnTheLeft);
 		primaryStage.setY((Screen.getPrimary().getBounds().getHeight() - height) / 2);
 
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -79,6 +84,13 @@ public class Peloponnes extends Application {
 		primaryStage.show();
 
 		this.panel.startGame();
+
+	}
+
+	private void logJavaVersion() {
+
+		Logger.INSTANCE.log("Java -> " + System.getProperty("java.version"));
+		Logger.INSTANCE.logNewLine("JavaFX -> " + System.getProperty("javafx.version"));
 
 	}
 

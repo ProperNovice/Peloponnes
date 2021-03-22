@@ -1,91 +1,89 @@
 package utils;
 
-import com.sun.javafx.tk.Toolkit;
-
 import javafx.application.Platform;
 
 public enum Lock {
 
 	INSTANCE;
 
-	private Object lockObject = new Object();
-	private LockType lockType = null;
-	private Semaphore semaphore = new Semaphore();
+	private Lockable lock = null;
 
 	private Lock() {
 
 	}
 
-	private enum LockType {
-		FX, EXECUTOR_SERVICE
-	}
-
-	private class Semaphore {
-
-		private java.util.concurrent.Semaphore semaphore = null;
-
-		public Semaphore() {
-			this.semaphore = new java.util.concurrent.Semaphore(0);
-		}
-
-		public void releasePermit() {
-			this.semaphore.release();
-		}
-
-		public void acquirePermit() {
-
-			try {
-				this.semaphore.acquire();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
-		}
-
-		public int availablePermits() {
-			return this.semaphore.availablePermits();
-		}
-
-	}
-
 	public void lock() {
 
+		this.lock = new LockNested();
+		executeLock();
+
+	}
+
+	public void lock(Runnable runnable) {
+
+		this.lock = new LockRunnable(runnable);
+		executeLock();
+
+	}
+
+	private void executeLock() {
+
 		Logger.INSTANCE.log("lock");
-
-		if (Platform.isFxApplicationThread()) {
-
-			this.lockType = LockType.FX;
-			Toolkit.getToolkit().enterNestedEventLoop(this.lockObject);
-
-		} else if (!Platform.isFxApplicationThread()) {
-
-			this.lockType = LockType.EXECUTOR_SERVICE;
-			this.semaphore.acquirePermit();
-
-		}
-
-		Logger.INSTANCE.logNewLine("unlock");
-
-		if (Platform.isFxApplicationThread())
-			return;
-
-		Logger.INSTANCE.logNewLine("available permits : " + this.semaphore.availablePermits());
+		this.lock.lock();
 
 	}
 
 	public void unlock() {
+		this.lock.unlock();
+	}
 
-		switch (this.lockType) {
+	private class LockNested implements Lockable {
 
-		case FX:
-			Toolkit.getToolkit().exitNestedEventLoop(this.lockObject, null);
-			break;
+		private Object lockObject = new Object();
 
-		case EXECUTOR_SERVICE:
-			this.semaphore.releasePermit();
-			break;
+		@Override
+		public void lock() {
+			Platform.enterNestedEventLoop(this.lockObject);
+		}
+
+		@Override
+		public void unlock() {
+
+			Platform.exitNestedEventLoop(this.lockObject, null);
+			Logger.INSTANCE.logNewLine("unlock");
 
 		}
+
+	}
+
+	private class LockRunnable implements Lockable {
+
+		private Runnable runnable = null;
+
+		public LockRunnable(Runnable runnable) {
+			this.runnable = runnable;
+		}
+
+		@Override
+		public void lock() {
+
+		}
+
+		@Override
+		public void unlock() {
+
+			Logger.INSTANCE.logNewLine("unlock");
+			this.runnable.run();
+
+		}
+
+	}
+
+	private interface Lockable {
+
+		public void lock();
+
+		public void unlock();
 
 	}
 
